@@ -30,7 +30,9 @@
 int main(void) {
 	char ch;
 	unsigned int duty_cycle = 0;
-
+	unsigned int duty_cycle0 = 0;
+	unsigned int duty_cycle1 = 0;
+	unsigned int duty_cycle2= 0;
 	/* Init board hardware. */
 	BOARD_InitBootPins();
 	BOARD_InitBootClocks();
@@ -38,25 +40,39 @@ int main(void) {
 
 	pwm_setup();
 
-	scanf("%x", &duty_cycle);
+	//scanf("%x", &duty_cycle);
 
-	printf("%d\n", duty_cycle % 0xFF);
+	//printf("%x\n", duty_cycle % 0xFF);
+	scanf("%2x%2x%2x",  &duty_cycle2 , &duty_cycle1 , &duty_cycle0);
 
-	duty_cycle = duty_cycle / 0xFF;
+	printf("red = %x\n", duty_cycle2);
+	printf("blue = %x\n", duty_cycle0);
+	printf("green = %x\n", duty_cycle1);
 
-	printf("%d\n", duty_cycle % 0xFF);
+	/*duty_cycle = duty_cycle / 0xFF;
+	duty_cycle0 = duty_cycle << 24;
+	duty_cycle0 = duty_cycle0 >> 24;
+	printf("%x\n", duty_cycle0);
 
-	duty_cycle = duty_cycle / 0xFF;
 
-	printf("%d\n", duty_cycle % 0xFF);
+	duty_cycle1 = duty_cycle >> 8;
+	duty_cycle1 = duty_cycle1 << 24;
+	duty_cycle1 = duty_cycle1 >> 24;
+	printf("%x\n", duty_cycle1);
 
-	FTM_UpdatePwmDutycycle(FTM3, kFTM_Chnl_1, kFTM_EdgeAlignedPwm, duty_cycle);
+	duty_cycle2 = duty_cycle >> 16;
+	printf("%x\n", duty_cycle2);*/
+
+
+
+
+	FTM_UpdatePwmDutycycle(FTM3, kFTM_Chnl_1, kFTM_EdgeAlignedPwm,  (double)(duty_cycle2 / 0xFF) * 100);
 	FTM_SetSoftwareTrigger(FTM3, true);
 
-	FTM_UpdatePwmDutycycle(FTM3, kFTM_Chnl_4, kFTM_EdgeAlignedPwm, duty_cycle);
+	FTM_UpdatePwmDutycycle(FTM3, kFTM_Chnl_4, kFTM_EdgeAlignedPwm,  (double)(duty_cycle0 / 0xFF) * 100);
 	FTM_SetSoftwareTrigger(FTM3, true);
 
-	FTM_UpdatePwmDutycycle(FTM3, kFTM_Chnl_5, kFTM_EdgeAlignedPwm, duty_cycle);
+	FTM_UpdatePwmDutycycle(FTM3, kFTM_Chnl_5, kFTM_EdgeAlignedPwm,  (double)(duty_cycle1 / 0xFF) * 100);
 	FTM_SetSoftwareTrigger(FTM3, true);
 
 	while (1) {}

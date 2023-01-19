@@ -3020,3 +3020,1285 @@ arm-none-eabi-size "frdmk66f_hello_world_exp4.axf"; # arm-none-eabi-objcopy -v -
    text	   data	    bss	    dec	    hex	filename
   19848	     24	   8456	  28328	   6ea8	frdmk66f_hello_world_exp4.axf
  
+17:27:03 **** Incremental Build of configuration Debug for project frdmk66f_hello_world_exp4 ****
+make -r -j4 all 
+Building file: ../source/hello_world.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -std=gnu99 -DCPU_MK66FN2M0VMD18 -DCPU_MK66FN2M0VMD18_cm4 -DPRINTF_FLOAT_ENABLE=0 -DSCANF_FLOAT_ENABLE=0 -DPRINTF_ADVANCED_ENABLE=0 -DSCANF_ADVANCED_ENABLE=0 -DFRDM_K66F -DFREEDOM -DMCUXPRESSO_SDK -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -D__REDLIB__ -DSDK_OS_BAREMETAL -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\source" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -O0 -fno-common -g3 -c -ffunction-sections -fdata-sections -ffreestanding -fno-builtin -fmerge-constants -fmacro-prefix-map="../source/"= -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"source/hello_world.d" -MT"source/hello_world.o" -MT"source/hello_world.d" -o "source/hello_world.o" "../source/hello_world.c"
+../source/hello_world.c: In function 'main':
+../source/hello_world.c:39:2: warning: implicit declaration of function 'pwm_setup' [-Wimplicit-function-declaration]
+   39 |  pwm_setup();
+      |  ^~~~~~~~~
+../source/hello_world.c: At top level:
+../source/hello_world.c:65:6: warning: conflicting types for 'pwm_setup'
+   65 | void pwm_setup() {
+      |      ^~~~~~~~~
+../source/hello_world.c:39:2: note: previous implicit declaration of 'pwm_setup' was here
+   39 |  pwm_setup();
+      |  ^~~~~~~~~
+Finished building: ../source/hello_world.c
+ 
+Building target: frdmk66f_hello_world_exp4.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -Xlinker -Map="frdmk66f_hello_world_exp4.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -T frdmk66f_hello_world_exp4_Debug.ld -o "frdmk66f_hello_world_exp4.axf" ./utilities/fsl_assert.o ./utilities/fsl_debug_console.o  ./startup/startup_mk66f18.o  ./source/hello_world.o ./source/semihost_hardfault.o  ./drivers/fsl_clock.o ./drivers/fsl_common.o ./drivers/fsl_common_arm.o ./drivers/fsl_ftfx_cache.o ./drivers/fsl_ftfx_controller.o ./drivers/fsl_ftfx_flash.o ./drivers/fsl_ftfx_flexnvm.o ./drivers/fsl_ftm.o ./drivers/fsl_gpio.o ./drivers/fsl_i2c.o ./drivers/fsl_lpuart.o ./drivers/fsl_rtc.o ./drivers/fsl_smc.o ./drivers/fsl_uart.o  ./device/system_MK66F18.o  ./component/uart/fsl_adapter_uart.o  ./component/lists/fsl_component_generic_list.o  ./board/board.o ./board/clock_config.o ./board/pin_mux.o   
+Memory region         Used Size  Region Size  %age Used
+   PROGRAM_FLASH:       19872 B         2 MB      0.95%
+      SRAM_UPPER:        8480 B       192 KB      4.31%
+      SRAM_LOWER:          0 GB        64 KB      0.00%
+        FLEX_RAM:          0 GB         4 KB      0.00%
+Finished building target: frdmk66f_hello_world_exp4.axf
+ 
+Performing post-build steps
+arm-none-eabi-size "frdmk66f_hello_world_exp4.axf"; # arm-none-eabi-objcopy -v -O binary "frdmk66f_hello_world_exp4.axf" "frdmk66f_hello_world_exp4.bin" ; # checksum -p MK66FN2M0xxx18 -d "frdmk66f_hello_world_exp4.bin";
+   text	   data	    bss	    dec	    hex	filename
+  19848	     24	   8456	  28328	   6ea8	frdmk66f_hello_world_exp4.axf
+ 
+17:29:38 **** Incremental Build of configuration Debug for project frdmk66f_hello_world_exp4 ****
+make -r -j4 all 
+make[1]: Nothing to be done for 'main-build'.
+Performing post-build steps
+arm-none-eabi-size "frdmk66f_hello_world_exp4.axf"; # arm-none-eabi-objcopy -v -O binary "frdmk66f_hello_world_exp4.axf" "frdmk66f_hello_world_exp4.bin" ; # checksum -p MK66FN2M0xxx18 -d "frdmk66f_hello_world_exp4.bin";
+   text	   data	    bss	    dec	    hex	filename
+  19848	     24	   8456	  28328	   6ea8	frdmk66f_hello_world_exp4.axf
+ 
+17:32:13 **** Incremental Build of configuration Debug for project frdmk66f_hello_world_exp4 ****
+make -r -j4 all 
+Building file: ../source/hello_world.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -std=gnu99 -DCPU_MK66FN2M0VMD18 -DCPU_MK66FN2M0VMD18_cm4 -DPRINTF_FLOAT_ENABLE=0 -DSCANF_FLOAT_ENABLE=0 -DPRINTF_ADVANCED_ENABLE=0 -DSCANF_ADVANCED_ENABLE=0 -DFRDM_K66F -DFREEDOM -DMCUXPRESSO_SDK -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -D__REDLIB__ -DSDK_OS_BAREMETAL -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\source" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -O0 -fno-common -g3 -c -ffunction-sections -fdata-sections -ffreestanding -fno-builtin -fmerge-constants -fmacro-prefix-map="../source/"= -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"source/hello_world.d" -MT"source/hello_world.o" -MT"source/hello_world.d" -o "source/hello_world.o" "../source/hello_world.c"
+../source/hello_world.c: In function 'main':
+../source/hello_world.c:39:2: warning: implicit declaration of function 'pwm_setup' [-Wimplicit-function-declaration]
+   39 |  pwm_setup();
+      |  ^~~~~~~~~
+../source/hello_world.c: At top level:
+../source/hello_world.c:66:6: warning: conflicting types for 'pwm_setup'
+   66 | void pwm_setup() {
+      |      ^~~~~~~~~
+../source/hello_world.c:39:2: note: previous implicit declaration of 'pwm_setup' was here
+   39 |  pwm_setup();
+      |  ^~~~~~~~~
+Finished building: ../source/hello_world.c
+ 
+Building target: frdmk66f_hello_world_exp4.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -Xlinker -Map="frdmk66f_hello_world_exp4.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -T frdmk66f_hello_world_exp4_Debug.ld -o "frdmk66f_hello_world_exp4.axf" ./utilities/fsl_assert.o ./utilities/fsl_debug_console.o  ./startup/startup_mk66f18.o  ./source/hello_world.o ./source/semihost_hardfault.o  ./drivers/fsl_clock.o ./drivers/fsl_common.o ./drivers/fsl_common_arm.o ./drivers/fsl_ftfx_cache.o ./drivers/fsl_ftfx_controller.o ./drivers/fsl_ftfx_flash.o ./drivers/fsl_ftfx_flexnvm.o ./drivers/fsl_ftm.o ./drivers/fsl_gpio.o ./drivers/fsl_i2c.o ./drivers/fsl_lpuart.o ./drivers/fsl_rtc.o ./drivers/fsl_smc.o ./drivers/fsl_uart.o  ./device/system_MK66F18.o  ./component/uart/fsl_adapter_uart.o  ./component/lists/fsl_component_generic_list.o  ./board/board.o ./board/clock_config.o ./board/pin_mux.o   
+Memory region         Used Size  Region Size  %age Used
+   PROGRAM_FLASH:       19888 B         2 MB      0.95%
+      SRAM_UPPER:        8480 B       192 KB      4.31%
+      SRAM_LOWER:          0 GB        64 KB      0.00%
+        FLEX_RAM:          0 GB         4 KB      0.00%
+Finished building target: frdmk66f_hello_world_exp4.axf
+ 
+Performing post-build steps
+arm-none-eabi-size "frdmk66f_hello_world_exp4.axf"; # arm-none-eabi-objcopy -v -O binary "frdmk66f_hello_world_exp4.axf" "frdmk66f_hello_world_exp4.bin" ; # checksum -p MK66FN2M0xxx18 -d "frdmk66f_hello_world_exp4.bin";
+   text	   data	    bss	    dec	    hex	filename
+  19864	     24	   8456	  28344	   6eb8	frdmk66f_hello_world_exp4.axf
+ 
+17:34:05 **** Incremental Build of configuration Debug for project frdmk66f_hello_world_exp4 ****
+make -r -j4 all 
+Building file: ../source/hello_world.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -std=gnu99 -DCPU_MK66FN2M0VMD18 -DCPU_MK66FN2M0VMD18_cm4 -DPRINTF_FLOAT_ENABLE=0 -DSCANF_FLOAT_ENABLE=0 -DPRINTF_ADVANCED_ENABLE=0 -DSCANF_ADVANCED_ENABLE=0 -DFRDM_K66F -DFREEDOM -DMCUXPRESSO_SDK -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -D__REDLIB__ -DSDK_OS_BAREMETAL -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\source" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -O0 -fno-common -g3 -c -ffunction-sections -fdata-sections -ffreestanding -fno-builtin -fmerge-constants -fmacro-prefix-map="../source/"= -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"source/hello_world.d" -MT"source/hello_world.o" -MT"source/hello_world.d" -o "source/hello_world.o" "../source/hello_world.c"
+../source/hello_world.c: In function 'main':
+../source/hello_world.c:39:2: warning: implicit declaration of function 'pwm_setup' [-Wimplicit-function-declaration]
+   39 |  pwm_setup();
+      |  ^~~~~~~~~
+../source/hello_world.c: At top level:
+../source/hello_world.c:67:6: warning: conflicting types for 'pwm_setup'
+   67 | void pwm_setup() {
+      |      ^~~~~~~~~
+../source/hello_world.c:39:2: note: previous implicit declaration of 'pwm_setup' was here
+   39 |  pwm_setup();
+      |  ^~~~~~~~~
+Finished building: ../source/hello_world.c
+ 
+Building target: frdmk66f_hello_world_exp4.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -Xlinker -Map="frdmk66f_hello_world_exp4.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -T frdmk66f_hello_world_exp4_Debug.ld -o "frdmk66f_hello_world_exp4.axf" ./utilities/fsl_assert.o ./utilities/fsl_debug_console.o  ./startup/startup_mk66f18.o  ./source/hello_world.o ./source/semihost_hardfault.o  ./drivers/fsl_clock.o ./drivers/fsl_common.o ./drivers/fsl_common_arm.o ./drivers/fsl_ftfx_cache.o ./drivers/fsl_ftfx_controller.o ./drivers/fsl_ftfx_flash.o ./drivers/fsl_ftfx_flexnvm.o ./drivers/fsl_ftm.o ./drivers/fsl_gpio.o ./drivers/fsl_i2c.o ./drivers/fsl_lpuart.o ./drivers/fsl_rtc.o ./drivers/fsl_smc.o ./drivers/fsl_uart.o  ./device/system_MK66F18.o  ./component/uart/fsl_adapter_uart.o  ./component/lists/fsl_component_generic_list.o  ./board/board.o ./board/clock_config.o ./board/pin_mux.o   
+Memory region         Used Size  Region Size  %age Used
+   PROGRAM_FLASH:       19896 B         2 MB      0.95%
+      SRAM_UPPER:        8480 B       192 KB      4.31%
+      SRAM_LOWER:          0 GB        64 KB      0.00%
+        FLEX_RAM:          0 GB         4 KB      0.00%
+Finished building target: frdmk66f_hello_world_exp4.axf
+ 
+Performing post-build steps
+arm-none-eabi-size "frdmk66f_hello_world_exp4.axf"; # arm-none-eabi-objcopy -v -O binary "frdmk66f_hello_world_exp4.axf" "frdmk66f_hello_world_exp4.bin" ; # checksum -p MK66FN2M0xxx18 -d "frdmk66f_hello_world_exp4.bin";
+   text	   data	    bss	    dec	    hex	filename
+  19872	     24	   8456	  28352	   6ec0	frdmk66f_hello_world_exp4.axf
+ 
+17:36:24 **** Incremental Build of configuration Debug for project frdmk66f_hello_world_exp4 ****
+make -r -j4 all 
+Building file: ../source/hello_world.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -std=gnu99 -DCPU_MK66FN2M0VMD18 -DCPU_MK66FN2M0VMD18_cm4 -DPRINTF_FLOAT_ENABLE=0 -DSCANF_FLOAT_ENABLE=0 -DPRINTF_ADVANCED_ENABLE=0 -DSCANF_ADVANCED_ENABLE=0 -DFRDM_K66F -DFREEDOM -DMCUXPRESSO_SDK -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -D__REDLIB__ -DSDK_OS_BAREMETAL -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\source" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -O0 -fno-common -g3 -c -ffunction-sections -fdata-sections -ffreestanding -fno-builtin -fmerge-constants -fmacro-prefix-map="../source/"= -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"source/hello_world.d" -MT"source/hello_world.o" -MT"source/hello_world.d" -o "source/hello_world.o" "../source/hello_world.c"
+../source/hello_world.c: In function 'main':
+../source/hello_world.c:39:2: warning: implicit declaration of function 'pwm_setup' [-Wimplicit-function-declaration]
+   39 |  pwm_setup();
+      |  ^~~~~~~~~
+../source/hello_world.c: At top level:
+../source/hello_world.c:67:6: warning: conflicting types for 'pwm_setup'
+   67 | void pwm_setup() {
+      |      ^~~~~~~~~
+../source/hello_world.c:39:2: note: previous implicit declaration of 'pwm_setup' was here
+   39 |  pwm_setup();
+      |  ^~~~~~~~~
+Finished building: ../source/hello_world.c
+ 
+Building target: frdmk66f_hello_world_exp4.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -Xlinker -Map="frdmk66f_hello_world_exp4.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -T frdmk66f_hello_world_exp4_Debug.ld -o "frdmk66f_hello_world_exp4.axf" ./utilities/fsl_assert.o ./utilities/fsl_debug_console.o  ./startup/startup_mk66f18.o  ./source/hello_world.o ./source/semihost_hardfault.o  ./drivers/fsl_clock.o ./drivers/fsl_common.o ./drivers/fsl_common_arm.o ./drivers/fsl_ftfx_cache.o ./drivers/fsl_ftfx_controller.o ./drivers/fsl_ftfx_flash.o ./drivers/fsl_ftfx_flexnvm.o ./drivers/fsl_ftm.o ./drivers/fsl_gpio.o ./drivers/fsl_i2c.o ./drivers/fsl_lpuart.o ./drivers/fsl_rtc.o ./drivers/fsl_smc.o ./drivers/fsl_uart.o  ./device/system_MK66F18.o  ./component/uart/fsl_adapter_uart.o  ./component/lists/fsl_component_generic_list.o  ./board/board.o ./board/clock_config.o ./board/pin_mux.o   
+Memory region         Used Size  Region Size  %age Used
+   PROGRAM_FLASH:       19872 B         2 MB      0.95%
+      SRAM_UPPER:        8480 B       192 KB      4.31%
+      SRAM_LOWER:          0 GB        64 KB      0.00%
+        FLEX_RAM:          0 GB         4 KB      0.00%
+Finished building target: frdmk66f_hello_world_exp4.axf
+ 
+Performing post-build steps
+arm-none-eabi-size "frdmk66f_hello_world_exp4.axf"; # arm-none-eabi-objcopy -v -O binary "frdmk66f_hello_world_exp4.axf" "frdmk66f_hello_world_exp4.bin" ; # checksum -p MK66FN2M0xxx18 -d "frdmk66f_hello_world_exp4.bin";
+   text	   data	    bss	    dec	    hex	filename
+  19848	     24	   8456	  28328	   6ea8	frdmk66f_hello_world_exp4.axf
+ 
+17:38:31 **** Incremental Build of configuration Debug for project frdmk66f_hello_world_exp4 ****
+make -r -j4 all 
+Building file: ../source/hello_world.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -std=gnu99 -DCPU_MK66FN2M0VMD18 -DCPU_MK66FN2M0VMD18_cm4 -DPRINTF_FLOAT_ENABLE=0 -DSCANF_FLOAT_ENABLE=0 -DPRINTF_ADVANCED_ENABLE=0 -DSCANF_ADVANCED_ENABLE=0 -DFRDM_K66F -DFREEDOM -DMCUXPRESSO_SDK -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -D__REDLIB__ -DSDK_OS_BAREMETAL -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\source" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -O0 -fno-common -g3 -c -ffunction-sections -fdata-sections -ffreestanding -fno-builtin -fmerge-constants -fmacro-prefix-map="../source/"= -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"source/hello_world.d" -MT"source/hello_world.o" -MT"source/hello_world.d" -o "source/hello_world.o" "../source/hello_world.c"
+../source/hello_world.c: In function 'main':
+../source/hello_world.c:39:2: warning: implicit declaration of function 'pwm_setup' [-Wimplicit-function-declaration]
+   39 |  pwm_setup();
+      |  ^~~~~~~~~
+../source/hello_world.c: At top level:
+../source/hello_world.c:68:6: warning: conflicting types for 'pwm_setup'
+   68 | void pwm_setup() {
+      |      ^~~~~~~~~
+../source/hello_world.c:39:2: note: previous implicit declaration of 'pwm_setup' was here
+   39 |  pwm_setup();
+      |  ^~~~~~~~~
+Finished building: ../source/hello_world.c
+ 
+Building target: frdmk66f_hello_world_exp4.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -Xlinker -Map="frdmk66f_hello_world_exp4.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -T frdmk66f_hello_world_exp4_Debug.ld -o "frdmk66f_hello_world_exp4.axf" ./utilities/fsl_assert.o ./utilities/fsl_debug_console.o  ./startup/startup_mk66f18.o  ./source/hello_world.o ./source/semihost_hardfault.o  ./drivers/fsl_clock.o ./drivers/fsl_common.o ./drivers/fsl_common_arm.o ./drivers/fsl_ftfx_cache.o ./drivers/fsl_ftfx_controller.o ./drivers/fsl_ftfx_flash.o ./drivers/fsl_ftfx_flexnvm.o ./drivers/fsl_ftm.o ./drivers/fsl_gpio.o ./drivers/fsl_i2c.o ./drivers/fsl_lpuart.o ./drivers/fsl_rtc.o ./drivers/fsl_smc.o ./drivers/fsl_uart.o  ./device/system_MK66F18.o  ./component/uart/fsl_adapter_uart.o  ./component/lists/fsl_component_generic_list.o  ./board/board.o ./board/clock_config.o ./board/pin_mux.o   
+Memory region         Used Size  Region Size  %age Used
+   PROGRAM_FLASH:       19856 B         2 MB      0.95%
+      SRAM_UPPER:        8480 B       192 KB      4.31%
+      SRAM_LOWER:          0 GB        64 KB      0.00%
+        FLEX_RAM:          0 GB         4 KB      0.00%
+Finished building target: frdmk66f_hello_world_exp4.axf
+ 
+Performing post-build steps
+arm-none-eabi-size "frdmk66f_hello_world_exp4.axf"; # arm-none-eabi-objcopy -v -O binary "frdmk66f_hello_world_exp4.axf" "frdmk66f_hello_world_exp4.bin" ; # checksum -p MK66FN2M0xxx18 -d "frdmk66f_hello_world_exp4.bin";
+   text	   data	    bss	    dec	    hex	filename
+  19832	     24	   8456	  28312	   6e98	frdmk66f_hello_world_exp4.axf
+ 
+17:39:17 **** Incremental Build of configuration Debug for project frdmk66f_gpio_led_output ****
+make -r -j4 all 
+Building target: frdmk66f_gpio_led_output.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -Xlinker -Map="frdmk66f_gpio_led_output.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -T frdmk66f_gpio_led_output_Debug.ld -o "frdmk66f_gpio_led_output.axf" ./utilities/fsl_assert.o ./utilities/fsl_debug_console.o  ./startup/startup_mk66f18.o  ./source/gpio_led_output.o ./source/semihost_hardfault.o  ./drivers/fsl_clock.o ./drivers/fsl_common.o ./drivers/fsl_common_arm.o ./drivers/fsl_ftfx_cache.o ./drivers/fsl_ftfx_controller.o ./drivers/fsl_ftfx_flash.o ./drivers/fsl_ftfx_flexnvm.o ./drivers/fsl_gpio.o ./drivers/fsl_lpuart.o ./drivers/fsl_smc.o ./drivers/fsl_uart.o  ./device/system_MK66F18.o  ./component/uart/fsl_adapter_uart.o  ./component/lists/fsl_component_generic_list.o  ./board/board.o ./board/clock_config.o ./board/pin_mux.o   
+Memory region         Used Size  Region Size  %age Used
+   PROGRAM_FLASH:       11184 B         2 MB      0.53%
+      SRAM_UPPER:        8448 B       192 KB      4.30%
+      SRAM_LOWER:          0 GB        64 KB      0.00%
+        FLEX_RAM:          0 GB         4 KB      0.00%
+Finished building target: frdmk66f_gpio_led_output.axf
+ 
+Performing post-build steps
+arm-none-eabi-size "frdmk66f_gpio_led_output.axf"; # arm-none-eabi-objcopy -v -O binary "frdmk66f_gpio_led_output.axf" "frdmk66f_gpio_led_output.bin" ; # checksum -p MK66FN2M0xxx18 -d "frdmk66f_gpio_led_output.bin";
+   text	   data	    bss	    dec	    hex	filename
+  11168	     16	   8432	  19616	   4ca0	frdmk66f_gpio_led_output.axf
+ 
+17:39:18 **** Build of configuration Debug for project frdmk66f_hello_world ****
+make -r -j4 all 
+Building file: ../utilities/fsl_assert.c
+Building file: ../utilities/fsl_debug_console.c
+Building file: ../startup/startup_mk66f18.c
+Building file: ../source/hello_world.c
+Invoking: MCU C Compiler
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -std=gnu99 -D__REDLIB__ -DCPU_MK66FN2M0VMD18 -DPRINTF_FLOAT_ENABLE=0 -DSCANF_FLOAT_ENABLE=0 -DPRINTF_ADVANCED_ENABLE=0 -DSCANF_ADVANCED_ENABLE=0 -DFRDM_K66F -DFREEDOM -DMCUXPRESSO_SDK -DCPU_MK66FN2M0VMD18_cm4 -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\source" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\board" -O0 -fno-common -g3 -c -ffunction-sections -fdata-sections -ffreestanding -fno-builtin -fmerge-constants -fmacro-prefix-map="../utilities/"= -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"utilities/fsl_assert.d" -MT"utilities/fsl_assert.o" -MT"utilities/fsl_assert.d" -o "utilities/fsl_assert.o" "../utilities/fsl_assert.c"
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -std=gnu99 -D__REDLIB__ -DCPU_MK66FN2M0VMD18 -DPRINTF_FLOAT_ENABLE=0 -DSCANF_FLOAT_ENABLE=0 -DPRINTF_ADVANCED_ENABLE=0 -DSCANF_ADVANCED_ENABLE=0 -DFRDM_K66F -DFREEDOM -DMCUXPRESSO_SDK -DCPU_MK66FN2M0VMD18_cm4 -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\source" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\board" -O0 -fno-common -g3 -c -ffunction-sections -fdata-sections -ffreestanding -fno-builtin -fmerge-constants -fmacro-prefix-map="../utilities/"= -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"utilities/fsl_debug_console.d" -MT"utilities/fsl_debug_console.o" -MT"utilities/fsl_debug_console.d" -o "utilities/fsl_debug_console.o" "../utilities/fsl_debug_console.c"
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -std=gnu99 -D__REDLIB__ -DCPU_MK66FN2M0VMD18 -DPRINTF_FLOAT_ENABLE=0 -DSCANF_FLOAT_ENABLE=0 -DPRINTF_ADVANCED_ENABLE=0 -DSCANF_ADVANCED_ENABLE=0 -DFRDM_K66F -DFREEDOM -DMCUXPRESSO_SDK -DCPU_MK66FN2M0VMD18_cm4 -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\source" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\board" -O0 -fno-common -g3 -c -ffunction-sections -fdata-sections -ffreestanding -fno-builtin -fmerge-constants -fmacro-prefix-map="../startup/"= -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"startup/startup_mk66f18.d" -MT"startup/startup_mk66f18.o" -MT"startup/startup_mk66f18.d" -o "startup/startup_mk66f18.o" "../startup/startup_mk66f18.c"
+arm-none-eabi-gcc -std=gnu99 -D__REDLIB__ -DCPU_MK66FN2M0VMD18 -DPRINTF_FLOAT_ENABLE=0 -DSCANF_FLOAT_ENABLE=0 -DPRINTF_ADVANCED_ENABLE=0 -DSCANF_ADVANCED_ENABLE=0 -DFRDM_K66F -DFREEDOM -DMCUXPRESSO_SDK -DCPU_MK66FN2M0VMD18_cm4 -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\source" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\board" -O0 -fno-common -g3 -c -ffunction-sections -fdata-sections -ffreestanding -fno-builtin -fmerge-constants -fmacro-prefix-map="../source/"= -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"source/hello_world.d" -MT"source/hello_world.o" -MT"source/hello_world.d" -o "source/hello_world.o" "../source/hello_world.c"
+Finished building: ../startup/startup_mk66f18.c
+ 
+Building file: ../source/semihost_hardfault.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -std=gnu99 -D__REDLIB__ -DCPU_MK66FN2M0VMD18 -DPRINTF_FLOAT_ENABLE=0 -DSCANF_FLOAT_ENABLE=0 -DPRINTF_ADVANCED_ENABLE=0 -DSCANF_ADVANCED_ENABLE=0 -DFRDM_K66F -DFREEDOM -DMCUXPRESSO_SDK -DCPU_MK66FN2M0VMD18_cm4 -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\source" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\board" -O0 -fno-common -g3 -c -ffunction-sections -fdata-sections -ffreestanding -fno-builtin -fmerge-constants -fmacro-prefix-map="../source/"= -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"source/semihost_hardfault.d" -MT"source/semihost_hardfault.o" -MT"source/semihost_hardfault.d" -o "source/semihost_hardfault.o" "../source/semihost_hardfault.c"
+Finished building: ../utilities/fsl_assert.c
+ 
+Finished building: ../utilities/fsl_debug_console.c
+Building file: ../drivers/fsl_clock.c
+ 
+Building file: ../drivers/fsl_common.c
+Finished building: ../source/hello_world.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -std=gnu99 -D__REDLIB__ -DCPU_MK66FN2M0VMD18 -DPRINTF_FLOAT_ENABLE=0 -DSCANF_FLOAT_ENABLE=0 -DPRINTF_ADVANCED_ENABLE=0 -DSCANF_ADVANCED_ENABLE=0 -DFRDM_K66F -DFREEDOM -DMCUXPRESSO_SDK -DCPU_MK66FN2M0VMD18_cm4 -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\source" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\board" -O0 -fno-common -g3 -c -ffunction-sections -fdata-sections -ffreestanding -fno-builtin -fmerge-constants -fmacro-prefix-map="../drivers/"= -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"drivers/fsl_clock.d" -MT"drivers/fsl_clock.o" -MT"drivers/fsl_clock.d" -o "drivers/fsl_clock.o" "../drivers/fsl_clock.c"
+ 
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -std=gnu99 -D__REDLIB__ -DCPU_MK66FN2M0VMD18 -DPRINTF_FLOAT_ENABLE=0 -DSCANF_FLOAT_ENABLE=0 -DPRINTF_ADVANCED_ENABLE=0 -DSCANF_ADVANCED_ENABLE=0 -DFRDM_K66F -DFREEDOM -DMCUXPRESSO_SDK -DCPU_MK66FN2M0VMD18_cm4 -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\source" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\board" -O0 -fno-common -g3 -c -ffunction-sections -fdata-sections -ffreestanding -fno-builtin -fmerge-constants -fmacro-prefix-map="../drivers/"= -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"drivers/fsl_common.d" -MT"drivers/fsl_common.o" -MT"drivers/fsl_common.d" -o "drivers/fsl_common.o" "../drivers/fsl_common.c"
+Building file: ../drivers/fsl_common_arm.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -std=gnu99 -D__REDLIB__ -DCPU_MK66FN2M0VMD18 -DPRINTF_FLOAT_ENABLE=0 -DSCANF_FLOAT_ENABLE=0 -DPRINTF_ADVANCED_ENABLE=0 -DSCANF_ADVANCED_ENABLE=0 -DFRDM_K66F -DFREEDOM -DMCUXPRESSO_SDK -DCPU_MK66FN2M0VMD18_cm4 -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\source" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\board" -O0 -fno-common -g3 -c -ffunction-sections -fdata-sections -ffreestanding -fno-builtin -fmerge-constants -fmacro-prefix-map="../drivers/"= -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"drivers/fsl_common_arm.d" -MT"drivers/fsl_common_arm.o" -MT"drivers/fsl_common_arm.d" -o "drivers/fsl_common_arm.o" "../drivers/fsl_common_arm.c"
+Finished building: ../source/semihost_hardfault.c
+ 
+Building file: ../drivers/fsl_ftfx_cache.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -std=gnu99 -D__REDLIB__ -DCPU_MK66FN2M0VMD18 -DPRINTF_FLOAT_ENABLE=0 -DSCANF_FLOAT_ENABLE=0 -DPRINTF_ADVANCED_ENABLE=0 -DSCANF_ADVANCED_ENABLE=0 -DFRDM_K66F -DFREEDOM -DMCUXPRESSO_SDK -DCPU_MK66FN2M0VMD18_cm4 -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\source" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world\board" -O0 -fno-common -g3 -c -ffunction-sections -fdata-sections -ffreestanding -fno-builtin -fmerge-constants -fmacro-prefix-map="../drivers/"= -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"drivers/fsl_ftfx_cache.d" -MT"drivers/fsl_ftfx_cache.o" -MT"drivers/fsl_ftfx_cache.d" -o "drivers/fsl_ftfx_cache.o" "../drivers/fsl_ftfx_cache.c"
+make[1]: *** [drivers/subdir.mk:50: drivers/fsl_common_arm.o] Error 3
+make[1]: *** [drivers/subdir.mk:50: drivers/fsl_clock.o] Error 3
+make[1]: *** [drivers/subdir.mk:50: drivers/fsl_common.o] Error 3
+make[1]: *** [drivers/subdir.mk:50: drivers/fsl_ftfx_cache.o] Error 3
+make: *** [makefile:44: all] Error 3
+Command canceled
+17:39:35 **** Incremental Build of configuration Debug for project frdmk66f_hello_world_exp4 ****
+make -r -j4 all 
+Building file: ../source/hello_world.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -std=gnu99 -DCPU_MK66FN2M0VMD18 -DCPU_MK66FN2M0VMD18_cm4 -DPRINTF_FLOAT_ENABLE=0 -DSCANF_FLOAT_ENABLE=0 -DPRINTF_ADVANCED_ENABLE=0 -DSCANF_ADVANCED_ENABLE=0 -DFRDM_K66F -DFREEDOM -DMCUXPRESSO_SDK -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -D__REDLIB__ -DSDK_OS_BAREMETAL -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\source" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -O0 -fno-common -g3 -c -ffunction-sections -fdata-sections -ffreestanding -fno-builtin -fmerge-constants -fmacro-prefix-map="../source/"= -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"source/hello_world.d" -MT"source/hello_world.o" -MT"source/hello_world.d" -o "source/hello_world.o" "../source/hello_world.c"
+../source/hello_world.c: In function 'main':
+../source/hello_world.c:39:2: warning: implicit declaration of function 'pwm_setup' [-Wimplicit-function-declaration]
+   39 |  pwm_setup();
+      |  ^~~~~~~~~
+../source/hello_world.c: At top level:
+../source/hello_world.c:68:6: warning: conflicting types for 'pwm_setup'
+   68 | void pwm_setup() {
+      |      ^~~~~~~~~
+../source/hello_world.c:39:2: note: previous implicit declaration of 'pwm_setup' was here
+   39 |  pwm_setup();
+      |  ^~~~~~~~~
+Finished building: ../source/hello_world.c
+ 
+Building target: frdmk66f_hello_world_exp4.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -Xlinker -Map="frdmk66f_hello_world_exp4.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -T frdmk66f_hello_world_exp4_Debug.ld -o "frdmk66f_hello_world_exp4.axf" ./utilities/fsl_assert.o ./utilities/fsl_debug_console.o  ./startup/startup_mk66f18.o  ./source/hello_world.o ./source/semihost_hardfault.o  ./drivers/fsl_clock.o ./drivers/fsl_common.o ./drivers/fsl_common_arm.o ./drivers/fsl_ftfx_cache.o ./drivers/fsl_ftfx_controller.o ./drivers/fsl_ftfx_flash.o ./drivers/fsl_ftfx_flexnvm.o ./drivers/fsl_ftm.o ./drivers/fsl_gpio.o ./drivers/fsl_i2c.o ./drivers/fsl_lpuart.o ./drivers/fsl_rtc.o ./drivers/fsl_smc.o ./drivers/fsl_uart.o  ./device/system_MK66F18.o  ./component/uart/fsl_adapter_uart.o  ./component/lists/fsl_component_generic_list.o  ./board/board.o ./board/clock_config.o ./board/pin_mux.o   
+Memory region         Used Size  Region Size  %age Used
+   PROGRAM_FLASH:       19856 B         2 MB      0.95%
+      SRAM_UPPER:        8480 B       192 KB      4.31%
+      SRAM_LOWER:          0 GB        64 KB      0.00%
+        FLEX_RAM:          0 GB         4 KB      0.00%
+Finished building target: frdmk66f_hello_world_exp4.axf
+ 
+Performing post-build steps
+arm-none-eabi-size "frdmk66f_hello_world_exp4.axf"; # arm-none-eabi-objcopy -v -O binary "frdmk66f_hello_world_exp4.axf" "frdmk66f_hello_world_exp4.bin" ; # checksum -p MK66FN2M0xxx18 -d "frdmk66f_hello_world_exp4.bin";
+   text	   data	    bss	    dec	    hex	filename
+  19832	     24	   8456	  28312	   6e98	frdmk66f_hello_world_exp4.axf
+ 
+17:41:11 **** Incremental Build of configuration Debug for project frdmk66f_hello_world_exp4 ****
+make -r -j4 all 
+Building file: ../source/hello_world.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -std=gnu99 -DCPU_MK66FN2M0VMD18 -DCPU_MK66FN2M0VMD18_cm4 -DPRINTF_FLOAT_ENABLE=0 -DSCANF_FLOAT_ENABLE=0 -DPRINTF_ADVANCED_ENABLE=0 -DSCANF_ADVANCED_ENABLE=0 -DFRDM_K66F -DFREEDOM -DMCUXPRESSO_SDK -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -D__REDLIB__ -DSDK_OS_BAREMETAL -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\source" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -O0 -fno-common -g3 -c -ffunction-sections -fdata-sections -ffreestanding -fno-builtin -fmerge-constants -fmacro-prefix-map="../source/"= -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"source/hello_world.d" -MT"source/hello_world.o" -MT"source/hello_world.d" -o "source/hello_world.o" "../source/hello_world.c"
+../source/hello_world.c: In function 'main':
+../source/hello_world.c:39:2: warning: implicit declaration of function 'pwm_setup' [-Wimplicit-function-declaration]
+   39 |  pwm_setup();
+      |  ^~~~~~~~~
+../source/hello_world.c: At top level:
+../source/hello_world.c:67:6: warning: conflicting types for 'pwm_setup'
+   67 | void pwm_setup() {
+      |      ^~~~~~~~~
+../source/hello_world.c:39:2: note: previous implicit declaration of 'pwm_setup' was here
+   39 |  pwm_setup();
+      |  ^~~~~~~~~
+Finished building: ../source/hello_world.c
+ 
+Building target: frdmk66f_hello_world_exp4.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -Xlinker -Map="frdmk66f_hello_world_exp4.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -T frdmk66f_hello_world_exp4_Debug.ld -o "frdmk66f_hello_world_exp4.axf" ./utilities/fsl_assert.o ./utilities/fsl_debug_console.o  ./startup/startup_mk66f18.o  ./source/hello_world.o ./source/semihost_hardfault.o  ./drivers/fsl_clock.o ./drivers/fsl_common.o ./drivers/fsl_common_arm.o ./drivers/fsl_ftfx_cache.o ./drivers/fsl_ftfx_controller.o ./drivers/fsl_ftfx_flash.o ./drivers/fsl_ftfx_flexnvm.o ./drivers/fsl_ftm.o ./drivers/fsl_gpio.o ./drivers/fsl_i2c.o ./drivers/fsl_lpuart.o ./drivers/fsl_rtc.o ./drivers/fsl_smc.o ./drivers/fsl_uart.o  ./device/system_MK66F18.o  ./component/uart/fsl_adapter_uart.o  ./component/lists/fsl_component_generic_list.o  ./board/board.o ./board/clock_config.o ./board/pin_mux.o   
+Memory region         Used Size  Region Size  %age Used
+   PROGRAM_FLASH:       19856 B         2 MB      0.95%
+      SRAM_UPPER:        8480 B       192 KB      4.31%
+      SRAM_LOWER:          0 GB        64 KB      0.00%
+        FLEX_RAM:          0 GB         4 KB      0.00%
+Finished building target: frdmk66f_hello_world_exp4.axf
+ 
+Performing post-build steps
+arm-none-eabi-size "frdmk66f_hello_world_exp4.axf"; # arm-none-eabi-objcopy -v -O binary "frdmk66f_hello_world_exp4.axf" "frdmk66f_hello_world_exp4.bin" ; # checksum -p MK66FN2M0xxx18 -d "frdmk66f_hello_world_exp4.bin";
+   text	   data	    bss	    dec	    hex	filename
+  19832	     24	   8456	  28312	   6e98	frdmk66f_hello_world_exp4.axf
+ 
+17:45:54 **** Incremental Build of configuration Debug for project frdmk66f_hello_world_exp4 ****
+make -r -j4 all 
+Building file: ../source/hello_world.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -std=gnu99 -DCPU_MK66FN2M0VMD18 -DCPU_MK66FN2M0VMD18_cm4 -DPRINTF_FLOAT_ENABLE=0 -DSCANF_FLOAT_ENABLE=0 -DPRINTF_ADVANCED_ENABLE=0 -DSCANF_ADVANCED_ENABLE=0 -DFRDM_K66F -DFREEDOM -DMCUXPRESSO_SDK -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -D__REDLIB__ -DSDK_OS_BAREMETAL -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\source" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -O0 -fno-common -g3 -c -ffunction-sections -fdata-sections -ffreestanding -fno-builtin -fmerge-constants -fmacro-prefix-map="../source/"= -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"source/hello_world.d" -MT"source/hello_world.o" -MT"source/hello_world.d" -o "source/hello_world.o" "../source/hello_world.c"
+../source/hello_world.c: In function 'main':
+../source/hello_world.c:41:2: warning: implicit declaration of function 'pwm_setup' [-Wimplicit-function-declaration]
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+../source/hello_world.c: At top level:
+../source/hello_world.c:70:6: warning: conflicting types for 'pwm_setup'
+   70 | void pwm_setup() {
+      |      ^~~~~~~~~
+../source/hello_world.c:41:2: note: previous implicit declaration of 'pwm_setup' was here
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+Finished building: ../source/hello_world.c
+ 
+Building target: frdmk66f_hello_world_exp4.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -Xlinker -Map="frdmk66f_hello_world_exp4.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -T frdmk66f_hello_world_exp4_Debug.ld -o "frdmk66f_hello_world_exp4.axf" ./utilities/fsl_assert.o ./utilities/fsl_debug_console.o  ./startup/startup_mk66f18.o  ./source/hello_world.o ./source/semihost_hardfault.o  ./drivers/fsl_clock.o ./drivers/fsl_common.o ./drivers/fsl_common_arm.o ./drivers/fsl_ftfx_cache.o ./drivers/fsl_ftfx_controller.o ./drivers/fsl_ftfx_flash.o ./drivers/fsl_ftfx_flexnvm.o ./drivers/fsl_ftm.o ./drivers/fsl_gpio.o ./drivers/fsl_i2c.o ./drivers/fsl_lpuart.o ./drivers/fsl_rtc.o ./drivers/fsl_smc.o ./drivers/fsl_uart.o  ./device/system_MK66F18.o  ./component/uart/fsl_adapter_uart.o  ./component/lists/fsl_component_generic_list.o  ./board/board.o ./board/clock_config.o ./board/pin_mux.o   
+Memory region         Used Size  Region Size  %age Used
+   PROGRAM_FLASH:       19848 B         2 MB      0.95%
+      SRAM_UPPER:        8480 B       192 KB      4.31%
+      SRAM_LOWER:          0 GB        64 KB      0.00%
+        FLEX_RAM:          0 GB         4 KB      0.00%
+Finished building target: frdmk66f_hello_world_exp4.axf
+ 
+Performing post-build steps
+arm-none-eabi-size "frdmk66f_hello_world_exp4.axf"; # arm-none-eabi-objcopy -v -O binary "frdmk66f_hello_world_exp4.axf" "frdmk66f_hello_world_exp4.bin" ; # checksum -p MK66FN2M0xxx18 -d "frdmk66f_hello_world_exp4.bin";
+   text	   data	    bss	    dec	    hex	filename
+  19824	     24	   8456	  28304	   6e90	frdmk66f_hello_world_exp4.axf
+ 
+17:47:12 **** Incremental Build of configuration Debug for project frdmk66f_hello_world_exp4 ****
+make -r -j4 all 
+Building file: ../source/hello_world.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -std=gnu99 -DCPU_MK66FN2M0VMD18 -DCPU_MK66FN2M0VMD18_cm4 -DPRINTF_FLOAT_ENABLE=0 -DSCANF_FLOAT_ENABLE=0 -DPRINTF_ADVANCED_ENABLE=0 -DSCANF_ADVANCED_ENABLE=0 -DFRDM_K66F -DFREEDOM -DMCUXPRESSO_SDK -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -D__REDLIB__ -DSDK_OS_BAREMETAL -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\source" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -O0 -fno-common -g3 -c -ffunction-sections -fdata-sections -ffreestanding -fno-builtin -fmerge-constants -fmacro-prefix-map="../source/"= -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"source/hello_world.d" -MT"source/hello_world.o" -MT"source/hello_world.d" -o "source/hello_world.o" "../source/hello_world.c"
+../source/hello_world.c: In function 'main':
+../source/hello_world.c:41:2: warning: implicit declaration of function 'pwm_setup' [-Wimplicit-function-declaration]
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+../source/hello_world.c: At top level:
+../source/hello_world.c:70:6: warning: conflicting types for 'pwm_setup'
+   70 | void pwm_setup() {
+      |      ^~~~~~~~~
+../source/hello_world.c:41:2: note: previous implicit declaration of 'pwm_setup' was here
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+Finished building: ../source/hello_world.c
+ 
+Building target: frdmk66f_hello_world_exp4.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -Xlinker -Map="frdmk66f_hello_world_exp4.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -T frdmk66f_hello_world_exp4_Debug.ld -o "frdmk66f_hello_world_exp4.axf" ./utilities/fsl_assert.o ./utilities/fsl_debug_console.o  ./startup/startup_mk66f18.o  ./source/hello_world.o ./source/semihost_hardfault.o  ./drivers/fsl_clock.o ./drivers/fsl_common.o ./drivers/fsl_common_arm.o ./drivers/fsl_ftfx_cache.o ./drivers/fsl_ftfx_controller.o ./drivers/fsl_ftfx_flash.o ./drivers/fsl_ftfx_flexnvm.o ./drivers/fsl_ftm.o ./drivers/fsl_gpio.o ./drivers/fsl_i2c.o ./drivers/fsl_lpuart.o ./drivers/fsl_rtc.o ./drivers/fsl_smc.o ./drivers/fsl_uart.o  ./device/system_MK66F18.o  ./component/uart/fsl_adapter_uart.o  ./component/lists/fsl_component_generic_list.o  ./board/board.o ./board/clock_config.o ./board/pin_mux.o   
+Memory region         Used Size  Region Size  %age Used
+   PROGRAM_FLASH:       19832 B         2 MB      0.95%
+      SRAM_UPPER:        8480 B       192 KB      4.31%
+      SRAM_LOWER:          0 GB        64 KB      0.00%
+        FLEX_RAM:          0 GB         4 KB      0.00%
+Finished building target: frdmk66f_hello_world_exp4.axf
+ 
+Performing post-build steps
+arm-none-eabi-size "frdmk66f_hello_world_exp4.axf"; # arm-none-eabi-objcopy -v -O binary "frdmk66f_hello_world_exp4.axf" "frdmk66f_hello_world_exp4.bin" ; # checksum -p MK66FN2M0xxx18 -d "frdmk66f_hello_world_exp4.bin";
+   text	   data	    bss	    dec	    hex	filename
+  19808	     24	   8456	  28288	   6e80	frdmk66f_hello_world_exp4.axf
+ 
+17:47:20 **** Incremental Build of configuration Debug for project frdmk66f_hello_world_exp4 ****
+make -r -j4 all 
+Building file: ../source/hello_world.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -std=gnu99 -DCPU_MK66FN2M0VMD18 -DCPU_MK66FN2M0VMD18_cm4 -DPRINTF_FLOAT_ENABLE=0 -DSCANF_FLOAT_ENABLE=0 -DPRINTF_ADVANCED_ENABLE=0 -DSCANF_ADVANCED_ENABLE=0 -DFRDM_K66F -DFREEDOM -DMCUXPRESSO_SDK -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -D__REDLIB__ -DSDK_OS_BAREMETAL -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\source" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -O0 -fno-common -g3 -c -ffunction-sections -fdata-sections -ffreestanding -fno-builtin -fmerge-constants -fmacro-prefix-map="../source/"= -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"source/hello_world.d" -MT"source/hello_world.o" -MT"source/hello_world.d" -o "source/hello_world.o" "../source/hello_world.c"
+../source/hello_world.c: In function 'main':
+../source/hello_world.c:41:2: warning: implicit declaration of function 'pwm_setup' [-Wimplicit-function-declaration]
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+../source/hello_world.c: At top level:
+../source/hello_world.c:70:6: warning: conflicting types for 'pwm_setup'
+   70 | void pwm_setup() {
+      |      ^~~~~~~~~
+../source/hello_world.c:41:2: note: previous implicit declaration of 'pwm_setup' was here
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+Finished building: ../source/hello_world.c
+ 
+Building target: frdmk66f_hello_world_exp4.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -Xlinker -Map="frdmk66f_hello_world_exp4.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -T frdmk66f_hello_world_exp4_Debug.ld -o "frdmk66f_hello_world_exp4.axf" ./utilities/fsl_assert.o ./utilities/fsl_debug_console.o  ./startup/startup_mk66f18.o  ./source/hello_world.o ./source/semihost_hardfault.o  ./drivers/fsl_clock.o ./drivers/fsl_common.o ./drivers/fsl_common_arm.o ./drivers/fsl_ftfx_cache.o ./drivers/fsl_ftfx_controller.o ./drivers/fsl_ftfx_flash.o ./drivers/fsl_ftfx_flexnvm.o ./drivers/fsl_ftm.o ./drivers/fsl_gpio.o ./drivers/fsl_i2c.o ./drivers/fsl_lpuart.o ./drivers/fsl_rtc.o ./drivers/fsl_smc.o ./drivers/fsl_uart.o  ./device/system_MK66F18.o  ./component/uart/fsl_adapter_uart.o  ./component/lists/fsl_component_generic_list.o  ./board/board.o ./board/clock_config.o ./board/pin_mux.o   
+Memory region         Used Size  Region Size  %age Used
+   PROGRAM_FLASH:       19832 B         2 MB      0.95%
+      SRAM_UPPER:        8480 B       192 KB      4.31%
+      SRAM_LOWER:          0 GB        64 KB      0.00%
+        FLEX_RAM:          0 GB         4 KB      0.00%
+Finished building target: frdmk66f_hello_world_exp4.axf
+ 
+Performing post-build steps
+arm-none-eabi-size "frdmk66f_hello_world_exp4.axf"; # arm-none-eabi-objcopy -v -O binary "frdmk66f_hello_world_exp4.axf" "frdmk66f_hello_world_exp4.bin" ; # checksum -p MK66FN2M0xxx18 -d "frdmk66f_hello_world_exp4.bin";
+   text	   data	    bss	    dec	    hex	filename
+  19808	     24	   8456	  28288	   6e80	frdmk66f_hello_world_exp4.axf
+ 
+17:47:25 **** Incremental Build of configuration Debug for project frdmk66f_hello_world_exp4 ****
+make -r -j4 all 
+make[1]: Nothing to be done for 'main-build'.
+Performing post-build steps
+arm-none-eabi-size "frdmk66f_hello_world_exp4.axf"; # arm-none-eabi-objcopy -v -O binary "frdmk66f_hello_world_exp4.axf" "frdmk66f_hello_world_exp4.bin" ; # checksum -p MK66FN2M0xxx18 -d "frdmk66f_hello_world_exp4.bin";
+   text	   data	    bss	    dec	    hex	filename
+  19808	     24	   8456	  28288	   6e80	frdmk66f_hello_world_exp4.axf
+ 
+17:49:19 **** Incremental Build of configuration Debug for project frdmk66f_hello_world_exp4 ****
+make -r -j4 all 
+Building file: ../source/hello_world.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -std=gnu99 -DCPU_MK66FN2M0VMD18 -DCPU_MK66FN2M0VMD18_cm4 -DPRINTF_FLOAT_ENABLE=0 -DSCANF_FLOAT_ENABLE=0 -DPRINTF_ADVANCED_ENABLE=0 -DSCANF_ADVANCED_ENABLE=0 -DFRDM_K66F -DFREEDOM -DMCUXPRESSO_SDK -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -D__REDLIB__ -DSDK_OS_BAREMETAL -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\source" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -O0 -fno-common -g3 -c -ffunction-sections -fdata-sections -ffreestanding -fno-builtin -fmerge-constants -fmacro-prefix-map="../source/"= -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"source/hello_world.d" -MT"source/hello_world.o" -MT"source/hello_world.d" -o "source/hello_world.o" "../source/hello_world.c"
+../source/hello_world.c: In function 'main':
+../source/hello_world.c:41:2: warning: implicit declaration of function 'pwm_setup' [-Wimplicit-function-declaration]
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+../source/hello_world.c: At top level:
+../source/hello_world.c:70:6: warning: conflicting types for 'pwm_setup'
+   70 | void pwm_setup() {
+      |      ^~~~~~~~~
+../source/hello_world.c:41:2: note: previous implicit declaration of 'pwm_setup' was here
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+Finished building: ../source/hello_world.c
+ 
+Building target: frdmk66f_hello_world_exp4.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -Xlinker -Map="frdmk66f_hello_world_exp4.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -T frdmk66f_hello_world_exp4_Debug.ld -o "frdmk66f_hello_world_exp4.axf" ./utilities/fsl_assert.o ./utilities/fsl_debug_console.o  ./startup/startup_mk66f18.o  ./source/hello_world.o ./source/semihost_hardfault.o  ./drivers/fsl_clock.o ./drivers/fsl_common.o ./drivers/fsl_common_arm.o ./drivers/fsl_ftfx_cache.o ./drivers/fsl_ftfx_controller.o ./drivers/fsl_ftfx_flash.o ./drivers/fsl_ftfx_flexnvm.o ./drivers/fsl_ftm.o ./drivers/fsl_gpio.o ./drivers/fsl_i2c.o ./drivers/fsl_lpuart.o ./drivers/fsl_rtc.o ./drivers/fsl_smc.o ./drivers/fsl_uart.o  ./device/system_MK66F18.o  ./component/uart/fsl_adapter_uart.o  ./component/lists/fsl_component_generic_list.o  ./board/board.o ./board/clock_config.o ./board/pin_mux.o   
+Memory region         Used Size  Region Size  %age Used
+   PROGRAM_FLASH:       19816 B         2 MB      0.94%
+      SRAM_UPPER:        8480 B       192 KB      4.31%
+      SRAM_LOWER:          0 GB        64 KB      0.00%
+        FLEX_RAM:          0 GB         4 KB      0.00%
+Finished building target: frdmk66f_hello_world_exp4.axf
+ 
+Performing post-build steps
+arm-none-eabi-size "frdmk66f_hello_world_exp4.axf"; # arm-none-eabi-objcopy -v -O binary "frdmk66f_hello_world_exp4.axf" "frdmk66f_hello_world_exp4.bin" ; # checksum -p MK66FN2M0xxx18 -d "frdmk66f_hello_world_exp4.bin";
+   text	   data	    bss	    dec	    hex	filename
+  19792	     24	   8456	  28272	   6e70	frdmk66f_hello_world_exp4.axf
+ 
+17:49:51 **** Incremental Build of configuration Debug for project frdmk66f_hello_world_exp4 ****
+make -r -j4 all 
+Building file: ../source/hello_world.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -std=gnu99 -DCPU_MK66FN2M0VMD18 -DCPU_MK66FN2M0VMD18_cm4 -DPRINTF_FLOAT_ENABLE=0 -DSCANF_FLOAT_ENABLE=0 -DPRINTF_ADVANCED_ENABLE=0 -DSCANF_ADVANCED_ENABLE=0 -DFRDM_K66F -DFREEDOM -DMCUXPRESSO_SDK -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -D__REDLIB__ -DSDK_OS_BAREMETAL -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\source" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -O0 -fno-common -g3 -c -ffunction-sections -fdata-sections -ffreestanding -fno-builtin -fmerge-constants -fmacro-prefix-map="../source/"= -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"source/hello_world.d" -MT"source/hello_world.o" -MT"source/hello_world.d" -o "source/hello_world.o" "../source/hello_world.c"
+../source/hello_world.c: In function 'main':
+../source/hello_world.c:41:2: warning: implicit declaration of function 'pwm_setup' [-Wimplicit-function-declaration]
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+../source/hello_world.c: At top level:
+../source/hello_world.c:71:6: warning: conflicting types for 'pwm_setup'
+   71 | void pwm_setup() {
+      |      ^~~~~~~~~
+../source/hello_world.c:41:2: note: previous implicit declaration of 'pwm_setup' was here
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+Finished building: ../source/hello_world.c
+ 
+Building target: frdmk66f_hello_world_exp4.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -Xlinker -Map="frdmk66f_hello_world_exp4.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -T frdmk66f_hello_world_exp4_Debug.ld -o "frdmk66f_hello_world_exp4.axf" ./utilities/fsl_assert.o ./utilities/fsl_debug_console.o  ./startup/startup_mk66f18.o  ./source/hello_world.o ./source/semihost_hardfault.o  ./drivers/fsl_clock.o ./drivers/fsl_common.o ./drivers/fsl_common_arm.o ./drivers/fsl_ftfx_cache.o ./drivers/fsl_ftfx_controller.o ./drivers/fsl_ftfx_flash.o ./drivers/fsl_ftfx_flexnvm.o ./drivers/fsl_ftm.o ./drivers/fsl_gpio.o ./drivers/fsl_i2c.o ./drivers/fsl_lpuart.o ./drivers/fsl_rtc.o ./drivers/fsl_smc.o ./drivers/fsl_uart.o  ./device/system_MK66F18.o  ./component/uart/fsl_adapter_uart.o  ./component/lists/fsl_component_generic_list.o  ./board/board.o ./board/clock_config.o ./board/pin_mux.o   
+Memory region         Used Size  Region Size  %age Used
+   PROGRAM_FLASH:       19824 B         2 MB      0.95%
+      SRAM_UPPER:        8480 B       192 KB      4.31%
+      SRAM_LOWER:          0 GB        64 KB      0.00%
+        FLEX_RAM:          0 GB         4 KB      0.00%
+Finished building target: frdmk66f_hello_world_exp4.axf
+ 
+Performing post-build steps
+arm-none-eabi-size "frdmk66f_hello_world_exp4.axf"; # arm-none-eabi-objcopy -v -O binary "frdmk66f_hello_world_exp4.axf" "frdmk66f_hello_world_exp4.bin" ; # checksum -p MK66FN2M0xxx18 -d "frdmk66f_hello_world_exp4.bin";
+   text	   data	    bss	    dec	    hex	filename
+  19800	     24	   8456	  28280	   6e78	frdmk66f_hello_world_exp4.axf
+ 
+17:51:20 **** Incremental Build of configuration Debug for project frdmk66f_hello_world_exp4 ****
+make -r -j4 all 
+Building file: ../source/hello_world.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -std=gnu99 -DCPU_MK66FN2M0VMD18 -DCPU_MK66FN2M0VMD18_cm4 -DPRINTF_FLOAT_ENABLE=0 -DSCANF_FLOAT_ENABLE=0 -DPRINTF_ADVANCED_ENABLE=0 -DSCANF_ADVANCED_ENABLE=0 -DFRDM_K66F -DFREEDOM -DMCUXPRESSO_SDK -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -D__REDLIB__ -DSDK_OS_BAREMETAL -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\source" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -O0 -fno-common -g3 -c -ffunction-sections -fdata-sections -ffreestanding -fno-builtin -fmerge-constants -fmacro-prefix-map="../source/"= -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"source/hello_world.d" -MT"source/hello_world.o" -MT"source/hello_world.d" -o "source/hello_world.o" "../source/hello_world.c"
+../source/hello_world.c: In function 'main':
+../source/hello_world.c:41:2: warning: implicit declaration of function 'pwm_setup' [-Wimplicit-function-declaration]
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+../source/hello_world.c: At top level:
+../source/hello_world.c:74:6: warning: conflicting types for 'pwm_setup'
+   74 | void pwm_setup() {
+      |      ^~~~~~~~~
+../source/hello_world.c:41:2: note: previous implicit declaration of 'pwm_setup' was here
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+Finished building: ../source/hello_world.c
+ 
+Building target: frdmk66f_hello_world_exp4.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -Xlinker -Map="frdmk66f_hello_world_exp4.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -T frdmk66f_hello_world_exp4_Debug.ld -o "frdmk66f_hello_world_exp4.axf" ./utilities/fsl_assert.o ./utilities/fsl_debug_console.o  ./startup/startup_mk66f18.o  ./source/hello_world.o ./source/semihost_hardfault.o  ./drivers/fsl_clock.o ./drivers/fsl_common.o ./drivers/fsl_common_arm.o ./drivers/fsl_ftfx_cache.o ./drivers/fsl_ftfx_controller.o ./drivers/fsl_ftfx_flash.o ./drivers/fsl_ftfx_flexnvm.o ./drivers/fsl_ftm.o ./drivers/fsl_gpio.o ./drivers/fsl_i2c.o ./drivers/fsl_lpuart.o ./drivers/fsl_rtc.o ./drivers/fsl_smc.o ./drivers/fsl_uart.o  ./device/system_MK66F18.o  ./component/uart/fsl_adapter_uart.o  ./component/lists/fsl_component_generic_list.o  ./board/board.o ./board/clock_config.o ./board/pin_mux.o   
+Memory region         Used Size  Region Size  %age Used
+   PROGRAM_FLASH:       19832 B         2 MB      0.95%
+      SRAM_UPPER:        8480 B       192 KB      4.31%
+      SRAM_LOWER:          0 GB        64 KB      0.00%
+        FLEX_RAM:          0 GB         4 KB      0.00%
+Finished building target: frdmk66f_hello_world_exp4.axf
+ 
+Performing post-build steps
+arm-none-eabi-size "frdmk66f_hello_world_exp4.axf"; # arm-none-eabi-objcopy -v -O binary "frdmk66f_hello_world_exp4.axf" "frdmk66f_hello_world_exp4.bin" ; # checksum -p MK66FN2M0xxx18 -d "frdmk66f_hello_world_exp4.bin";
+   text	   data	    bss	    dec	    hex	filename
+  19808	     24	   8456	  28288	   6e80	frdmk66f_hello_world_exp4.axf
+ 
+17:51:46 **** Incremental Build of configuration Debug for project frdmk66f_hello_world_exp4 ****
+make -r -j4 all 
+Building file: ../source/hello_world.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -std=gnu99 -DCPU_MK66FN2M0VMD18 -DCPU_MK66FN2M0VMD18_cm4 -DPRINTF_FLOAT_ENABLE=0 -DSCANF_FLOAT_ENABLE=0 -DPRINTF_ADVANCED_ENABLE=0 -DSCANF_ADVANCED_ENABLE=0 -DFRDM_K66F -DFREEDOM -DMCUXPRESSO_SDK -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -D__REDLIB__ -DSDK_OS_BAREMETAL -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\source" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -O0 -fno-common -g3 -c -ffunction-sections -fdata-sections -ffreestanding -fno-builtin -fmerge-constants -fmacro-prefix-map="../source/"= -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"source/hello_world.d" -MT"source/hello_world.o" -MT"source/hello_world.d" -o "source/hello_world.o" "../source/hello_world.c"
+../source/hello_world.c: In function 'main':
+../source/hello_world.c:41:2: warning: implicit declaration of function 'pwm_setup' [-Wimplicit-function-declaration]
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+../source/hello_world.c: At top level:
+../source/hello_world.c:74:6: warning: conflicting types for 'pwm_setup'
+   74 | void pwm_setup() {
+      |      ^~~~~~~~~
+../source/hello_world.c:41:2: note: previous implicit declaration of 'pwm_setup' was here
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+Finished building: ../source/hello_world.c
+ 
+Building target: frdmk66f_hello_world_exp4.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -Xlinker -Map="frdmk66f_hello_world_exp4.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -T frdmk66f_hello_world_exp4_Debug.ld -o "frdmk66f_hello_world_exp4.axf" ./utilities/fsl_assert.o ./utilities/fsl_debug_console.o  ./startup/startup_mk66f18.o  ./source/hello_world.o ./source/semihost_hardfault.o  ./drivers/fsl_clock.o ./drivers/fsl_common.o ./drivers/fsl_common_arm.o ./drivers/fsl_ftfx_cache.o ./drivers/fsl_ftfx_controller.o ./drivers/fsl_ftfx_flash.o ./drivers/fsl_ftfx_flexnvm.o ./drivers/fsl_ftm.o ./drivers/fsl_gpio.o ./drivers/fsl_i2c.o ./drivers/fsl_lpuart.o ./drivers/fsl_rtc.o ./drivers/fsl_smc.o ./drivers/fsl_uart.o  ./device/system_MK66F18.o  ./component/uart/fsl_adapter_uart.o  ./component/lists/fsl_component_generic_list.o  ./board/board.o ./board/clock_config.o ./board/pin_mux.o   
+Memory region         Used Size  Region Size  %age Used
+   PROGRAM_FLASH:       19832 B         2 MB      0.95%
+      SRAM_UPPER:        8480 B       192 KB      4.31%
+      SRAM_LOWER:          0 GB        64 KB      0.00%
+        FLEX_RAM:          0 GB         4 KB      0.00%
+Finished building target: frdmk66f_hello_world_exp4.axf
+ 
+Performing post-build steps
+arm-none-eabi-size "frdmk66f_hello_world_exp4.axf"; # arm-none-eabi-objcopy -v -O binary "frdmk66f_hello_world_exp4.axf" "frdmk66f_hello_world_exp4.bin" ; # checksum -p MK66FN2M0xxx18 -d "frdmk66f_hello_world_exp4.bin";
+   text	   data	    bss	    dec	    hex	filename
+  19808	     24	   8456	  28288	   6e80	frdmk66f_hello_world_exp4.axf
+ 
+17:52:41 **** Incremental Build of configuration Debug for project frdmk66f_hello_world_exp4 ****
+make -r -j4 all 
+Building file: ../source/hello_world.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -std=gnu99 -DCPU_MK66FN2M0VMD18 -DCPU_MK66FN2M0VMD18_cm4 -DPRINTF_FLOAT_ENABLE=0 -DSCANF_FLOAT_ENABLE=0 -DPRINTF_ADVANCED_ENABLE=0 -DSCANF_ADVANCED_ENABLE=0 -DFRDM_K66F -DFREEDOM -DMCUXPRESSO_SDK -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -D__REDLIB__ -DSDK_OS_BAREMETAL -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\source" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -O0 -fno-common -g3 -c -ffunction-sections -fdata-sections -ffreestanding -fno-builtin -fmerge-constants -fmacro-prefix-map="../source/"= -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"source/hello_world.d" -MT"source/hello_world.o" -MT"source/hello_world.d" -o "source/hello_world.o" "../source/hello_world.c"
+../source/hello_world.c: In function 'main':
+../source/hello_world.c:41:2: warning: implicit declaration of function 'pwm_setup' [-Wimplicit-function-declaration]
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+../source/hello_world.c: At top level:
+../source/hello_world.c:74:6: warning: conflicting types for 'pwm_setup'
+   74 | void pwm_setup() {
+      |      ^~~~~~~~~
+../source/hello_world.c:41:2: note: previous implicit declaration of 'pwm_setup' was here
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+Finished building: ../source/hello_world.c
+ 
+Building target: frdmk66f_hello_world_exp4.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -Xlinker -Map="frdmk66f_hello_world_exp4.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -T frdmk66f_hello_world_exp4_Debug.ld -o "frdmk66f_hello_world_exp4.axf" ./utilities/fsl_assert.o ./utilities/fsl_debug_console.o  ./startup/startup_mk66f18.o  ./source/hello_world.o ./source/semihost_hardfault.o  ./drivers/fsl_clock.o ./drivers/fsl_common.o ./drivers/fsl_common_arm.o ./drivers/fsl_ftfx_cache.o ./drivers/fsl_ftfx_controller.o ./drivers/fsl_ftfx_flash.o ./drivers/fsl_ftfx_flexnvm.o ./drivers/fsl_ftm.o ./drivers/fsl_gpio.o ./drivers/fsl_i2c.o ./drivers/fsl_lpuart.o ./drivers/fsl_rtc.o ./drivers/fsl_smc.o ./drivers/fsl_uart.o  ./device/system_MK66F18.o  ./component/uart/fsl_adapter_uart.o  ./component/lists/fsl_component_generic_list.o  ./board/board.o ./board/clock_config.o ./board/pin_mux.o   
+Memory region         Used Size  Region Size  %age Used
+   PROGRAM_FLASH:       19824 B         2 MB      0.95%
+      SRAM_UPPER:        8480 B       192 KB      4.31%
+      SRAM_LOWER:          0 GB        64 KB      0.00%
+        FLEX_RAM:          0 GB         4 KB      0.00%
+Finished building target: frdmk66f_hello_world_exp4.axf
+ 
+Performing post-build steps
+arm-none-eabi-size "frdmk66f_hello_world_exp4.axf"; # arm-none-eabi-objcopy -v -O binary "frdmk66f_hello_world_exp4.axf" "frdmk66f_hello_world_exp4.bin" ; # checksum -p MK66FN2M0xxx18 -d "frdmk66f_hello_world_exp4.bin";
+   text	   data	    bss	    dec	    hex	filename
+  19800	     24	   8456	  28280	   6e78	frdmk66f_hello_world_exp4.axf
+ 
+17:53:07 **** Incremental Build of configuration Debug for project frdmk66f_hello_world_exp4 ****
+make -r -j4 all 
+Building file: ../source/hello_world.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -std=gnu99 -DCPU_MK66FN2M0VMD18 -DCPU_MK66FN2M0VMD18_cm4 -DPRINTF_FLOAT_ENABLE=0 -DSCANF_FLOAT_ENABLE=0 -DPRINTF_ADVANCED_ENABLE=0 -DSCANF_ADVANCED_ENABLE=0 -DFRDM_K66F -DFREEDOM -DMCUXPRESSO_SDK -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -D__REDLIB__ -DSDK_OS_BAREMETAL -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\source" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -O0 -fno-common -g3 -c -ffunction-sections -fdata-sections -ffreestanding -fno-builtin -fmerge-constants -fmacro-prefix-map="../source/"= -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"source/hello_world.d" -MT"source/hello_world.o" -MT"source/hello_world.d" -o "source/hello_world.o" "../source/hello_world.c"
+../source/hello_world.c: In function 'main':
+../source/hello_world.c:41:2: warning: implicit declaration of function 'pwm_setup' [-Wimplicit-function-declaration]
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+../source/hello_world.c: At top level:
+../source/hello_world.c:74:6: warning: conflicting types for 'pwm_setup'
+   74 | void pwm_setup() {
+      |      ^~~~~~~~~
+../source/hello_world.c:41:2: note: previous implicit declaration of 'pwm_setup' was here
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+Finished building: ../source/hello_world.c
+ 
+Building target: frdmk66f_hello_world_exp4.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -Xlinker -Map="frdmk66f_hello_world_exp4.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -T frdmk66f_hello_world_exp4_Debug.ld -o "frdmk66f_hello_world_exp4.axf" ./utilities/fsl_assert.o ./utilities/fsl_debug_console.o  ./startup/startup_mk66f18.o  ./source/hello_world.o ./source/semihost_hardfault.o  ./drivers/fsl_clock.o ./drivers/fsl_common.o ./drivers/fsl_common_arm.o ./drivers/fsl_ftfx_cache.o ./drivers/fsl_ftfx_controller.o ./drivers/fsl_ftfx_flash.o ./drivers/fsl_ftfx_flexnvm.o ./drivers/fsl_ftm.o ./drivers/fsl_gpio.o ./drivers/fsl_i2c.o ./drivers/fsl_lpuart.o ./drivers/fsl_rtc.o ./drivers/fsl_smc.o ./drivers/fsl_uart.o  ./device/system_MK66F18.o  ./component/uart/fsl_adapter_uart.o  ./component/lists/fsl_component_generic_list.o  ./board/board.o ./board/clock_config.o ./board/pin_mux.o   
+Memory region         Used Size  Region Size  %age Used
+   PROGRAM_FLASH:       19832 B         2 MB      0.95%
+      SRAM_UPPER:        8480 B       192 KB      4.31%
+      SRAM_LOWER:          0 GB        64 KB      0.00%
+        FLEX_RAM:          0 GB         4 KB      0.00%
+Finished building target: frdmk66f_hello_world_exp4.axf
+ 
+Performing post-build steps
+arm-none-eabi-size "frdmk66f_hello_world_exp4.axf"; # arm-none-eabi-objcopy -v -O binary "frdmk66f_hello_world_exp4.axf" "frdmk66f_hello_world_exp4.bin" ; # checksum -p MK66FN2M0xxx18 -d "frdmk66f_hello_world_exp4.bin";
+   text	   data	    bss	    dec	    hex	filename
+  19808	     24	   8456	  28288	   6e80	frdmk66f_hello_world_exp4.axf
+ 
+17:53:34 **** Incremental Build of configuration Debug for project frdmk66f_hello_world_exp4 ****
+make -r -j4 all 
+Building file: ../source/hello_world.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -std=gnu99 -DCPU_MK66FN2M0VMD18 -DCPU_MK66FN2M0VMD18_cm4 -DPRINTF_FLOAT_ENABLE=0 -DSCANF_FLOAT_ENABLE=0 -DPRINTF_ADVANCED_ENABLE=0 -DSCANF_ADVANCED_ENABLE=0 -DFRDM_K66F -DFREEDOM -DMCUXPRESSO_SDK -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -D__REDLIB__ -DSDK_OS_BAREMETAL -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\source" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -O0 -fno-common -g3 -c -ffunction-sections -fdata-sections -ffreestanding -fno-builtin -fmerge-constants -fmacro-prefix-map="../source/"= -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"source/hello_world.d" -MT"source/hello_world.o" -MT"source/hello_world.d" -o "source/hello_world.o" "../source/hello_world.c"
+../source/hello_world.c: In function 'main':
+../source/hello_world.c:41:2: warning: implicit declaration of function 'pwm_setup' [-Wimplicit-function-declaration]
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+../source/hello_world.c: At top level:
+../source/hello_world.c:74:6: warning: conflicting types for 'pwm_setup'
+   74 | void pwm_setup() {
+      |      ^~~~~~~~~
+../source/hello_world.c:41:2: note: previous implicit declaration of 'pwm_setup' was here
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+Finished building: ../source/hello_world.c
+ 
+Building target: frdmk66f_hello_world_exp4.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -Xlinker -Map="frdmk66f_hello_world_exp4.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -T frdmk66f_hello_world_exp4_Debug.ld -o "frdmk66f_hello_world_exp4.axf" ./utilities/fsl_assert.o ./utilities/fsl_debug_console.o  ./startup/startup_mk66f18.o  ./source/hello_world.o ./source/semihost_hardfault.o  ./drivers/fsl_clock.o ./drivers/fsl_common.o ./drivers/fsl_common_arm.o ./drivers/fsl_ftfx_cache.o ./drivers/fsl_ftfx_controller.o ./drivers/fsl_ftfx_flash.o ./drivers/fsl_ftfx_flexnvm.o ./drivers/fsl_ftm.o ./drivers/fsl_gpio.o ./drivers/fsl_i2c.o ./drivers/fsl_lpuart.o ./drivers/fsl_rtc.o ./drivers/fsl_smc.o ./drivers/fsl_uart.o  ./device/system_MK66F18.o  ./component/uart/fsl_adapter_uart.o  ./component/lists/fsl_component_generic_list.o  ./board/board.o ./board/clock_config.o ./board/pin_mux.o   
+Memory region         Used Size  Region Size  %age Used
+   PROGRAM_FLASH:       19832 B         2 MB      0.95%
+      SRAM_UPPER:        8480 B       192 KB      4.31%
+      SRAM_LOWER:          0 GB        64 KB      0.00%
+        FLEX_RAM:          0 GB         4 KB      0.00%
+Finished building target: frdmk66f_hello_world_exp4.axf
+ 
+Performing post-build steps
+arm-none-eabi-size "frdmk66f_hello_world_exp4.axf"; # arm-none-eabi-objcopy -v -O binary "frdmk66f_hello_world_exp4.axf" "frdmk66f_hello_world_exp4.bin" ; # checksum -p MK66FN2M0xxx18 -d "frdmk66f_hello_world_exp4.bin";
+   text	   data	    bss	    dec	    hex	filename
+  19808	     24	   8456	  28288	   6e80	frdmk66f_hello_world_exp4.axf
+ 
+17:54:38 **** Incremental Build of configuration Debug for project frdmk66f_hello_world_exp4 ****
+make -r -j4 all 
+make[1]: Nothing to be done for 'main-build'.
+Performing post-build steps
+arm-none-eabi-size "frdmk66f_hello_world_exp4.axf"; # arm-none-eabi-objcopy -v -O binary "frdmk66f_hello_world_exp4.axf" "frdmk66f_hello_world_exp4.bin" ; # checksum -p MK66FN2M0xxx18 -d "frdmk66f_hello_world_exp4.bin";
+   text	   data	    bss	    dec	    hex	filename
+  19808	     24	   8456	  28288	   6e80	frdmk66f_hello_world_exp4.axf
+ 
+17:54:56 **** Incremental Build of configuration Debug for project frdmk66f_hello_world_exp4 ****
+make -r -j4 all 
+Building file: ../source/hello_world.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -std=gnu99 -DCPU_MK66FN2M0VMD18 -DCPU_MK66FN2M0VMD18_cm4 -DPRINTF_FLOAT_ENABLE=0 -DSCANF_FLOAT_ENABLE=0 -DPRINTF_ADVANCED_ENABLE=0 -DSCANF_ADVANCED_ENABLE=0 -DFRDM_K66F -DFREEDOM -DMCUXPRESSO_SDK -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -D__REDLIB__ -DSDK_OS_BAREMETAL -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\source" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -O0 -fno-common -g3 -c -ffunction-sections -fdata-sections -ffreestanding -fno-builtin -fmerge-constants -fmacro-prefix-map="../source/"= -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"source/hello_world.d" -MT"source/hello_world.o" -MT"source/hello_world.d" -o "source/hello_world.o" "../source/hello_world.c"
+../source/hello_world.c: In function 'main':
+../source/hello_world.c:41:2: warning: implicit declaration of function 'pwm_setup' [-Wimplicit-function-declaration]
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+../source/hello_world.c: At top level:
+../source/hello_world.c:74:6: warning: conflicting types for 'pwm_setup'
+   74 | void pwm_setup() {
+      |      ^~~~~~~~~
+../source/hello_world.c:41:2: note: previous implicit declaration of 'pwm_setup' was here
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+Finished building: ../source/hello_world.c
+ 
+Building target: frdmk66f_hello_world_exp4.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -Xlinker -Map="frdmk66f_hello_world_exp4.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -T frdmk66f_hello_world_exp4_Debug.ld -o "frdmk66f_hello_world_exp4.axf" ./utilities/fsl_assert.o ./utilities/fsl_debug_console.o  ./startup/startup_mk66f18.o  ./source/hello_world.o ./source/semihost_hardfault.o  ./drivers/fsl_clock.o ./drivers/fsl_common.o ./drivers/fsl_common_arm.o ./drivers/fsl_ftfx_cache.o ./drivers/fsl_ftfx_controller.o ./drivers/fsl_ftfx_flash.o ./drivers/fsl_ftfx_flexnvm.o ./drivers/fsl_ftm.o ./drivers/fsl_gpio.o ./drivers/fsl_i2c.o ./drivers/fsl_lpuart.o ./drivers/fsl_rtc.o ./drivers/fsl_smc.o ./drivers/fsl_uart.o  ./device/system_MK66F18.o  ./component/uart/fsl_adapter_uart.o  ./component/lists/fsl_component_generic_list.o  ./board/board.o ./board/clock_config.o ./board/pin_mux.o   
+Memory region         Used Size  Region Size  %age Used
+   PROGRAM_FLASH:       19832 B         2 MB      0.95%
+      SRAM_UPPER:        8480 B       192 KB      4.31%
+      SRAM_LOWER:          0 GB        64 KB      0.00%
+        FLEX_RAM:          0 GB         4 KB      0.00%
+Finished building target: frdmk66f_hello_world_exp4.axf
+ 
+Performing post-build steps
+arm-none-eabi-size "frdmk66f_hello_world_exp4.axf"; # arm-none-eabi-objcopy -v -O binary "frdmk66f_hello_world_exp4.axf" "frdmk66f_hello_world_exp4.bin" ; # checksum -p MK66FN2M0xxx18 -d "frdmk66f_hello_world_exp4.bin";
+   text	   data	    bss	    dec	    hex	filename
+  19808	     24	   8456	  28288	   6e80	frdmk66f_hello_world_exp4.axf
+ 
+17:57:04 **** Incremental Build of configuration Debug for project frdmk66f_hello_world_exp4 ****
+make -r -j4 all 
+Building file: ../source/hello_world.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -std=gnu99 -DCPU_MK66FN2M0VMD18 -DCPU_MK66FN2M0VMD18_cm4 -DPRINTF_FLOAT_ENABLE=0 -DSCANF_FLOAT_ENABLE=0 -DPRINTF_ADVANCED_ENABLE=0 -DSCANF_ADVANCED_ENABLE=0 -DFRDM_K66F -DFREEDOM -DMCUXPRESSO_SDK -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -D__REDLIB__ -DSDK_OS_BAREMETAL -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\source" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -O0 -fno-common -g3 -c -ffunction-sections -fdata-sections -ffreestanding -fno-builtin -fmerge-constants -fmacro-prefix-map="../source/"= -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"source/hello_world.d" -MT"source/hello_world.o" -MT"source/hello_world.d" -o "source/hello_world.o" "../source/hello_world.c"
+../source/hello_world.c: In function 'main':
+../source/hello_world.c:41:2: warning: implicit declaration of function 'pwm_setup' [-Wimplicit-function-declaration]
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+../source/hello_world.c: At top level:
+../source/hello_world.c:74:6: warning: conflicting types for 'pwm_setup'
+   74 | void pwm_setup() {
+      |      ^~~~~~~~~
+../source/hello_world.c:41:2: note: previous implicit declaration of 'pwm_setup' was here
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+Finished building: ../source/hello_world.c
+ 
+Building target: frdmk66f_hello_world_exp4.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -Xlinker -Map="frdmk66f_hello_world_exp4.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -T frdmk66f_hello_world_exp4_Debug.ld -o "frdmk66f_hello_world_exp4.axf" ./utilities/fsl_assert.o ./utilities/fsl_debug_console.o  ./startup/startup_mk66f18.o  ./source/hello_world.o ./source/semihost_hardfault.o  ./drivers/fsl_clock.o ./drivers/fsl_common.o ./drivers/fsl_common_arm.o ./drivers/fsl_ftfx_cache.o ./drivers/fsl_ftfx_controller.o ./drivers/fsl_ftfx_flash.o ./drivers/fsl_ftfx_flexnvm.o ./drivers/fsl_ftm.o ./drivers/fsl_gpio.o ./drivers/fsl_i2c.o ./drivers/fsl_lpuart.o ./drivers/fsl_rtc.o ./drivers/fsl_smc.o ./drivers/fsl_uart.o  ./device/system_MK66F18.o  ./component/uart/fsl_adapter_uart.o  ./component/lists/fsl_component_generic_list.o  ./board/board.o ./board/clock_config.o ./board/pin_mux.o   
+Memory region         Used Size  Region Size  %age Used
+   PROGRAM_FLASH:       19792 B         2 MB      0.94%
+      SRAM_UPPER:        8480 B       192 KB      4.31%
+      SRAM_LOWER:          0 GB        64 KB      0.00%
+        FLEX_RAM:          0 GB         4 KB      0.00%
+Finished building target: frdmk66f_hello_world_exp4.axf
+ 
+Performing post-build steps
+arm-none-eabi-size "frdmk66f_hello_world_exp4.axf"; # arm-none-eabi-objcopy -v -O binary "frdmk66f_hello_world_exp4.axf" "frdmk66f_hello_world_exp4.bin" ; # checksum -p MK66FN2M0xxx18 -d "frdmk66f_hello_world_exp4.bin";
+   text	   data	    bss	    dec	    hex	filename
+  19768	     24	   8456	  28248	   6e58	frdmk66f_hello_world_exp4.axf
+ 
+17:57:30 **** Incremental Build of configuration Debug for project frdmk66f_hello_world_exp4 ****
+make -r -j4 all 
+Building file: ../source/hello_world.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -std=gnu99 -DCPU_MK66FN2M0VMD18 -DCPU_MK66FN2M0VMD18_cm4 -DPRINTF_FLOAT_ENABLE=0 -DSCANF_FLOAT_ENABLE=0 -DPRINTF_ADVANCED_ENABLE=0 -DSCANF_ADVANCED_ENABLE=0 -DFRDM_K66F -DFREEDOM -DMCUXPRESSO_SDK -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -D__REDLIB__ -DSDK_OS_BAREMETAL -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\source" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -O0 -fno-common -g3 -c -ffunction-sections -fdata-sections -ffreestanding -fno-builtin -fmerge-constants -fmacro-prefix-map="../source/"= -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"source/hello_world.d" -MT"source/hello_world.o" -MT"source/hello_world.d" -o "source/hello_world.o" "../source/hello_world.c"
+../source/hello_world.c: In function 'main':
+../source/hello_world.c:41:2: warning: implicit declaration of function 'pwm_setup' [-Wimplicit-function-declaration]
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+../source/hello_world.c: At top level:
+../source/hello_world.c:74:6: warning: conflicting types for 'pwm_setup'
+   74 | void pwm_setup() {
+      |      ^~~~~~~~~
+../source/hello_world.c:41:2: note: previous implicit declaration of 'pwm_setup' was here
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+Finished building: ../source/hello_world.c
+ 
+Building target: frdmk66f_hello_world_exp4.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -Xlinker -Map="frdmk66f_hello_world_exp4.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -T frdmk66f_hello_world_exp4_Debug.ld -o "frdmk66f_hello_world_exp4.axf" ./utilities/fsl_assert.o ./utilities/fsl_debug_console.o  ./startup/startup_mk66f18.o  ./source/hello_world.o ./source/semihost_hardfault.o  ./drivers/fsl_clock.o ./drivers/fsl_common.o ./drivers/fsl_common_arm.o ./drivers/fsl_ftfx_cache.o ./drivers/fsl_ftfx_controller.o ./drivers/fsl_ftfx_flash.o ./drivers/fsl_ftfx_flexnvm.o ./drivers/fsl_ftm.o ./drivers/fsl_gpio.o ./drivers/fsl_i2c.o ./drivers/fsl_lpuart.o ./drivers/fsl_rtc.o ./drivers/fsl_smc.o ./drivers/fsl_uart.o  ./device/system_MK66F18.o  ./component/uart/fsl_adapter_uart.o  ./component/lists/fsl_component_generic_list.o  ./board/board.o ./board/clock_config.o ./board/pin_mux.o   
+Memory region         Used Size  Region Size  %age Used
+   PROGRAM_FLASH:       19792 B         2 MB      0.94%
+      SRAM_UPPER:        8480 B       192 KB      4.31%
+      SRAM_LOWER:          0 GB        64 KB      0.00%
+        FLEX_RAM:          0 GB         4 KB      0.00%
+Finished building target: frdmk66f_hello_world_exp4.axf
+ 
+Performing post-build steps
+arm-none-eabi-size "frdmk66f_hello_world_exp4.axf"; # arm-none-eabi-objcopy -v -O binary "frdmk66f_hello_world_exp4.axf" "frdmk66f_hello_world_exp4.bin" ; # checksum -p MK66FN2M0xxx18 -d "frdmk66f_hello_world_exp4.bin";
+   text	   data	    bss	    dec	    hex	filename
+  19768	     24	   8456	  28248	   6e58	frdmk66f_hello_world_exp4.axf
+ 
+17:57:50 **** Incremental Build of configuration Debug for project frdmk66f_hello_world_exp4 ****
+make -r -j4 all 
+Building file: ../source/hello_world.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -std=gnu99 -DCPU_MK66FN2M0VMD18 -DCPU_MK66FN2M0VMD18_cm4 -DPRINTF_FLOAT_ENABLE=0 -DSCANF_FLOAT_ENABLE=0 -DPRINTF_ADVANCED_ENABLE=0 -DSCANF_ADVANCED_ENABLE=0 -DFRDM_K66F -DFREEDOM -DMCUXPRESSO_SDK -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -D__REDLIB__ -DSDK_OS_BAREMETAL -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\source" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -O0 -fno-common -g3 -c -ffunction-sections -fdata-sections -ffreestanding -fno-builtin -fmerge-constants -fmacro-prefix-map="../source/"= -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"source/hello_world.d" -MT"source/hello_world.o" -MT"source/hello_world.d" -o "source/hello_world.o" "../source/hello_world.c"
+../source/hello_world.c: In function 'main':
+../source/hello_world.c:41:2: warning: implicit declaration of function 'pwm_setup' [-Wimplicit-function-declaration]
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+../source/hello_world.c: At top level:
+../source/hello_world.c:74:6: warning: conflicting types for 'pwm_setup'
+   74 | void pwm_setup() {
+      |      ^~~~~~~~~
+../source/hello_world.c:41:2: note: previous implicit declaration of 'pwm_setup' was here
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+Finished building: ../source/hello_world.c
+ 
+Building target: frdmk66f_hello_world_exp4.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -Xlinker -Map="frdmk66f_hello_world_exp4.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -T frdmk66f_hello_world_exp4_Debug.ld -o "frdmk66f_hello_world_exp4.axf" ./utilities/fsl_assert.o ./utilities/fsl_debug_console.o  ./startup/startup_mk66f18.o  ./source/hello_world.o ./source/semihost_hardfault.o  ./drivers/fsl_clock.o ./drivers/fsl_common.o ./drivers/fsl_common_arm.o ./drivers/fsl_ftfx_cache.o ./drivers/fsl_ftfx_controller.o ./drivers/fsl_ftfx_flash.o ./drivers/fsl_ftfx_flexnvm.o ./drivers/fsl_ftm.o ./drivers/fsl_gpio.o ./drivers/fsl_i2c.o ./drivers/fsl_lpuart.o ./drivers/fsl_rtc.o ./drivers/fsl_smc.o ./drivers/fsl_uart.o  ./device/system_MK66F18.o  ./component/uart/fsl_adapter_uart.o  ./component/lists/fsl_component_generic_list.o  ./board/board.o ./board/clock_config.o ./board/pin_mux.o   
+Memory region         Used Size  Region Size  %age Used
+   PROGRAM_FLASH:       19792 B         2 MB      0.94%
+      SRAM_UPPER:        8480 B       192 KB      4.31%
+      SRAM_LOWER:          0 GB        64 KB      0.00%
+        FLEX_RAM:          0 GB         4 KB      0.00%
+Finished building target: frdmk66f_hello_world_exp4.axf
+ 
+Performing post-build steps
+arm-none-eabi-size "frdmk66f_hello_world_exp4.axf"; # arm-none-eabi-objcopy -v -O binary "frdmk66f_hello_world_exp4.axf" "frdmk66f_hello_world_exp4.bin" ; # checksum -p MK66FN2M0xxx18 -d "frdmk66f_hello_world_exp4.bin";
+   text	   data	    bss	    dec	    hex	filename
+  19768	     24	   8456	  28248	   6e58	frdmk66f_hello_world_exp4.axf
+ 
+17:58:53 **** Incremental Build of configuration Debug for project frdmk66f_hello_world_exp4 ****
+make -r -j4 all 
+Building file: ../source/hello_world.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -std=gnu99 -DCPU_MK66FN2M0VMD18 -DCPU_MK66FN2M0VMD18_cm4 -DPRINTF_FLOAT_ENABLE=0 -DSCANF_FLOAT_ENABLE=0 -DPRINTF_ADVANCED_ENABLE=0 -DSCANF_ADVANCED_ENABLE=0 -DFRDM_K66F -DFREEDOM -DMCUXPRESSO_SDK -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -D__REDLIB__ -DSDK_OS_BAREMETAL -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\source" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -O0 -fno-common -g3 -c -ffunction-sections -fdata-sections -ffreestanding -fno-builtin -fmerge-constants -fmacro-prefix-map="../source/"= -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"source/hello_world.d" -MT"source/hello_world.o" -MT"source/hello_world.d" -o "source/hello_world.o" "../source/hello_world.c"
+../source/hello_world.c: In function 'main':
+../source/hello_world.c:41:2: warning: implicit declaration of function 'pwm_setup' [-Wimplicit-function-declaration]
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+../source/hello_world.c: At top level:
+../source/hello_world.c:74:6: warning: conflicting types for 'pwm_setup'
+   74 | void pwm_setup() {
+      |      ^~~~~~~~~
+../source/hello_world.c:41:2: note: previous implicit declaration of 'pwm_setup' was here
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+Finished building: ../source/hello_world.c
+ 
+Building target: frdmk66f_hello_world_exp4.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -Xlinker -Map="frdmk66f_hello_world_exp4.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -T frdmk66f_hello_world_exp4_Debug.ld -o "frdmk66f_hello_world_exp4.axf" ./utilities/fsl_assert.o ./utilities/fsl_debug_console.o  ./startup/startup_mk66f18.o  ./source/hello_world.o ./source/semihost_hardfault.o  ./drivers/fsl_clock.o ./drivers/fsl_common.o ./drivers/fsl_common_arm.o ./drivers/fsl_ftfx_cache.o ./drivers/fsl_ftfx_controller.o ./drivers/fsl_ftfx_flash.o ./drivers/fsl_ftfx_flexnvm.o ./drivers/fsl_ftm.o ./drivers/fsl_gpio.o ./drivers/fsl_i2c.o ./drivers/fsl_lpuart.o ./drivers/fsl_rtc.o ./drivers/fsl_smc.o ./drivers/fsl_uart.o  ./device/system_MK66F18.o  ./component/uart/fsl_adapter_uart.o  ./component/lists/fsl_component_generic_list.o  ./board/board.o ./board/clock_config.o ./board/pin_mux.o   
+Memory region         Used Size  Region Size  %age Used
+   PROGRAM_FLASH:       19832 B         2 MB      0.95%
+      SRAM_UPPER:        8480 B       192 KB      4.31%
+      SRAM_LOWER:          0 GB        64 KB      0.00%
+        FLEX_RAM:          0 GB         4 KB      0.00%
+Finished building target: frdmk66f_hello_world_exp4.axf
+ 
+Performing post-build steps
+arm-none-eabi-size "frdmk66f_hello_world_exp4.axf"; # arm-none-eabi-objcopy -v -O binary "frdmk66f_hello_world_exp4.axf" "frdmk66f_hello_world_exp4.bin" ; # checksum -p MK66FN2M0xxx18 -d "frdmk66f_hello_world_exp4.bin";
+   text	   data	    bss	    dec	    hex	filename
+  19808	     24	   8456	  28288	   6e80	frdmk66f_hello_world_exp4.axf
+ 
+17:59:40 **** Incremental Build of configuration Debug for project frdmk66f_hello_world_exp4 ****
+make -r -j4 all 
+Building file: ../source/hello_world.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -std=gnu99 -DCPU_MK66FN2M0VMD18 -DCPU_MK66FN2M0VMD18_cm4 -DPRINTF_FLOAT_ENABLE=0 -DSCANF_FLOAT_ENABLE=0 -DPRINTF_ADVANCED_ENABLE=0 -DSCANF_ADVANCED_ENABLE=0 -DFRDM_K66F -DFREEDOM -DMCUXPRESSO_SDK -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -D__REDLIB__ -DSDK_OS_BAREMETAL -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\source" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -O0 -fno-common -g3 -c -ffunction-sections -fdata-sections -ffreestanding -fno-builtin -fmerge-constants -fmacro-prefix-map="../source/"= -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"source/hello_world.d" -MT"source/hello_world.o" -MT"source/hello_world.d" -o "source/hello_world.o" "../source/hello_world.c"
+../source/hello_world.c: In function 'main':
+../source/hello_world.c:41:2: warning: implicit declaration of function 'pwm_setup' [-Wimplicit-function-declaration]
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+../source/hello_world.c: At top level:
+../source/hello_world.c:74:6: warning: conflicting types for 'pwm_setup'
+   74 | void pwm_setup() {
+      |      ^~~~~~~~~
+../source/hello_world.c:41:2: note: previous implicit declaration of 'pwm_setup' was here
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+Finished building: ../source/hello_world.c
+ 
+Building target: frdmk66f_hello_world_exp4.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -Xlinker -Map="frdmk66f_hello_world_exp4.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -T frdmk66f_hello_world_exp4_Debug.ld -o "frdmk66f_hello_world_exp4.axf" ./utilities/fsl_assert.o ./utilities/fsl_debug_console.o  ./startup/startup_mk66f18.o  ./source/hello_world.o ./source/semihost_hardfault.o  ./drivers/fsl_clock.o ./drivers/fsl_common.o ./drivers/fsl_common_arm.o ./drivers/fsl_ftfx_cache.o ./drivers/fsl_ftfx_controller.o ./drivers/fsl_ftfx_flash.o ./drivers/fsl_ftfx_flexnvm.o ./drivers/fsl_ftm.o ./drivers/fsl_gpio.o ./drivers/fsl_i2c.o ./drivers/fsl_lpuart.o ./drivers/fsl_rtc.o ./drivers/fsl_smc.o ./drivers/fsl_uart.o  ./device/system_MK66F18.o  ./component/uart/fsl_adapter_uart.o  ./component/lists/fsl_component_generic_list.o  ./board/board.o ./board/clock_config.o ./board/pin_mux.o   
+Memory region         Used Size  Region Size  %age Used
+   PROGRAM_FLASH:       19792 B         2 MB      0.94%
+      SRAM_UPPER:        8480 B       192 KB      4.31%
+      SRAM_LOWER:          0 GB        64 KB      0.00%
+        FLEX_RAM:          0 GB         4 KB      0.00%
+Finished building target: frdmk66f_hello_world_exp4.axf
+ 
+Performing post-build steps
+arm-none-eabi-size "frdmk66f_hello_world_exp4.axf"; # arm-none-eabi-objcopy -v -O binary "frdmk66f_hello_world_exp4.axf" "frdmk66f_hello_world_exp4.bin" ; # checksum -p MK66FN2M0xxx18 -d "frdmk66f_hello_world_exp4.bin";
+   text	   data	    bss	    dec	    hex	filename
+  19768	     24	   8456	  28248	   6e58	frdmk66f_hello_world_exp4.axf
+ 
+18:00:42 **** Incremental Build of configuration Debug for project frdmk66f_hello_world_exp4 ****
+make -r -j4 all 
+Building file: ../source/hello_world.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -std=gnu99 -DCPU_MK66FN2M0VMD18 -DCPU_MK66FN2M0VMD18_cm4 -DPRINTF_FLOAT_ENABLE=0 -DSCANF_FLOAT_ENABLE=0 -DPRINTF_ADVANCED_ENABLE=0 -DSCANF_ADVANCED_ENABLE=0 -DFRDM_K66F -DFREEDOM -DMCUXPRESSO_SDK -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -D__REDLIB__ -DSDK_OS_BAREMETAL -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\source" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -O0 -fno-common -g3 -c -ffunction-sections -fdata-sections -ffreestanding -fno-builtin -fmerge-constants -fmacro-prefix-map="../source/"= -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"source/hello_world.d" -MT"source/hello_world.o" -MT"source/hello_world.d" -o "source/hello_world.o" "../source/hello_world.c"
+../source/hello_world.c: In function 'main':
+../source/hello_world.c:41:2: warning: implicit declaration of function 'pwm_setup' [-Wimplicit-function-declaration]
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+../source/hello_world.c: At top level:
+../source/hello_world.c:74:6: warning: conflicting types for 'pwm_setup'
+   74 | void pwm_setup() {
+      |      ^~~~~~~~~
+../source/hello_world.c:41:2: note: previous implicit declaration of 'pwm_setup' was here
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+Finished building: ../source/hello_world.c
+ 
+Building target: frdmk66f_hello_world_exp4.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -Xlinker -Map="frdmk66f_hello_world_exp4.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -T frdmk66f_hello_world_exp4_Debug.ld -o "frdmk66f_hello_world_exp4.axf" ./utilities/fsl_assert.o ./utilities/fsl_debug_console.o  ./startup/startup_mk66f18.o  ./source/hello_world.o ./source/semihost_hardfault.o  ./drivers/fsl_clock.o ./drivers/fsl_common.o ./drivers/fsl_common_arm.o ./drivers/fsl_ftfx_cache.o ./drivers/fsl_ftfx_controller.o ./drivers/fsl_ftfx_flash.o ./drivers/fsl_ftfx_flexnvm.o ./drivers/fsl_ftm.o ./drivers/fsl_gpio.o ./drivers/fsl_i2c.o ./drivers/fsl_lpuart.o ./drivers/fsl_rtc.o ./drivers/fsl_smc.o ./drivers/fsl_uart.o  ./device/system_MK66F18.o  ./component/uart/fsl_adapter_uart.o  ./component/lists/fsl_component_generic_list.o  ./board/board.o ./board/clock_config.o ./board/pin_mux.o   
+Memory region         Used Size  Region Size  %age Used
+   PROGRAM_FLASH:       19832 B         2 MB      0.95%
+      SRAM_UPPER:        8480 B       192 KB      4.31%
+      SRAM_LOWER:          0 GB        64 KB      0.00%
+        FLEX_RAM:          0 GB         4 KB      0.00%
+Finished building target: frdmk66f_hello_world_exp4.axf
+ 
+Performing post-build steps
+arm-none-eabi-size "frdmk66f_hello_world_exp4.axf"; # arm-none-eabi-objcopy -v -O binary "frdmk66f_hello_world_exp4.axf" "frdmk66f_hello_world_exp4.bin" ; # checksum -p MK66FN2M0xxx18 -d "frdmk66f_hello_world_exp4.bin";
+   text	   data	    bss	    dec	    hex	filename
+  19808	     24	   8456	  28288	   6e80	frdmk66f_hello_world_exp4.axf
+ 
+18:00:58 **** Incremental Build of configuration Debug for project frdmk66f_hello_world_exp4 ****
+make -r -j4 all 
+Building file: ../source/hello_world.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -std=gnu99 -DCPU_MK66FN2M0VMD18 -DCPU_MK66FN2M0VMD18_cm4 -DPRINTF_FLOAT_ENABLE=0 -DSCANF_FLOAT_ENABLE=0 -DPRINTF_ADVANCED_ENABLE=0 -DSCANF_ADVANCED_ENABLE=0 -DFRDM_K66F -DFREEDOM -DMCUXPRESSO_SDK -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -D__REDLIB__ -DSDK_OS_BAREMETAL -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\source" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -O0 -fno-common -g3 -c -ffunction-sections -fdata-sections -ffreestanding -fno-builtin -fmerge-constants -fmacro-prefix-map="../source/"= -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"source/hello_world.d" -MT"source/hello_world.o" -MT"source/hello_world.d" -o "source/hello_world.o" "../source/hello_world.c"
+../source/hello_world.c: In function 'main':
+../source/hello_world.c:41:2: warning: implicit declaration of function 'pwm_setup' [-Wimplicit-function-declaration]
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+../source/hello_world.c: At top level:
+../source/hello_world.c:74:6: warning: conflicting types for 'pwm_setup'
+   74 | void pwm_setup() {
+      |      ^~~~~~~~~
+../source/hello_world.c:41:2: note: previous implicit declaration of 'pwm_setup' was here
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+Finished building: ../source/hello_world.c
+ 
+Building target: frdmk66f_hello_world_exp4.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -Xlinker -Map="frdmk66f_hello_world_exp4.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -T frdmk66f_hello_world_exp4_Debug.ld -o "frdmk66f_hello_world_exp4.axf" ./utilities/fsl_assert.o ./utilities/fsl_debug_console.o  ./startup/startup_mk66f18.o  ./source/hello_world.o ./source/semihost_hardfault.o  ./drivers/fsl_clock.o ./drivers/fsl_common.o ./drivers/fsl_common_arm.o ./drivers/fsl_ftfx_cache.o ./drivers/fsl_ftfx_controller.o ./drivers/fsl_ftfx_flash.o ./drivers/fsl_ftfx_flexnvm.o ./drivers/fsl_ftm.o ./drivers/fsl_gpio.o ./drivers/fsl_i2c.o ./drivers/fsl_lpuart.o ./drivers/fsl_rtc.o ./drivers/fsl_smc.o ./drivers/fsl_uart.o  ./device/system_MK66F18.o  ./component/uart/fsl_adapter_uart.o  ./component/lists/fsl_component_generic_list.o  ./board/board.o ./board/clock_config.o ./board/pin_mux.o   
+Memory region         Used Size  Region Size  %age Used
+   PROGRAM_FLASH:       19832 B         2 MB      0.95%
+      SRAM_UPPER:        8480 B       192 KB      4.31%
+      SRAM_LOWER:          0 GB        64 KB      0.00%
+        FLEX_RAM:          0 GB         4 KB      0.00%
+Finished building target: frdmk66f_hello_world_exp4.axf
+ 
+Performing post-build steps
+arm-none-eabi-size "frdmk66f_hello_world_exp4.axf"; # arm-none-eabi-objcopy -v -O binary "frdmk66f_hello_world_exp4.axf" "frdmk66f_hello_world_exp4.bin" ; # checksum -p MK66FN2M0xxx18 -d "frdmk66f_hello_world_exp4.bin";
+   text	   data	    bss	    dec	    hex	filename
+  19808	     24	   8456	  28288	   6e80	frdmk66f_hello_world_exp4.axf
+ 
+18:01:32 **** Incremental Build of configuration Debug for project frdmk66f_hello_world_exp4 ****
+make -r -j4 all 
+Building file: ../source/hello_world.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -std=gnu99 -DCPU_MK66FN2M0VMD18 -DCPU_MK66FN2M0VMD18_cm4 -DPRINTF_FLOAT_ENABLE=0 -DSCANF_FLOAT_ENABLE=0 -DPRINTF_ADVANCED_ENABLE=0 -DSCANF_ADVANCED_ENABLE=0 -DFRDM_K66F -DFREEDOM -DMCUXPRESSO_SDK -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -D__REDLIB__ -DSDK_OS_BAREMETAL -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\source" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -O0 -fno-common -g3 -c -ffunction-sections -fdata-sections -ffreestanding -fno-builtin -fmerge-constants -fmacro-prefix-map="../source/"= -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"source/hello_world.d" -MT"source/hello_world.o" -MT"source/hello_world.d" -o "source/hello_world.o" "../source/hello_world.c"
+../source/hello_world.c: In function 'main':
+../source/hello_world.c:41:2: warning: implicit declaration of function 'pwm_setup' [-Wimplicit-function-declaration]
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+../source/hello_world.c: At top level:
+../source/hello_world.c:74:6: warning: conflicting types for 'pwm_setup'
+   74 | void pwm_setup() {
+      |      ^~~~~~~~~
+../source/hello_world.c:41:2: note: previous implicit declaration of 'pwm_setup' was here
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+Finished building: ../source/hello_world.c
+ 
+Building target: frdmk66f_hello_world_exp4.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -Xlinker -Map="frdmk66f_hello_world_exp4.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -T frdmk66f_hello_world_exp4_Debug.ld -o "frdmk66f_hello_world_exp4.axf" ./utilities/fsl_assert.o ./utilities/fsl_debug_console.o  ./startup/startup_mk66f18.o  ./source/hello_world.o ./source/semihost_hardfault.o  ./drivers/fsl_clock.o ./drivers/fsl_common.o ./drivers/fsl_common_arm.o ./drivers/fsl_ftfx_cache.o ./drivers/fsl_ftfx_controller.o ./drivers/fsl_ftfx_flash.o ./drivers/fsl_ftfx_flexnvm.o ./drivers/fsl_ftm.o ./drivers/fsl_gpio.o ./drivers/fsl_i2c.o ./drivers/fsl_lpuart.o ./drivers/fsl_rtc.o ./drivers/fsl_smc.o ./drivers/fsl_uart.o  ./device/system_MK66F18.o  ./component/uart/fsl_adapter_uart.o  ./component/lists/fsl_component_generic_list.o  ./board/board.o ./board/clock_config.o ./board/pin_mux.o   
+Memory region         Used Size  Region Size  %age Used
+   PROGRAM_FLASH:       19832 B         2 MB      0.95%
+      SRAM_UPPER:        8480 B       192 KB      4.31%
+      SRAM_LOWER:          0 GB        64 KB      0.00%
+        FLEX_RAM:          0 GB         4 KB      0.00%
+Finished building target: frdmk66f_hello_world_exp4.axf
+ 
+Performing post-build steps
+arm-none-eabi-size "frdmk66f_hello_world_exp4.axf"; # arm-none-eabi-objcopy -v -O binary "frdmk66f_hello_world_exp4.axf" "frdmk66f_hello_world_exp4.bin" ; # checksum -p MK66FN2M0xxx18 -d "frdmk66f_hello_world_exp4.bin";
+   text	   data	    bss	    dec	    hex	filename
+  19808	     24	   8456	  28288	   6e80	frdmk66f_hello_world_exp4.axf
+ 
+18:09:20 **** Incremental Build of configuration Debug for project frdmk66f_hello_world_exp4 ****
+make -r -j4 all 
+Building file: ../source/hello_world.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -std=gnu99 -DCPU_MK66FN2M0VMD18 -DCPU_MK66FN2M0VMD18_cm4 -DPRINTF_FLOAT_ENABLE=0 -DSCANF_FLOAT_ENABLE=0 -DPRINTF_ADVANCED_ENABLE=0 -DSCANF_ADVANCED_ENABLE=0 -DFRDM_K66F -DFREEDOM -DMCUXPRESSO_SDK -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -D__REDLIB__ -DSDK_OS_BAREMETAL -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\source" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -O0 -fno-common -g3 -c -ffunction-sections -fdata-sections -ffreestanding -fno-builtin -fmerge-constants -fmacro-prefix-map="../source/"= -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"source/hello_world.d" -MT"source/hello_world.o" -MT"source/hello_world.d" -o "source/hello_world.o" "../source/hello_world.c"
+../source/hello_world.c: In function 'main':
+../source/hello_world.c:41:2: warning: implicit declaration of function 'pwm_setup' [-Wimplicit-function-declaration]
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+../source/hello_world.c: At top level:
+../source/hello_world.c:79:6: warning: conflicting types for 'pwm_setup'
+   79 | void pwm_setup() {
+      |      ^~~~~~~~~
+../source/hello_world.c:41:2: note: previous implicit declaration of 'pwm_setup' was here
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+Finished building: ../source/hello_world.c
+ 
+Building target: frdmk66f_hello_world_exp4.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -Xlinker -Map="frdmk66f_hello_world_exp4.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -T frdmk66f_hello_world_exp4_Debug.ld -o "frdmk66f_hello_world_exp4.axf" ./utilities/fsl_assert.o ./utilities/fsl_debug_console.o  ./startup/startup_mk66f18.o  ./source/hello_world.o ./source/semihost_hardfault.o  ./drivers/fsl_clock.o ./drivers/fsl_common.o ./drivers/fsl_common_arm.o ./drivers/fsl_ftfx_cache.o ./drivers/fsl_ftfx_controller.o ./drivers/fsl_ftfx_flash.o ./drivers/fsl_ftfx_flexnvm.o ./drivers/fsl_ftm.o ./drivers/fsl_gpio.o ./drivers/fsl_i2c.o ./drivers/fsl_lpuart.o ./drivers/fsl_rtc.o ./drivers/fsl_smc.o ./drivers/fsl_uart.o  ./device/system_MK66F18.o  ./component/uart/fsl_adapter_uart.o  ./component/lists/fsl_component_generic_list.o  ./board/board.o ./board/clock_config.o ./board/pin_mux.o   
+Memory region         Used Size  Region Size  %age Used
+   PROGRAM_FLASH:       19848 B         2 MB      0.95%
+      SRAM_UPPER:        8480 B       192 KB      4.31%
+      SRAM_LOWER:          0 GB        64 KB      0.00%
+        FLEX_RAM:          0 GB         4 KB      0.00%
+Finished building target: frdmk66f_hello_world_exp4.axf
+ 
+Performing post-build steps
+arm-none-eabi-size "frdmk66f_hello_world_exp4.axf"; # arm-none-eabi-objcopy -v -O binary "frdmk66f_hello_world_exp4.axf" "frdmk66f_hello_world_exp4.bin" ; # checksum -p MK66FN2M0xxx18 -d "frdmk66f_hello_world_exp4.bin";
+   text	   data	    bss	    dec	    hex	filename
+  19824	     24	   8456	  28304	   6e90	frdmk66f_hello_world_exp4.axf
+ 
+18:09:49 **** Incremental Build of configuration Debug for project frdmk66f_hello_world_exp4 ****
+make -r -j4 all 
+Building file: ../source/hello_world.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -std=gnu99 -DCPU_MK66FN2M0VMD18 -DCPU_MK66FN2M0VMD18_cm4 -DPRINTF_FLOAT_ENABLE=0 -DSCANF_FLOAT_ENABLE=0 -DPRINTF_ADVANCED_ENABLE=0 -DSCANF_ADVANCED_ENABLE=0 -DFRDM_K66F -DFREEDOM -DMCUXPRESSO_SDK -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -D__REDLIB__ -DSDK_OS_BAREMETAL -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\source" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -O0 -fno-common -g3 -c -ffunction-sections -fdata-sections -ffreestanding -fno-builtin -fmerge-constants -fmacro-prefix-map="../source/"= -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"source/hello_world.d" -MT"source/hello_world.o" -MT"source/hello_world.d" -o "source/hello_world.o" "../source/hello_world.c"
+../source/hello_world.c: In function 'main':
+../source/hello_world.c:41:2: warning: implicit declaration of function 'pwm_setup' [-Wimplicit-function-declaration]
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+../source/hello_world.c: At top level:
+../source/hello_world.c:80:6: warning: conflicting types for 'pwm_setup'
+   80 | void pwm_setup() {
+      |      ^~~~~~~~~
+../source/hello_world.c:41:2: note: previous implicit declaration of 'pwm_setup' was here
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+Finished building: ../source/hello_world.c
+ 
+Building target: frdmk66f_hello_world_exp4.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -Xlinker -Map="frdmk66f_hello_world_exp4.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -T frdmk66f_hello_world_exp4_Debug.ld -o "frdmk66f_hello_world_exp4.axf" ./utilities/fsl_assert.o ./utilities/fsl_debug_console.o  ./startup/startup_mk66f18.o  ./source/hello_world.o ./source/semihost_hardfault.o  ./drivers/fsl_clock.o ./drivers/fsl_common.o ./drivers/fsl_common_arm.o ./drivers/fsl_ftfx_cache.o ./drivers/fsl_ftfx_controller.o ./drivers/fsl_ftfx_flash.o ./drivers/fsl_ftfx_flexnvm.o ./drivers/fsl_ftm.o ./drivers/fsl_gpio.o ./drivers/fsl_i2c.o ./drivers/fsl_lpuart.o ./drivers/fsl_rtc.o ./drivers/fsl_smc.o ./drivers/fsl_uart.o  ./device/system_MK66F18.o  ./component/uart/fsl_adapter_uart.o  ./component/lists/fsl_component_generic_list.o  ./board/board.o ./board/clock_config.o ./board/pin_mux.o   
+Memory region         Used Size  Region Size  %age Used
+   PROGRAM_FLASH:       19864 B         2 MB      0.95%
+      SRAM_UPPER:        8480 B       192 KB      4.31%
+      SRAM_LOWER:          0 GB        64 KB      0.00%
+        FLEX_RAM:          0 GB         4 KB      0.00%
+Finished building target: frdmk66f_hello_world_exp4.axf
+ 
+Performing post-build steps
+arm-none-eabi-size "frdmk66f_hello_world_exp4.axf"; # arm-none-eabi-objcopy -v -O binary "frdmk66f_hello_world_exp4.axf" "frdmk66f_hello_world_exp4.bin" ; # checksum -p MK66FN2M0xxx18 -d "frdmk66f_hello_world_exp4.bin";
+   text	   data	    bss	    dec	    hex	filename
+  19840	     24	   8456	  28320	   6ea0	frdmk66f_hello_world_exp4.axf
+ 
+18:10:05 **** Incremental Build of configuration Debug for project frdmk66f_hello_world_exp4 ****
+make -r -j4 all 
+Building file: ../source/hello_world.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -std=gnu99 -DCPU_MK66FN2M0VMD18 -DCPU_MK66FN2M0VMD18_cm4 -DPRINTF_FLOAT_ENABLE=0 -DSCANF_FLOAT_ENABLE=0 -DPRINTF_ADVANCED_ENABLE=0 -DSCANF_ADVANCED_ENABLE=0 -DFRDM_K66F -DFREEDOM -DMCUXPRESSO_SDK -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -D__REDLIB__ -DSDK_OS_BAREMETAL -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\source" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -O0 -fno-common -g3 -c -ffunction-sections -fdata-sections -ffreestanding -fno-builtin -fmerge-constants -fmacro-prefix-map="../source/"= -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"source/hello_world.d" -MT"source/hello_world.o" -MT"source/hello_world.d" -o "source/hello_world.o" "../source/hello_world.c"
+../source/hello_world.c: In function 'main':
+../source/hello_world.c:41:2: warning: implicit declaration of function 'pwm_setup' [-Wimplicit-function-declaration]
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+../source/hello_world.c: At top level:
+../source/hello_world.c:80:6: warning: conflicting types for 'pwm_setup'
+   80 | void pwm_setup() {
+      |      ^~~~~~~~~
+../source/hello_world.c:41:2: note: previous implicit declaration of 'pwm_setup' was here
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+Finished building: ../source/hello_world.c
+ 
+Building target: frdmk66f_hello_world_exp4.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -Xlinker -Map="frdmk66f_hello_world_exp4.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -T frdmk66f_hello_world_exp4_Debug.ld -o "frdmk66f_hello_world_exp4.axf" ./utilities/fsl_assert.o ./utilities/fsl_debug_console.o  ./startup/startup_mk66f18.o  ./source/hello_world.o ./source/semihost_hardfault.o  ./drivers/fsl_clock.o ./drivers/fsl_common.o ./drivers/fsl_common_arm.o ./drivers/fsl_ftfx_cache.o ./drivers/fsl_ftfx_controller.o ./drivers/fsl_ftfx_flash.o ./drivers/fsl_ftfx_flexnvm.o ./drivers/fsl_ftm.o ./drivers/fsl_gpio.o ./drivers/fsl_i2c.o ./drivers/fsl_lpuart.o ./drivers/fsl_rtc.o ./drivers/fsl_smc.o ./drivers/fsl_uart.o  ./device/system_MK66F18.o  ./component/uart/fsl_adapter_uart.o  ./component/lists/fsl_component_generic_list.o  ./board/board.o ./board/clock_config.o ./board/pin_mux.o   
+Memory region         Used Size  Region Size  %age Used
+   PROGRAM_FLASH:       19960 B         2 MB      0.95%
+      SRAM_UPPER:        8480 B       192 KB      4.31%
+      SRAM_LOWER:          0 GB        64 KB      0.00%
+        FLEX_RAM:          0 GB         4 KB      0.00%
+Finished building target: frdmk66f_hello_world_exp4.axf
+ 
+Performing post-build steps
+arm-none-eabi-size "frdmk66f_hello_world_exp4.axf"; # arm-none-eabi-objcopy -v -O binary "frdmk66f_hello_world_exp4.axf" "frdmk66f_hello_world_exp4.bin" ; # checksum -p MK66FN2M0xxx18 -d "frdmk66f_hello_world_exp4.bin";
+   text	   data	    bss	    dec	    hex	filename
+  19936	     24	   8456	  28416	   6f00	frdmk66f_hello_world_exp4.axf
+ 
+18:10:40 **** Incremental Build of configuration Debug for project frdmk66f_hello_world_exp4 ****
+make -r -j4 all 
+Building file: ../source/hello_world.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -std=gnu99 -DCPU_MK66FN2M0VMD18 -DCPU_MK66FN2M0VMD18_cm4 -DPRINTF_FLOAT_ENABLE=0 -DSCANF_FLOAT_ENABLE=0 -DPRINTF_ADVANCED_ENABLE=0 -DSCANF_ADVANCED_ENABLE=0 -DFRDM_K66F -DFREEDOM -DMCUXPRESSO_SDK -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -D__REDLIB__ -DSDK_OS_BAREMETAL -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\source" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -O0 -fno-common -g3 -c -ffunction-sections -fdata-sections -ffreestanding -fno-builtin -fmerge-constants -fmacro-prefix-map="../source/"= -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"source/hello_world.d" -MT"source/hello_world.o" -MT"source/hello_world.d" -o "source/hello_world.o" "../source/hello_world.c"
+../source/hello_world.c: In function 'main':
+../source/hello_world.c:41:2: warning: implicit declaration of function 'pwm_setup' [-Wimplicit-function-declaration]
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+../source/hello_world.c: At top level:
+../source/hello_world.c:80:6: warning: conflicting types for 'pwm_setup'
+   80 | void pwm_setup() {
+      |      ^~~~~~~~~
+../source/hello_world.c:41:2: note: previous implicit declaration of 'pwm_setup' was here
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+Finished building: ../source/hello_world.c
+ 
+Building target: frdmk66f_hello_world_exp4.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -Xlinker -Map="frdmk66f_hello_world_exp4.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -T frdmk66f_hello_world_exp4_Debug.ld -o "frdmk66f_hello_world_exp4.axf" ./utilities/fsl_assert.o ./utilities/fsl_debug_console.o  ./startup/startup_mk66f18.o  ./source/hello_world.o ./source/semihost_hardfault.o  ./drivers/fsl_clock.o ./drivers/fsl_common.o ./drivers/fsl_common_arm.o ./drivers/fsl_ftfx_cache.o ./drivers/fsl_ftfx_controller.o ./drivers/fsl_ftfx_flash.o ./drivers/fsl_ftfx_flexnvm.o ./drivers/fsl_ftm.o ./drivers/fsl_gpio.o ./drivers/fsl_i2c.o ./drivers/fsl_lpuart.o ./drivers/fsl_rtc.o ./drivers/fsl_smc.o ./drivers/fsl_uart.o  ./device/system_MK66F18.o  ./component/uart/fsl_adapter_uart.o  ./component/lists/fsl_component_generic_list.o  ./board/board.o ./board/clock_config.o ./board/pin_mux.o   
+Memory region         Used Size  Region Size  %age Used
+   PROGRAM_FLASH:       19960 B         2 MB      0.95%
+      SRAM_UPPER:        8480 B       192 KB      4.31%
+      SRAM_LOWER:          0 GB        64 KB      0.00%
+        FLEX_RAM:          0 GB         4 KB      0.00%
+Finished building target: frdmk66f_hello_world_exp4.axf
+ 
+Performing post-build steps
+arm-none-eabi-size "frdmk66f_hello_world_exp4.axf"; # arm-none-eabi-objcopy -v -O binary "frdmk66f_hello_world_exp4.axf" "frdmk66f_hello_world_exp4.bin" ; # checksum -p MK66FN2M0xxx18 -d "frdmk66f_hello_world_exp4.bin";
+   text	   data	    bss	    dec	    hex	filename
+  19936	     24	   8456	  28416	   6f00	frdmk66f_hello_world_exp4.axf
+ 
+18:11:08 **** Incremental Build of configuration Debug for project frdmk66f_hello_world_exp4 ****
+make -r -j4 all 
+Building file: ../source/hello_world.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -std=gnu99 -DCPU_MK66FN2M0VMD18 -DCPU_MK66FN2M0VMD18_cm4 -DPRINTF_FLOAT_ENABLE=0 -DSCANF_FLOAT_ENABLE=0 -DPRINTF_ADVANCED_ENABLE=0 -DSCANF_ADVANCED_ENABLE=0 -DFRDM_K66F -DFREEDOM -DMCUXPRESSO_SDK -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -D__REDLIB__ -DSDK_OS_BAREMETAL -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\source" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -O0 -fno-common -g3 -c -ffunction-sections -fdata-sections -ffreestanding -fno-builtin -fmerge-constants -fmacro-prefix-map="../source/"= -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"source/hello_world.d" -MT"source/hello_world.o" -MT"source/hello_world.d" -o "source/hello_world.o" "../source/hello_world.c"
+../source/hello_world.c: In function 'main':
+../source/hello_world.c:41:2: warning: implicit declaration of function 'pwm_setup' [-Wimplicit-function-declaration]
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+../source/hello_world.c: At top level:
+../source/hello_world.c:80:6: warning: conflicting types for 'pwm_setup'
+   80 | void pwm_setup() {
+      |      ^~~~~~~~~
+../source/hello_world.c:41:2: note: previous implicit declaration of 'pwm_setup' was here
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+Finished building: ../source/hello_world.c
+ 
+Building target: frdmk66f_hello_world_exp4.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -Xlinker -Map="frdmk66f_hello_world_exp4.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -T frdmk66f_hello_world_exp4_Debug.ld -o "frdmk66f_hello_world_exp4.axf" ./utilities/fsl_assert.o ./utilities/fsl_debug_console.o  ./startup/startup_mk66f18.o  ./source/hello_world.o ./source/semihost_hardfault.o  ./drivers/fsl_clock.o ./drivers/fsl_common.o ./drivers/fsl_common_arm.o ./drivers/fsl_ftfx_cache.o ./drivers/fsl_ftfx_controller.o ./drivers/fsl_ftfx_flash.o ./drivers/fsl_ftfx_flexnvm.o ./drivers/fsl_ftm.o ./drivers/fsl_gpio.o ./drivers/fsl_i2c.o ./drivers/fsl_lpuart.o ./drivers/fsl_rtc.o ./drivers/fsl_smc.o ./drivers/fsl_uart.o  ./device/system_MK66F18.o  ./component/uart/fsl_adapter_uart.o  ./component/lists/fsl_component_generic_list.o  ./board/board.o ./board/clock_config.o ./board/pin_mux.o   
+Memory region         Used Size  Region Size  %age Used
+   PROGRAM_FLASH:       19944 B         2 MB      0.95%
+      SRAM_UPPER:        8480 B       192 KB      4.31%
+      SRAM_LOWER:          0 GB        64 KB      0.00%
+        FLEX_RAM:          0 GB         4 KB      0.00%
+Finished building target: frdmk66f_hello_world_exp4.axf
+ 
+Performing post-build steps
+arm-none-eabi-size "frdmk66f_hello_world_exp4.axf"; # arm-none-eabi-objcopy -v -O binary "frdmk66f_hello_world_exp4.axf" "frdmk66f_hello_world_exp4.bin" ; # checksum -p MK66FN2M0xxx18 -d "frdmk66f_hello_world_exp4.bin";
+   text	   data	    bss	    dec	    hex	filename
+  19920	     24	   8456	  28400	   6ef0	frdmk66f_hello_world_exp4.axf
+ 
+18:13:01 **** Incremental Build of configuration Debug for project frdmk66f_hello_world_exp4 ****
+make -r -j4 all 
+Building file: ../source/hello_world.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -std=gnu99 -DCPU_MK66FN2M0VMD18 -DCPU_MK66FN2M0VMD18_cm4 -DPRINTF_FLOAT_ENABLE=0 -DSCANF_FLOAT_ENABLE=0 -DPRINTF_ADVANCED_ENABLE=0 -DSCANF_ADVANCED_ENABLE=0 -DFRDM_K66F -DFREEDOM -DMCUXPRESSO_SDK -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -D__REDLIB__ -DSDK_OS_BAREMETAL -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\source" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -O0 -fno-common -g3 -c -ffunction-sections -fdata-sections -ffreestanding -fno-builtin -fmerge-constants -fmacro-prefix-map="../source/"= -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"source/hello_world.d" -MT"source/hello_world.o" -MT"source/hello_world.d" -o "source/hello_world.o" "../source/hello_world.c"
+../source/hello_world.c: In function 'main':
+../source/hello_world.c:41:2: warning: implicit declaration of function 'pwm_setup' [-Wimplicit-function-declaration]
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+../source/hello_world.c: At top level:
+../source/hello_world.c:80:6: warning: conflicting types for 'pwm_setup'
+   80 | void pwm_setup() {
+      |      ^~~~~~~~~
+../source/hello_world.c:41:2: note: previous implicit declaration of 'pwm_setup' was here
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+Finished building: ../source/hello_world.c
+ 
+Building target: frdmk66f_hello_world_exp4.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -Xlinker -Map="frdmk66f_hello_world_exp4.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -T frdmk66f_hello_world_exp4_Debug.ld -o "frdmk66f_hello_world_exp4.axf" ./utilities/fsl_assert.o ./utilities/fsl_debug_console.o  ./startup/startup_mk66f18.o  ./source/hello_world.o ./source/semihost_hardfault.o  ./drivers/fsl_clock.o ./drivers/fsl_common.o ./drivers/fsl_common_arm.o ./drivers/fsl_ftfx_cache.o ./drivers/fsl_ftfx_controller.o ./drivers/fsl_ftfx_flash.o ./drivers/fsl_ftfx_flexnvm.o ./drivers/fsl_ftm.o ./drivers/fsl_gpio.o ./drivers/fsl_i2c.o ./drivers/fsl_lpuart.o ./drivers/fsl_rtc.o ./drivers/fsl_smc.o ./drivers/fsl_uart.o  ./device/system_MK66F18.o  ./component/uart/fsl_adapter_uart.o  ./component/lists/fsl_component_generic_list.o  ./board/board.o ./board/clock_config.o ./board/pin_mux.o   
+Memory region         Used Size  Region Size  %age Used
+   PROGRAM_FLASH:       19952 B         2 MB      0.95%
+      SRAM_UPPER:        8480 B       192 KB      4.31%
+      SRAM_LOWER:          0 GB        64 KB      0.00%
+        FLEX_RAM:          0 GB         4 KB      0.00%
+Finished building target: frdmk66f_hello_world_exp4.axf
+ 
+Performing post-build steps
+arm-none-eabi-size "frdmk66f_hello_world_exp4.axf"; # arm-none-eabi-objcopy -v -O binary "frdmk66f_hello_world_exp4.axf" "frdmk66f_hello_world_exp4.bin" ; # checksum -p MK66FN2M0xxx18 -d "frdmk66f_hello_world_exp4.bin";
+   text	   data	    bss	    dec	    hex	filename
+  19928	     24	   8456	  28408	   6ef8	frdmk66f_hello_world_exp4.axf
+ 
+18:14:19 **** Incremental Build of configuration Debug for project frdmk66f_hello_world_exp4 ****
+make -r -j4 all 
+Building file: ../source/hello_world.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -std=gnu99 -DCPU_MK66FN2M0VMD18 -DCPU_MK66FN2M0VMD18_cm4 -DPRINTF_FLOAT_ENABLE=0 -DSCANF_FLOAT_ENABLE=0 -DPRINTF_ADVANCED_ENABLE=0 -DSCANF_ADVANCED_ENABLE=0 -DFRDM_K66F -DFREEDOM -DMCUXPRESSO_SDK -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -D__REDLIB__ -DSDK_OS_BAREMETAL -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\source" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -O0 -fno-common -g3 -c -ffunction-sections -fdata-sections -ffreestanding -fno-builtin -fmerge-constants -fmacro-prefix-map="../source/"= -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"source/hello_world.d" -MT"source/hello_world.o" -MT"source/hello_world.d" -o "source/hello_world.o" "../source/hello_world.c"
+../source/hello_world.c: In function 'main':
+../source/hello_world.c:41:2: warning: implicit declaration of function 'pwm_setup' [-Wimplicit-function-declaration]
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+../source/hello_world.c: At top level:
+../source/hello_world.c:77:6: warning: conflicting types for 'pwm_setup'
+   77 | void pwm_setup() {
+      |      ^~~~~~~~~
+../source/hello_world.c:41:2: note: previous implicit declaration of 'pwm_setup' was here
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+Finished building: ../source/hello_world.c
+ 
+Building target: frdmk66f_hello_world_exp4.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -Xlinker -Map="frdmk66f_hello_world_exp4.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -T frdmk66f_hello_world_exp4_Debug.ld -o "frdmk66f_hello_world_exp4.axf" ./utilities/fsl_assert.o ./utilities/fsl_debug_console.o  ./startup/startup_mk66f18.o  ./source/hello_world.o ./source/semihost_hardfault.o  ./drivers/fsl_clock.o ./drivers/fsl_common.o ./drivers/fsl_common_arm.o ./drivers/fsl_ftfx_cache.o ./drivers/fsl_ftfx_controller.o ./drivers/fsl_ftfx_flash.o ./drivers/fsl_ftfx_flexnvm.o ./drivers/fsl_ftm.o ./drivers/fsl_gpio.o ./drivers/fsl_i2c.o ./drivers/fsl_lpuart.o ./drivers/fsl_rtc.o ./drivers/fsl_smc.o ./drivers/fsl_uart.o  ./device/system_MK66F18.o  ./component/uart/fsl_adapter_uart.o  ./component/lists/fsl_component_generic_list.o  ./board/board.o ./board/clock_config.o ./board/pin_mux.o   
+Memory region         Used Size  Region Size  %age Used
+   PROGRAM_FLASH:       20016 B         2 MB      0.95%
+      SRAM_UPPER:        8480 B       192 KB      4.31%
+      SRAM_LOWER:          0 GB        64 KB      0.00%
+        FLEX_RAM:          0 GB         4 KB      0.00%
+Finished building target: frdmk66f_hello_world_exp4.axf
+ 
+Performing post-build steps
+arm-none-eabi-size "frdmk66f_hello_world_exp4.axf"; # arm-none-eabi-objcopy -v -O binary "frdmk66f_hello_world_exp4.axf" "frdmk66f_hello_world_exp4.bin" ; # checksum -p MK66FN2M0xxx18 -d "frdmk66f_hello_world_exp4.bin";
+   text	   data	    bss	    dec	    hex	filename
+  19992	     24	   8456	  28472	   6f38	frdmk66f_hello_world_exp4.axf
+ 
+18:15:32 **** Incremental Build of configuration Debug for project frdmk66f_hello_world_exp4 ****
+make -r -j4 all 
+Building file: ../source/hello_world.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -std=gnu99 -DCPU_MK66FN2M0VMD18 -DCPU_MK66FN2M0VMD18_cm4 -DPRINTF_FLOAT_ENABLE=0 -DSCANF_FLOAT_ENABLE=0 -DPRINTF_ADVANCED_ENABLE=0 -DSCANF_ADVANCED_ENABLE=0 -DFRDM_K66F -DFREEDOM -DMCUXPRESSO_SDK -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -D__REDLIB__ -DSDK_OS_BAREMETAL -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\source" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -O0 -fno-common -g3 -c -ffunction-sections -fdata-sections -ffreestanding -fno-builtin -fmerge-constants -fmacro-prefix-map="../source/"= -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"source/hello_world.d" -MT"source/hello_world.o" -MT"source/hello_world.d" -o "source/hello_world.o" "../source/hello_world.c"
+../source/hello_world.c: In function 'main':
+../source/hello_world.c:41:2: warning: implicit declaration of function 'pwm_setup' [-Wimplicit-function-declaration]
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+../source/hello_world.c: At top level:
+../source/hello_world.c:77:6: warning: conflicting types for 'pwm_setup'
+   77 | void pwm_setup() {
+      |      ^~~~~~~~~
+../source/hello_world.c:41:2: note: previous implicit declaration of 'pwm_setup' was here
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+Finished building: ../source/hello_world.c
+ 
+Building target: frdmk66f_hello_world_exp4.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -Xlinker -Map="frdmk66f_hello_world_exp4.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -T frdmk66f_hello_world_exp4_Debug.ld -o "frdmk66f_hello_world_exp4.axf" ./utilities/fsl_assert.o ./utilities/fsl_debug_console.o  ./startup/startup_mk66f18.o  ./source/hello_world.o ./source/semihost_hardfault.o  ./drivers/fsl_clock.o ./drivers/fsl_common.o ./drivers/fsl_common_arm.o ./drivers/fsl_ftfx_cache.o ./drivers/fsl_ftfx_controller.o ./drivers/fsl_ftfx_flash.o ./drivers/fsl_ftfx_flexnvm.o ./drivers/fsl_ftm.o ./drivers/fsl_gpio.o ./drivers/fsl_i2c.o ./drivers/fsl_lpuart.o ./drivers/fsl_rtc.o ./drivers/fsl_smc.o ./drivers/fsl_uart.o  ./device/system_MK66F18.o  ./component/uart/fsl_adapter_uart.o  ./component/lists/fsl_component_generic_list.o  ./board/board.o ./board/clock_config.o ./board/pin_mux.o   
+Memory region         Used Size  Region Size  %age Used
+   PROGRAM_FLASH:       19976 B         2 MB      0.95%
+      SRAM_UPPER:        8480 B       192 KB      4.31%
+      SRAM_LOWER:          0 GB        64 KB      0.00%
+        FLEX_RAM:          0 GB         4 KB      0.00%
+Finished building target: frdmk66f_hello_world_exp4.axf
+ 
+Performing post-build steps
+arm-none-eabi-size "frdmk66f_hello_world_exp4.axf"; # arm-none-eabi-objcopy -v -O binary "frdmk66f_hello_world_exp4.axf" "frdmk66f_hello_world_exp4.bin" ; # checksum -p MK66FN2M0xxx18 -d "frdmk66f_hello_world_exp4.bin";
+   text	   data	    bss	    dec	    hex	filename
+  19952	     24	   8456	  28432	   6f10	frdmk66f_hello_world_exp4.axf
+ 
+18:15:59 **** Incremental Build of configuration Debug for project frdmk66f_hello_world_exp4 ****
+make -r -j4 all 
+make[1]: Nothing to be done for 'main-build'.
+Performing post-build steps
+arm-none-eabi-size "frdmk66f_hello_world_exp4.axf"; # arm-none-eabi-objcopy -v -O binary "frdmk66f_hello_world_exp4.axf" "frdmk66f_hello_world_exp4.bin" ; # checksum -p MK66FN2M0xxx18 -d "frdmk66f_hello_world_exp4.bin";
+   text	   data	    bss	    dec	    hex	filename
+  19952	     24	   8456	  28432	   6f10	frdmk66f_hello_world_exp4.axf
+ 
+18:16:42 **** Incremental Build of configuration Debug for project frdmk66f_hello_world_exp4 ****
+make -r -j4 all 
+Building file: ../source/hello_world.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -std=gnu99 -DCPU_MK66FN2M0VMD18 -DCPU_MK66FN2M0VMD18_cm4 -DPRINTF_FLOAT_ENABLE=0 -DSCANF_FLOAT_ENABLE=0 -DPRINTF_ADVANCED_ENABLE=0 -DSCANF_ADVANCED_ENABLE=0 -DFRDM_K66F -DFREEDOM -DMCUXPRESSO_SDK -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -D__REDLIB__ -DSDK_OS_BAREMETAL -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\source" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -O0 -fno-common -g3 -c -ffunction-sections -fdata-sections -ffreestanding -fno-builtin -fmerge-constants -fmacro-prefix-map="../source/"= -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"source/hello_world.d" -MT"source/hello_world.o" -MT"source/hello_world.d" -o "source/hello_world.o" "../source/hello_world.c"
+../source/hello_world.c: In function 'main':
+../source/hello_world.c:41:2: warning: implicit declaration of function 'pwm_setup' [-Wimplicit-function-declaration]
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+../source/hello_world.c: At top level:
+../source/hello_world.c:81:6: warning: conflicting types for 'pwm_setup'
+   81 | void pwm_setup() {
+      |      ^~~~~~~~~
+../source/hello_world.c:41:2: note: previous implicit declaration of 'pwm_setup' was here
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+Finished building: ../source/hello_world.c
+ 
+Building target: frdmk66f_hello_world_exp4.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -Xlinker -Map="frdmk66f_hello_world_exp4.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -T frdmk66f_hello_world_exp4_Debug.ld -o "frdmk66f_hello_world_exp4.axf" ./utilities/fsl_assert.o ./utilities/fsl_debug_console.o  ./startup/startup_mk66f18.o  ./source/hello_world.o ./source/semihost_hardfault.o  ./drivers/fsl_clock.o ./drivers/fsl_common.o ./drivers/fsl_common_arm.o ./drivers/fsl_ftfx_cache.o ./drivers/fsl_ftfx_controller.o ./drivers/fsl_ftfx_flash.o ./drivers/fsl_ftfx_flexnvm.o ./drivers/fsl_ftm.o ./drivers/fsl_gpio.o ./drivers/fsl_i2c.o ./drivers/fsl_lpuart.o ./drivers/fsl_rtc.o ./drivers/fsl_smc.o ./drivers/fsl_uart.o  ./device/system_MK66F18.o  ./component/uart/fsl_adapter_uart.o  ./component/lists/fsl_component_generic_list.o  ./board/board.o ./board/clock_config.o ./board/pin_mux.o   
+Memory region         Used Size  Region Size  %age Used
+   PROGRAM_FLASH:       19992 B         2 MB      0.95%
+      SRAM_UPPER:        8480 B       192 KB      4.31%
+      SRAM_LOWER:          0 GB        64 KB      0.00%
+        FLEX_RAM:          0 GB         4 KB      0.00%
+Finished building target: frdmk66f_hello_world_exp4.axf
+ 
+Performing post-build steps
+arm-none-eabi-size "frdmk66f_hello_world_exp4.axf"; # arm-none-eabi-objcopy -v -O binary "frdmk66f_hello_world_exp4.axf" "frdmk66f_hello_world_exp4.bin" ; # checksum -p MK66FN2M0xxx18 -d "frdmk66f_hello_world_exp4.bin";
+   text	   data	    bss	    dec	    hex	filename
+  19968	     24	   8456	  28448	   6f20	frdmk66f_hello_world_exp4.axf
+ 
+18:18:51 **** Incremental Build of configuration Debug for project frdmk66f_hello_world_exp4 ****
+make -r -j4 all 
+Building file: ../source/hello_world.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -std=gnu99 -DCPU_MK66FN2M0VMD18 -DCPU_MK66FN2M0VMD18_cm4 -DPRINTF_FLOAT_ENABLE=0 -DSCANF_FLOAT_ENABLE=0 -DPRINTF_ADVANCED_ENABLE=0 -DSCANF_ADVANCED_ENABLE=0 -DFRDM_K66F -DFREEDOM -DMCUXPRESSO_SDK -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -D__REDLIB__ -DSDK_OS_BAREMETAL -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\source" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\utilities" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\drivers" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\device" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\uart" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\component\lists" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\CMSIS" -I"C:\Users\guoj69\Desktop\COMPENG4DS4\lab 0\frdmk66f_hello_world_exp4\board" -O0 -fno-common -g3 -c -ffunction-sections -fdata-sections -ffreestanding -fno-builtin -fmerge-constants -fmacro-prefix-map="../source/"= -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"source/hello_world.d" -MT"source/hello_world.o" -MT"source/hello_world.d" -o "source/hello_world.o" "../source/hello_world.c"
+../source/hello_world.c: In function 'main':
+../source/hello_world.c:41:2: warning: implicit declaration of function 'pwm_setup' [-Wimplicit-function-declaration]
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+../source/hello_world.c: At top level:
+../source/hello_world.c:81:6: warning: conflicting types for 'pwm_setup'
+   81 | void pwm_setup() {
+      |      ^~~~~~~~~
+../source/hello_world.c:41:2: note: previous implicit declaration of 'pwm_setup' was here
+   41 |  pwm_setup();
+      |  ^~~~~~~~~
+Finished building: ../source/hello_world.c
+ 
+Building target: frdmk66f_hello_world_exp4.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -Xlinker -Map="frdmk66f_hello_world_exp4.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -T frdmk66f_hello_world_exp4_Debug.ld -o "frdmk66f_hello_world_exp4.axf" ./utilities/fsl_assert.o ./utilities/fsl_debug_console.o  ./startup/startup_mk66f18.o  ./source/hello_world.o ./source/semihost_hardfault.o  ./drivers/fsl_clock.o ./drivers/fsl_common.o ./drivers/fsl_common_arm.o ./drivers/fsl_ftfx_cache.o ./drivers/fsl_ftfx_controller.o ./drivers/fsl_ftfx_flash.o ./drivers/fsl_ftfx_flexnvm.o ./drivers/fsl_ftm.o ./drivers/fsl_gpio.o ./drivers/fsl_i2c.o ./drivers/fsl_lpuart.o ./drivers/fsl_rtc.o ./drivers/fsl_smc.o ./drivers/fsl_uart.o  ./device/system_MK66F18.o  ./component/uart/fsl_adapter_uart.o  ./component/lists/fsl_component_generic_list.o  ./board/board.o ./board/clock_config.o ./board/pin_mux.o   
+Memory region         Used Size  Region Size  %age Used
+   PROGRAM_FLASH:       20032 B         2 MB      0.96%
+      SRAM_UPPER:        8480 B       192 KB      4.31%
+      SRAM_LOWER:          0 GB        64 KB      0.00%
+        FLEX_RAM:          0 GB         4 KB      0.00%
+Finished building target: frdmk66f_hello_world_exp4.axf
+ 
+Performing post-build steps
+arm-none-eabi-size "frdmk66f_hello_world_exp4.axf"; # arm-none-eabi-objcopy -v -O binary "frdmk66f_hello_world_exp4.axf" "frdmk66f_hello_world_exp4.bin" ; # checksum -p MK66FN2M0xxx18 -d "frdmk66f_hello_world_exp4.bin";
+   text	   data	    bss	    dec	    hex	filename
+  20008	     24	   8456	  28488	   6f48	frdmk66f_hello_world_exp4.axf
+ 
