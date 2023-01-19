@@ -1,0 +1,81 @@
+/*
+ * Copyright (c) 2013 - 2015, Freescale Semiconductor, Inc.
+ * Copyright 2016-2017 NXP
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#include "fsl_device_registers.h"
+#include "fsl_debug_console.h"
+#include "pin_mux.h"
+#include "clock_config.h"
+#include "board.h"
+
+/*******************************************************************************
+ * Definitions
+ ******************************************************************************/
+#define MEM_LOC_CHAR(x)				*((char*)x)
+#define MEM_LOC_SHORT(x)			*((short*)x)
+#define MEM_LOC_INT(x)				*((int*)x)
+#define ARBITRARY_LOCATION			MEM_LOC_INT(0x20001004)
+
+/*******************************************************************************
+ * Prototypes
+ ******************************************************************************/
+void testFunction();
+void testFunction2();
+void problem1();
+
+/*******************************************************************************
+ * Code
+ ******************************************************************************/
+/*!
+ * @brief Main function
+ */
+int main(void)
+{
+	char ch;
+
+	/* Init board hardware. */
+	BOARD_InitBootPins();
+	BOARD_InitBootClocks();
+	BOARD_InitDebugConsole();
+
+	PRINTF("hello world.\r\n");
+
+	//testFunction();
+	testFunction2();
+
+	while (1)
+	{
+		ch = GETCHAR();
+		PUTCHAR(ch);
+	}
+}
+
+
+void testFunction(){
+	int x = 0;
+	int *ptr = &x;
+	int *ptr_location = 0x20001000; //Random location in the memory
+
+	*ptr = 10;
+	*ptr_location = 11;
+}
+
+void testFunction2() {
+	int *ptr_location = (int*)0x20001000;
+	*ptr_location = 11;
+
+	ARBITRARY_LOCATION = 12;
+	int x = ARBITRARY_LOCATION;
+}
+
+void problem1() {
+	int *ptr_location = (int*)0x20001000;
+	*ptr_location = 11;
+
+	ARBITRARY_LOCATION = 12;
+	int x = ARBITRARY_LOCATION;
+}

@@ -1,0 +1,14 @@
+C:\Users\guoj69\Desktop\lab 0\frdmk66f_adc16_low_power_async_edma_peripheral\utilities/fsl_debug_console.h:169:24:DbgConsole_Deinit	4	static
+C:\Users\guoj69\Desktop\lab 0\frdmk66f_adc16_low_power_async_edma_peripheral\drivers/fsl_smc.h:256:20:SMC_SetPowerModeProtection	16	static
+C:\Users\guoj69\Desktop\lab 0\frdmk66f_adc16_low_power_async_edma_peripheral\drivers/fsl_edma.h:488:20:EDMA_EnableAsyncRequest	24	static
+C:\Users\guoj69\Desktop\lab 0\frdmk66f_adc16_low_power_async_edma_peripheral\drivers/fsl_lptmr.h:339:20:LPTMR_StartTimer	24	static
+C:\Users\guoj69\Desktop\lab 0\frdmk66f_adc16_low_power_async_edma_peripheral\drivers/fsl_lptmr.h:356:20:LPTMR_StopTimer	24	static
+C:\Users\guoj69\Desktop\lab 0\frdmk66f_adc16_low_power_async_edma_peripheral\drivers/fsl_gpio.h:162:20:GPIO_PinWrite	24	static
+C:\Users\guoj69\Desktop\lab 0\frdmk66f_adc16_low_power_async_edma_peripheral\drivers/fsl_gpio.h:221:20:GPIO_PortToggle	16	static
+../source/adc16_low_power_async_edma_peripheral.c:73:6:BOARD_ConfigTriggerSource	4	static
+../source/adc16_low_power_async_edma_peripheral.c:78:13:EDMA_Configuration	24	static
+../source/adc16_low_power_async_edma_peripheral.c:93:13:ProcessSampleData	16	static
+../source/adc16_low_power_async_edma_peripheral.c:112:13:APP_WaitClockStable	8	static
+../source/adc16_low_power_async_edma_peripheral.c:129:13:Delay	16	static
+../source/adc16_low_power_async_edma_peripheral.c:139:13:Edma_Callback	40	static
+../source/adc16_low_power_async_edma_peripheral.c:154:5:main	8	static
