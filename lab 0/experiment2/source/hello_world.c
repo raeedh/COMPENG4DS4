@@ -80,9 +80,9 @@ int main(void) {
 
     PRINTF("hello world.\r\n");
 
-    testFunction();
+    //testFunction();
     //testFunctionB();
-    //problem1();
+    problem1();
     //testFunction2();
 
     printf("Struct 1 size: %d\n", sizeof(struct1));
