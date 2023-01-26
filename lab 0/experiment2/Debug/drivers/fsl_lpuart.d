@@ -1,23 +1,23 @@
 drivers/fsl_lpuart.o drivers/fsl_lpuart.d: ../drivers/fsl_lpuart.c \
  ../drivers/fsl_lpuart.h ../drivers/fsl_common.h \
- C:\Users\guoj69\Desktop\lab\ 0\frdmk66f_hello_world\device/fsl_device_registers.h \
- C:\Users\guoj69\Desktop\lab\ 0\frdmk66f_hello_world\device/MK66F18.h \
- C:\Users\guoj69\Desktop\lab\ 0\frdmk66f_hello_world\CMSIS/core_cm4.h \
- C:\Users\guoj69\Desktop\lab\ 0\frdmk66f_hello_world\CMSIS/cmsis_version.h \
- C:\Users\guoj69\Desktop\lab\ 0\frdmk66f_hello_world\CMSIS/cmsis_compiler.h \
- C:\Users\guoj69\Desktop\lab\ 0\frdmk66f_hello_world\CMSIS/cmsis_gcc.h \
- C:\Users\guoj69\Desktop\lab\ 0\frdmk66f_hello_world\device/system_MK66F18.h \
- C:\Users\guoj69\Desktop\lab\ 0\frdmk66f_hello_world\device/MK66F18_features.h \
+ C:\Users\pintoa9\Documents\COMPENG4DS4\lab\ 0\experiment2\device/fsl_device_registers.h \
+ C:\Users\pintoa9\Documents\COMPENG4DS4\lab\ 0\experiment2\device/MK66F18.h \
+ C:\Users\pintoa9\Documents\COMPENG4DS4\lab\ 0\experiment2\CMSIS/core_cm4.h \
+ C:\Users\pintoa9\Documents\COMPENG4DS4\lab\ 0\experiment2\CMSIS/cmsis_version.h \
+ C:\Users\pintoa9\Documents\COMPENG4DS4\lab\ 0\experiment2\CMSIS/cmsis_compiler.h \
+ C:\Users\pintoa9\Documents\COMPENG4DS4\lab\ 0\experiment2\CMSIS/cmsis_gcc.h \
+ C:\Users\pintoa9\Documents\COMPENG4DS4\lab\ 0\experiment2\device/system_MK66F18.h \
+ C:\Users\pintoa9\Documents\COMPENG4DS4\lab\ 0\experiment2\device/MK66F18_features.h \
  ../drivers/fsl_common_arm.h ../drivers/fsl_clock.h
 ../drivers/fsl_lpuart.h:
 ../drivers/fsl_common.h:
-C:\Users\guoj69\Desktop\lab\ 0\frdmk66f_hello_world\device/fsl_device_registers.h:
-C:\Users\guoj69\Desktop\lab\ 0\frdmk66f_hello_world\device/MK66F18.h:
-C:\Users\guoj69\Desktop\lab\ 0\frdmk66f_hello_world\CMSIS/core_cm4.h:
-C:\Users\guoj69\Desktop\lab\ 0\frdmk66f_hello_world\CMSIS/cmsis_version.h:
-C:\Users\guoj69\Desktop\lab\ 0\frdmk66f_hello_world\CMSIS/cmsis_compiler.h:
-C:\Users\guoj69\Desktop\lab\ 0\frdmk66f_hello_world\CMSIS/cmsis_gcc.h:
-C:\Users\guoj69\Desktop\lab\ 0\frdmk66f_hello_world\device/system_MK66F18.h:
-C:\Users\guoj69\Desktop\lab\ 0\frdmk66f_hello_world\device/MK66F18_features.h:
+C:\Users\pintoa9\Documents\COMPENG4DS4\lab\ 0\experiment2\device/fsl_device_registers.h:
+C:\Users\pintoa9\Documents\COMPENG4DS4\lab\ 0\experiment2\device/MK66F18.h:
+C:\Users\pintoa9\Documents\COMPENG4DS4\lab\ 0\experiment2\CMSIS/core_cm4.h:
+C:\Users\pintoa9\Documents\COMPENG4DS4\lab\ 0\experiment2\CMSIS/cmsis_version.h:
+C:\Users\pintoa9\Documents\COMPENG4DS4\lab\ 0\experiment2\CMSIS/cmsis_compiler.h:
+C:\Users\pintoa9\Documents\COMPENG4DS4\lab\ 0\experiment2\CMSIS/cmsis_gcc.h:
+C:\Users\pintoa9\Documents\COMPENG4DS4\lab\ 0\experiment2\device/system_MK66F18.h:
+C:\Users\pintoa9\Documents\COMPENG4DS4\lab\ 0\experiment2\device/MK66F18_features.h:
 ../drivers/fsl_common_arm.h:
 ../drivers/fsl_clock.h:

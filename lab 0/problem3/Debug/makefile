@@ -32,7 +32,7 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := frdmk66f_gpio_led_output
+BUILD_ARTIFACT_NAME := problem3
 BUILD_ARTIFACT_EXTENSION := axf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
@@ -44,24 +44,24 @@ all:
 	+@$(MAKE) --no-print-directory main-build && $(MAKE) --no-print-directory post-build
 
 # Main-build Target
-main-build: frdmk66f_gpio_led_output.axf
+main-build: problem3.axf
 
 # Tool invocations
-frdmk66f_gpio_led_output.axf: $(OBJS) $(USER_OBJS) makefile objects.mk $(OPTIONAL_TOOL_DEPS)
+problem3.axf: $(OBJS) $(USER_OBJS) makefile objects.mk $(OPTIONAL_TOOL_DEPS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: MCU Linker'
-	arm-none-eabi-gcc -nostdlib -Xlinker -Map="frdmk66f_gpio_led_output.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -T frdmk66f_gpio_led_output_Debug.ld -o "frdmk66f_gpio_led_output.axf" $(OBJS) $(USER_OBJS) $(LIBS)
+	arm-none-eabi-gcc -nostdlib -Xlinker -Map="problem3.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -T frdmk66f_gpio_led_output_Debug.ld -o "problem3.axf" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) frdmk66f_gpio_led_output.axf
+	-$(RM) problem3.axf
 	-@echo ' '
 
 post-build:
 	-@echo 'Performing post-build steps'
-	-arm-none-eabi-size "frdmk66f_gpio_led_output.axf"; # arm-none-eabi-objcopy -v -O binary "frdmk66f_gpio_led_output.axf" "frdmk66f_gpio_led_output.bin" ; # checksum -p MK66FN2M0xxx18 -d "frdmk66f_gpio_led_output.bin";
+	-arm-none-eabi-size "problem3.axf"; # arm-none-eabi-objcopy -v -O binary "problem3.axf" "problem3.bin" ; # checksum -p MK66FN2M0xxx18 -d "problem3.bin";
 	-@echo ' '
 
 .PHONY: all clean dependents main-build post-build

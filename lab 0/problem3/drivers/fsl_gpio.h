@@ -34,9 +34,8 @@
 #endif /*FSL_FEATURE_GPIO_REGISTERS_WIDTH*/
 
 /*! @brief GPIO direction definition */
-typedef enum _gpio_pin_direction
-{
-    kGPIO_DigitalInput  = 0U, /*!< Set current pin as digital input*/
+typedef enum _gpio_pin_direction {
+    kGPIO_DigitalInput = 0U, /*!< Set current pin as digital input*/
     kGPIO_DigitalOutput = 1U, /*!< Set current pin as digital output*/
 } gpio_pin_direction_t;
 
@@ -72,8 +71,7 @@ typedef enum _gpio_checker_attribute
  * Note that in some use cases, the corresponding port property should be configured in advance
  *        with the PORT_SetPinConfig().
  */
-typedef struct _gpio_pin_config
-{
+typedef struct _gpio_pin_config {
     gpio_pin_direction_t pinDirection; /*!< GPIO direction, input or output */
     /* Output configurations; ignore if configured as an input pin */
     uint8_t outputLogic; /*!< Set a default output logic, which has no use in input */
@@ -159,15 +157,11 @@ void GPIO_PinInit(GPIO_Type *base, uint32_t pin, const gpio_pin_config_t *config
  *        - 0: corresponding pin output low-logic level.
  *        - 1: corresponding pin output high-logic level.
  */
-static inline void GPIO_PinWrite(GPIO_Type *base, uint32_t pin, uint8_t output)
-{
+static inline void GPIO_PinWrite(GPIO_Type *base, uint32_t pin, uint8_t output) {
 #if !(defined(FSL_FEATURE_GPIO_HAS_NO_INDEP_OUTPUT_CONTROL) && FSL_FEATURE_GPIO_HAS_NO_INDEP_OUTPUT_CONTROL)
-    if (output == 0U)
-    {
+    if (output == 0U) {
         base->PCOR = GPIO_FIT_REG(1UL << pin);
-    }
-    else
-    {
+    } else {
         base->PSOR = GPIO_FIT_REG(1UL << pin);
     }
 #else
@@ -188,8 +182,7 @@ static inline void GPIO_PinWrite(GPIO_Type *base, uint32_t pin, uint8_t output)
  * @param base GPIO peripheral base pointer (GPIOA, GPIOB, GPIOC, and so on.)
  * @param mask GPIO pin number macro
  */
-static inline void GPIO_PortSet(GPIO_Type *base, uint32_t mask)
-{
+static inline void GPIO_PortSet(GPIO_Type *base, uint32_t mask) {
 #if !(defined(FSL_FEATURE_GPIO_HAS_NO_INDEP_OUTPUT_CONTROL) && FSL_FEATURE_GPIO_HAS_NO_INDEP_OUTPUT_CONTROL)
     base->PSOR = GPIO_FIT_REG(mask);
 #else
@@ -203,8 +196,7 @@ static inline void GPIO_PortSet(GPIO_Type *base, uint32_t mask)
  * @param base GPIO peripheral base pointer (GPIOA, GPIOB, GPIOC, and so on.)
  * @param mask GPIO pin number macro
  */
-static inline void GPIO_PortClear(GPIO_Type *base, uint32_t mask)
-{
+static inline void GPIO_PortClear(GPIO_Type *base, uint32_t mask) {
 #if !(defined(FSL_FEATURE_GPIO_HAS_NO_INDEP_OUTPUT_CONTROL) && FSL_FEATURE_GPIO_HAS_NO_INDEP_OUTPUT_CONTROL)
     base->PCOR = GPIO_FIT_REG(mask);
 #else
@@ -218,8 +210,7 @@ static inline void GPIO_PortClear(GPIO_Type *base, uint32_t mask)
  * @param base GPIO peripheral base pointer (GPIOA, GPIOB, GPIOC, and so on.)
  * @param mask GPIO pin number macro
  */
-static inline void GPIO_PortToggle(GPIO_Type *base, uint32_t mask)
-{
+static inline void GPIO_PortToggle(GPIO_Type *base, uint32_t mask) {
 #if !(defined(FSL_FEATURE_GPIO_HAS_NO_INDEP_OUTPUT_CONTROL) && FSL_FEATURE_GPIO_HAS_NO_INDEP_OUTPUT_CONTROL)
     base->PTOR = GPIO_FIT_REG(mask);
 #else
@@ -241,9 +232,8 @@ static inline void GPIO_PortToggle(GPIO_Type *base, uint32_t mask)
  *        - 0: corresponding pin input low-logic level.
  *        - 1: corresponding pin input high-logic level.
  */
-static inline uint32_t GPIO_PinRead(GPIO_Type *base, uint32_t pin)
-{
-    return (((uint32_t)(base->PDIR) >> pin) & 0x01UL);
+static inline uint32_t GPIO_PinRead(GPIO_Type *base, uint32_t pin) {
+    return (((uint32_t) (base->PDIR) >> pin) & 0x01UL);
 }
 
 /*@}*/
@@ -295,10 +285,8 @@ void GPIO_PortClearInterruptFlags(GPIO_Type *base, uint32_t mask);
  *        - #kGPIO_ActiveHighTriggerOutputEnable : Enable active high-trigger output (if the trigger states exit).
  *        - #kGPIO_ActiveLowTriggerOutputEnable  : Enable active low-trigger output (if the trigger states exit).
  */
-static inline void GPIO_SetPinInterruptConfig(GPIO_Type *base, uint32_t pin, gpio_interrupt_config_t config)
-{
+static inline void GPIO_SetPinInterruptConfig(GPIO_Type *base, uint32_t pin, gpio_interrupt_config_t config) {
     assert(base);
-
     base->ICR[pin] = GPIO_FIT_REG((base->ICR[pin] & ~GPIO_ICR_IRQC_MASK) | GPIO_ICR_IRQC(config));
 }
 

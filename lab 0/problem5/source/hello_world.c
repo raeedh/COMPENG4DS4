@@ -16,7 +16,6 @@
  * Definitions
  ******************************************************************************/
 
-
 /*******************************************************************************
  * Prototypes
  ******************************************************************************/
@@ -28,96 +27,80 @@
  * @brief Main function
  */
 int main(void) {
-	char ch;
-	unsigned int duty_cycle = 0;
-	unsigned int duty_cycle0 = 0;
-	unsigned int duty_cycle1 = 0;
-	unsigned int duty_cycle2= 0;
-	/* Init board hardware. */
-	BOARD_InitBootPins();
-	BOARD_InitBootClocks();
-	BOARD_InitDebugConsole();
+    unsigned int duty_cycle_red = 0;
+    unsigned int duty_cycle_green = 0;
+    unsigned int duty_cycle_blue = 0;
 
-	pwm_setup();
+    /* Init board hardware. */
+    BOARD_InitBootPins();
+    BOARD_InitBootClocks();
+    BOARD_InitDebugConsole();
 
-	//scanf("%x", &duty_cycle);
+    pwm_setup();
 
-	//printf("%x\n", duty_cycle % 0xFF);
-	scanf("%2x%2x%2x",  &duty_cycle2 , &duty_cycle1 , &duty_cycle0);
+    scanf("%2x%2x%2x", &duty_cycle_red, &duty_cycle_green, &duty_cycle_blue);
 
-	printf("red = %x\n", duty_cycle2);
-	printf("blue = %x\n", duty_cycle0);
-	printf("green = %x\n", duty_cycle1);
+    printf("red = %x\n", duty_cycle_red);
+    printf("green = %x\n", duty_cycle_green);
+    printf("blue = %x\n", duty_cycle_blue);
 
-	/*duty_cycle = duty_cycle / 0xFF;
-	duty_cycle0 = duty_cycle << 24;
-	duty_cycle0 = duty_cycle0 >> 24;
-	printf("%x\n", duty_cycle0);
+    float red = (duty_cycle_red / 255.0) * 100;
+    float green = (duty_cycle_green / 255.0) * 100;
+    float blue = (duty_cycle_blue / 255.0) * 100;
 
+    FTM_UpdatePwmDutycycle(FTM3, kFTM_Chnl_1, kFTM_EdgeAlignedPwm, (uint8_t)red);
+    FTM_SetSoftwareTrigger(FTM3, true);
 
-	duty_cycle1 = duty_cycle >> 8;
-	duty_cycle1 = duty_cycle1 << 24;
-	duty_cycle1 = duty_cycle1 >> 24;
-	printf("%x\n", duty_cycle1);
+    FTM_UpdatePwmDutycycle(FTM3, kFTM_Chnl_5, kFTM_EdgeAlignedPwm, (uint8_t)green);
+    FTM_SetSoftwareTrigger(FTM3, true);
 
-	duty_cycle2 = duty_cycle >> 16;
-	printf("%x\n", duty_cycle2);*/
+    FTM_UpdatePwmDutycycle(FTM3, kFTM_Chnl_4, kFTM_EdgeAlignedPwm, (uint8_t)blue);
+    FTM_SetSoftwareTrigger(FTM3, true);
 
-
-
-
-	FTM_UpdatePwmDutycycle(FTM3, kFTM_Chnl_1, kFTM_EdgeAlignedPwm,  (double)(duty_cycle2 / 0xFF) * 100);
-	FTM_SetSoftwareTrigger(FTM3, true);
-
-	FTM_UpdatePwmDutycycle(FTM3, kFTM_Chnl_4, kFTM_EdgeAlignedPwm,  (double)(duty_cycle0 / 0xFF) * 100);
-	FTM_SetSoftwareTrigger(FTM3, true);
-
-	FTM_UpdatePwmDutycycle(FTM3, kFTM_Chnl_5, kFTM_EdgeAlignedPwm,  (double)(duty_cycle1 / 0xFF) * 100);
-	FTM_SetSoftwareTrigger(FTM3, true);
-
-	while (1) {}
+    while (1) {
+    }
 }
 
 void pwm_setup() {
-	ftm_config_t ftmInfo;
-	ftm_chnl_pwm_signal_param_t ftmParam;
+    ftm_config_t ftmInfo;
+    ftm_chnl_pwm_signal_param_t ftmParam;
 
-	ftmParam.chnlNumber = kFTM_Chnl_1;
-	ftmParam.level = kFTM_HighTrue;
-	ftmParam.dutyCyclePercent = 0;
-	ftmParam.firstEdgeDelayPercent = 0U;
-	ftmParam.enableComplementary = false;
-	ftmParam.enableDeadtime = false;
+    ftmParam.chnlNumber = kFTM_Chnl_1;
+    ftmParam.level = kFTM_HighTrue;
+    ftmParam.dutyCyclePercent = 0;
+    ftmParam.firstEdgeDelayPercent = 0U;
+    ftmParam.enableComplementary = false;
+    ftmParam.enableDeadtime = false;
 
-	FTM_GetDefaultConfig(&ftmInfo);
+    FTM_GetDefaultConfig(&ftmInfo);
 
-	FTM_Init(FTM3, &ftmInfo);
-	FTM_SetupPwm(FTM3, &ftmParam, 1U, kFTM_EdgeAlignedPwm, 5000U, CLOCK_GetFreq(kCLOCK_BusClk));
-	FTM_StartTimer(FTM3, kFTM_SystemClock);
+    FTM_Init(FTM3, &ftmInfo);
+    FTM_SetupPwm(FTM3, &ftmParam, 1U, kFTM_EdgeAlignedPwm, 5000U, CLOCK_GetFreq(kCLOCK_BusClk));
+    FTM_StartTimer(FTM3, kFTM_SystemClock);
 
-	ftmParam.chnlNumber = kFTM_Chnl_4;
-	ftmParam.level = kFTM_HighTrue;
-	ftmParam.dutyCyclePercent = 0;
-	ftmParam.firstEdgeDelayPercent = 0U;
-	ftmParam.enableComplementary = false;
-	ftmParam.enableDeadtime = false;
+    ftmParam.chnlNumber = kFTM_Chnl_4;
+    ftmParam.level = kFTM_HighTrue;
+    ftmParam.dutyCyclePercent = 0;
+    ftmParam.firstEdgeDelayPercent = 0U;
+    ftmParam.enableComplementary = false;
+    ftmParam.enableDeadtime = false;
 
-	FTM_GetDefaultConfig(&ftmInfo);
+    FTM_GetDefaultConfig(&ftmInfo);
 
-	FTM_Init(FTM3, &ftmInfo);
-	FTM_SetupPwm(FTM3, &ftmParam, 1U, kFTM_EdgeAlignedPwm, 5000U, CLOCK_GetFreq(kCLOCK_BusClk));
-	FTM_StartTimer(FTM3, kFTM_SystemClock);
+    FTM_Init(FTM3, &ftmInfo);
+    FTM_SetupPwm(FTM3, &ftmParam, 1U, kFTM_EdgeAlignedPwm, 5000U, CLOCK_GetFreq(kCLOCK_BusClk));
+    FTM_StartTimer(FTM3, kFTM_SystemClock);
 
-	ftmParam.chnlNumber = kFTM_Chnl_5;
-	ftmParam.level = kFTM_HighTrue;
-	ftmParam.dutyCyclePercent = 0;
-	ftmParam.firstEdgeDelayPercent = 0U;
-	ftmParam.enableComplementary = false;
-	ftmParam.enableDeadtime = false;
+    ftmParam.chnlNumber = kFTM_Chnl_5;
+    ftmParam.level = kFTM_HighTrue;
+    ftmParam.dutyCyclePercent = 0;
+    ftmParam.firstEdgeDelayPercent = 0U;
+    ftmParam.enableComplementary = false;
+    ftmParam.enableDeadtime = false;
 
-	FTM_GetDefaultConfig(&ftmInfo);
+    FTM_GetDefaultConfig(&ftmInfo);
 
-	FTM_Init(FTM3, &ftmInfo);
-	FTM_SetupPwm(FTM3, &ftmParam, 1U, kFTM_EdgeAlignedPwm, 5000U, CLOCK_GetFreq(kCLOCK_BusClk));
-	FTM_StartTimer(FTM3, kFTM_SystemClock);
+    FTM_Init(FTM3, &ftmInfo);
+    FTM_SetupPwm(FTM3, &ftmParam, 1U, kFTM_EdgeAlignedPwm, 5000U, CLOCK_GetFreq(kCLOCK_BusClk));
+    FTM_StartTimer(FTM3, kFTM_SystemClock);
 }

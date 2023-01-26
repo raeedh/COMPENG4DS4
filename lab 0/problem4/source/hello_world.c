@@ -41,47 +41,44 @@ void delay(void);
 /*******************************************************************************
  * Code
  ******************************************************************************/
-void delay(void)
-{
-	volatile uint32_t i = 0;
-	for (i = 0; i < 2000000; ++i)
-	{
-		__asm("NOP"); /* delay */
-	}
+void delay(void) {
+    volatile uint32_t i = 0;
+    for (i = 0; i < 2000000; ++i) {
+        __asm("NOP");
+        /* delay */
+    }
 }
 
 /*!
  * @brief Main function
  */
-int main(void)
-{
-	/* Board pin, clock, debug console init */
-	BOARD_InitBootPins();
-	BOARD_InitBootClocks();
-	BOARD_InitDebugConsole();
+int main(void) {
+    /* Board pin, clock, debug console init */
+    BOARD_InitBootPins();
+    BOARD_InitBootClocks();
+    BOARD_InitDebugConsole();
 
-	/* Print a note to terminal. */
-	PRINTF("\r\n GPIO Driver example\r\n");
-	PRINTF("\r\n The LED is blinking.\r\n");
+    /* Print a note to terminal. */
+    PRINTF("\r\nGPIO Driver example\r\n");
+    PRINTF("\r\nThe LED is blinking.\r\n");
 
-	/* Init output LED GPIO. */
-	initPin(BOARD_LED_GPIO_BLUE, BOARD_LED_GPIO_PIN_BLUE);
-	initPin(BOARD_LED_GPIO_GREEN, BOARD_LED_GPIO_PIN_GREEN);
-	initPin(BOARD_LED_GPIO_RED, BOARD_LED_GPIO_PIN_RED);
+    /* Init output LED GPIO. */
+    initPin(BOARD_LED_GPIO_BLUE, BOARD_LED_GPIO_PIN_BLUE);
+    initPin(BOARD_LED_GPIO_GREEN, BOARD_LED_GPIO_PIN_GREEN);
+    initPin(BOARD_LED_GPIO_RED, BOARD_LED_GPIO_PIN_RED);
 
-	while (1)
-	{
-		delay();
-		togglePin(BOARD_LED_GPIO_BLUE, 1u << BOARD_LED_GPIO_PIN_BLUE);
-		delay();
-		togglePin(BOARD_LED_GPIO_BLUE, 1u << BOARD_LED_GPIO_PIN_BLUE);
-		delay();
-		togglePin(BOARD_LED_GPIO_GREEN, 1u << BOARD_LED_GPIO_PIN_GREEN);
-		delay();
-		togglePin(BOARD_LED_GPIO_GREEN, 1u << BOARD_LED_GPIO_PIN_GREEN);
-		delay();
-		togglePin(BOARD_LED_GPIO_RED, 1u << BOARD_LED_GPIO_PIN_RED);
-		delay();
-		togglePin(BOARD_LED_GPIO_RED, 1u << BOARD_LED_GPIO_PIN_RED);
-	}
+    while (1) {
+        delay();
+        togglePin(BOARD_LED_GPIO_BLUE, 1u << BOARD_LED_GPIO_PIN_BLUE);
+        delay();
+        togglePin(BOARD_LED_GPIO_BLUE, 1u << BOARD_LED_GPIO_PIN_BLUE);
+        delay();
+        togglePin(BOARD_LED_GPIO_GREEN, 1u << BOARD_LED_GPIO_PIN_GREEN);
+        delay();
+        togglePin(BOARD_LED_GPIO_GREEN, 1u << BOARD_LED_GPIO_PIN_GREEN);
+        delay();
+        togglePin(BOARD_LED_GPIO_RED, 1u << BOARD_LED_GPIO_PIN_RED);
+        delay();
+        togglePin(BOARD_LED_GPIO_RED, 1u << BOARD_LED_GPIO_PIN_RED);
+    }
 }
