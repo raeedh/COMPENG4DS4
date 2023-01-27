@@ -1,0 +1,12 @@
+\section*{Problem 1}
+The code listing for problem 1 is Listing~\ref{list:p1}. The \texttt{MEM\_LOC} macro was redefined for the different sizes we required (\texttt{MEM\_LOC\_CHAR} for 1 byte, \texttt{MEM\_LOC\_SHORT} for 2 bytes, and \texttt{MEM\_LOC\_INT} for 4 bytes). The required addresses were defined in the macros \texttt{LOC1}-\texttt{LOC4}, using the new macros created for \texttt{MEM\_LOC}. These macros are used in the function \texttt{problem1} to write the required values to the memory addresses.
+
+The memory and expression panels for problem 1 are shown in Figure~\ref{fig:p1}. The endianness was set to big, the cell size to 1 byte, and the radix to hex.
+
+\input{sections/p1_list.tex}
+
+\begin{figure}[htp]
+\centering
+\includegraphics[width=\textwidth]{p1}
+\caption[problem 1]{Memory and Expression Panels for Problem 1}\label{fig:p1}
+\end{figure}

@@ -1,6 +1,0 @@
-\section*{Problem 4}
-The code listing for problem 4 is Listing~\ref{list:p4}. A structure \texttt{GPIO\_Struct} was created to contain the 6 GPIO registers, which we confirmed each contained 32 bits from the datasheet. The macros \texttt{GPIOA}-\texttt{GPIOE} were defined using the address of the first GPIO register for the GPIO port as listed in the datasheet. 
-
-Three helper functions were created for the solution, \texttt{initPin}, \texttt{togglePin}, and \texttt{writePin}. \texttt{initPin} calls \texttt{writePin} to ensure the pin is set such that the LED is OFF, and also sets the Port Data Direction Register (PDDR) to 1, configuring the pin as an output. \texttt{togglePin} simply performs an XOR between the Port Data Output Register (PDOR) and a mask (which points to the appropriate pin for the register), toggling the data output value in the register pin. \texttt{writePin} updates the data output value of a pin to a desired value (0 or 1) by writing the value to the PDOR pin. These helper functions are used similarly to the provided GPIO example functions in problem 3.
-
-\input{sections/p4_list.tex}

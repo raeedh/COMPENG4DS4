@@ -1,0 +1,72 @@
+\documentclass[12pt]{article}
+\usepackage[letterpaper, margin=1in]{geometry}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\graphicspath{{./figures/}}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,   
+    urlcolor=blue,
+}
+\usepackage{parskip}
+\usepackage{amsmath}
+\usepackage{titlesec}
+\usepackage{listings}
+
+\definecolor{backgroundColour}{rgb}{0.95,0.95,0.92}
+\lstset{
+    % frame=single,
+    captionpos=b,   % sets the caption-position to bottom
+    breaklines=true,
+    numbers=left,
+    % numbersep=5pt,
+    numberstyle=\tiny\color{gray},
+    tabsize=2,
+    basicstyle=\ttfamily\scriptsize,
+    showspaces=false,
+    showstringspaces=false,
+    backgroundcolor=\color{backgroundColour},
+    keywordstyle=\color{Magenta},
+    identifierstyle=\color{MidnightBlue},
+    commentstyle=\color{Green},
+    stringstyle=\color{Maroon}}
+
+
+\titleformat*{\section}{\large\bfseries}
+%\allowdisplaybreaks
+
+% remove vertical spacing above top figure
+\makeatletter
+\setlength{\@fptop}{0pt}
+\makeatother
+%
+
+\title{COMPENG 4DS4 Lab 0 Report}
+\author{
+    Aaron Pinto \\
+    pintoa9 \\
+    \and
+    Raeed Hassan \\
+    hassam41 \\
+    \and
+    Jingming Liu \\
+    liuj171 \\
+    \and
+    Jeffrey Guo \\
+    guoj69 \\
+}
+
+\begin{document}
+
+\maketitle
+\clearpage
+
+\input{sections/exp2pa.tex}
+\input{sections/exp2pb.tex}
+\input{sections/p1.tex}
+\input{sections/p2.tex}
+\input{sections/p3.tex}
+\input{sections/p4.tex}
+\input{sections/p5.tex}
+\end{document}

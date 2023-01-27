@@ -1,8 +1,0 @@
-\section*{Problem 5}
-The code listing for problem 5 is split between Listing~\ref{list:p5_ftm} for the FTM/PWM setup, and Listing~\ref{list:p5_main} for the \texttt{main} function.
-
-In the FTM setup, we update the \texttt{pwm\_setup} function provided in the lab to include the FTM setup for \texttt{UI\_LED\_GREEN} and \texttt{UI\_LED\_BLUE}. The appropriate alternative functions to output PWM signals for these GPIO pins were documented in the datasheet.
-\input{sections/p5_list_ftm.tex}
-
-The \texttt{main} function provided in the lab was modified to include the PWM functions to update \texttt{UI\_LED\_GREEN} and \texttt{UI\_LED\_BLUE}. The \texttt{scanf} was modified to read in 6 characters and store each two character inputs as two hexadecimal characters in variables corresponding to the duty cycle for the red, green, and blue LEDs. The percent value of these inputs (out of 0xFF) are calculated as the \texttt{FTM\_UpdatePwmDutycycle} function requires the duty cycle to be an \texttt{uint8\_t} between 0 and 100 representing the duty cycle percentage.
-\input{sections/p5_list_main.tex}

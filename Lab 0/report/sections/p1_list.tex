@@ -1,0 +1,18 @@
+\begin{lstlisting}[language=c,caption=Problem 1, label=list:p1]
+/* Definitions */
+#define MEM_LOC_CHAR(x)             *((char*)x)
+#define MEM_LOC_SHORT(x)            *((short*)x)
+#define MEM_LOC_INT(x)              *((int*)x)
+#define LOC1                        MEM_LOC_CHAR(0x20001000)
+#define LOC2                        MEM_LOC_INT(0x20001001)
+#define LOC3                        MEM_LOC_SHORT(0x20001005)
+#define LOC4                        MEM_LOC_INT(0x20001007)
+
+/* Problem 1 Function */
+void problem1() {
+    LOC1 = 0xAC;
+    LOC2 = 0xAABBCCDD;
+    LOC3 = 0xABCD;
+    LOC4 = 0xAABBCCDD;
+}
+\end{lstlisting}
