@@ -1,0 +1,25 @@
+\section*{Problem 2}
+\texttt{struct1} will take up 8 bytes. The \texttt{char x2} will use 4 bytes as it will be aligned from 1 byte to 4 bytes, and the \texttt{int x1} will also use 4 bytes. There will be 3 extra bytes between \texttt{x2} and \texttt{x1}.
+\[\arraycolsep=1.5pt%\def\arraystretch{2.2}
+\begin{array}{|cccccccc|cccccccc|}\hline
+	\text{x} & \text{x} & \text{x} & \text{x} & \text{x} & \text{x} & 2 & 2 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\ \hline
+\end{array}
+\]
+\texttt{struct2} will take up 8 bytes. The \texttt{short x2} will use 4 bytes as it will be aligned from 2 bytes to 4 bytes, and the \texttt{int x1} will also use 4 bytes. There will be 2 extra bytes between \texttt{x2} and \texttt{x1}.
+\[\arraycolsep=1.5pt%\def\arraystretch{2.2}
+\begin{array}{|cccccccc|cccccccc|}\hline
+	\text{x} & \text{x} & \text{x} & \text{x} & 2 & 2 & 2 & 2 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\ \hline
+\end{array}
+\]
+\texttt{struct3} will take up 8 bytes. The \texttt{int x1} will use 4 bytes, and the \texttt{short x2} will also use 4 bytes as it will be aligned from 2 bytes to 4 bytes. There will be one extra byte after \texttt{x2}.
+\[\arraycolsep=1.5pt%\def\arraystretch{2.2}
+\begin{array}{|cccccccc|cccccccc|}\hline
+	1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & \text{x} & \text{x} & \text{x} & \text{x} & 2 & 2 & 2 & 2 \\ \hline
+\end{array}
+\]
+\texttt{struct4} will take up 12 bytes. The \texttt{inner\_struct inner\_struct\_1} will use 8 bytes as it will be aligned from 7 bytes to 8 bytes, and the \texttt{int x1} will also use 4 bytes. There will be one extra byte between \texttt{inner\_struct inner\_struct\_1} and \texttt{int x1}.
+\[\arraycolsep=1.5pt%\def\arraystretch{2.2}
+\begin{array}{|cccccccc|cccccccc|cccccccc|}\hline
+	3 & 3 & 2 & 2 & 2 & 2 & 1 & 1 & \text{x} & \text{x} & 3 & 3 & 3 & 3 & 3 & 3 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\ \hline
+\end{array}
+\]
