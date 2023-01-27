@@ -1,27 +1,37 @@
 \begin{lstlisting}[language=c,caption=Problem 4, label=list:p4]
+/* GPIO Register Structure */
+typedef struct {
+    uint32_t GPIO_PDOR;
+    uint32_t GPIO_PSOR;
+    uint32_t GPIO_PCOR;
+    uint32_t GPIO_PTOR;
+    uint32_t GPIO_PDIR;
+    uint32_t GPIO_PDDR;
+} GPIO_Struct;
+
 /* Definitions */
-#define GPIOA	((GPIO_Struct*) 0x400FF000)
-#define GPIOB	((GPIO_Struct*) 0x400FF040)
-#define GPIOC	((GPIO_Struct*) 0x400FF080)
-#define GPIOD	((GPIO_Struct*) 0x400FF0C0)
-#define GPIOE	((GPIO_Struct*) 0x400FF100)
+#define GPIOA   ((GPIO_Struct*) 0x400FF000)
+#define GPIOB   ((GPIO_Struct*) 0x400FF040)
+#define GPIOC   ((GPIO_Struct*) 0x400FF080)
+#define GPIOD   ((GPIO_Struct*) 0x400FF0C0)
+#define GPIOE   ((GPIO_Struct*) 0x400FF100)
 
 /* Problem 4 Helper Functions */
 void initPin(GPIO_Struct *port, uint32_t pin) {
-	writePin(port, pin, 1);
-	port->GPIO_PDDR |= (1UL << pin);
+    writePin(port, pin, 1);
+    port->GPIO_PDDR |= (1UL << pin);
 }
 
 void togglePin(GPIO_Struct *port, uint32_t mask) {
-	port->GPIO_PDOR ^= (mask);
+    port->GPIO_PDOR ^= (mask);
 }
 
 void writePin(GPIO_Struct *port, uint32_t pin, uint8_t output) {
-	if (output == 0U) {
-		port->GPIO_PDOR |= (1UL << pin);
-	} else {
-		port->GPIO_PDOR &= ~(1UL << pin);
-	}
+    if (output == 0U) {
+        port->GPIO_PDOR |= (1UL << pin);
+    } else {
+        port->GPIO_PDOR &= ~(1UL << pin);
+    }
 }
 
 /* Problem 4 main Function */

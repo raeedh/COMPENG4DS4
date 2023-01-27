@@ -5,17 +5,19 @@
 \usepackage{subcaption}
 \graphicspath{{./figures/}}
 \usepackage{hyperref}
-\hypersetup{colorlinks = true}
+\hypersetup{
+    colorlinks=true,   
+    urlcolor=blue,
+}
 \usepackage{parskip}
 \usepackage{amsmath}
 \usepackage{titlesec}
-\usepackage{enumitem}
 \usepackage{listings}
 
 \definecolor{backgroundColour}{rgb}{0.95,0.95,0.92}
 \lstset{
     % frame=single,
-    % captionpos=b,     % sets the caption-position to bottom
+    captionpos=b,   % sets the caption-position to bottom
     breaklines=true,
     numbers=left,
     % numbersep=5pt,
@@ -60,8 +62,9 @@
 \maketitle
 \clearpage
 
-\input{sections/p1_list.tex}
-\input{sections/p3_list.tex}
-\input{sections/p4_list.tex}
-\input{sections/p5_list.tex}
+\input{sections/p1.tex}
+\input{sections/p2.tex}
+\input{sections/p3.tex}
+\input{sections/p4.tex}
+\input{sections/p5.tex}
 \end{document}

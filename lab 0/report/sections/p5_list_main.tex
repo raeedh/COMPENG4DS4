@@ -1,0 +1,36 @@
+\begin{lstlisting}[language=c,caption=Problem 5 main, label=list:p5_main]
+int main(void) {
+    unsigned int duty_cycle_red = 0;
+    unsigned int duty_cycle_green = 0;
+    unsigned int duty_cycle_blue = 0;
+
+    /* Init board hardware. */
+    BOARD_InitBootPins();
+    BOARD_InitBootClocks();
+    BOARD_InitDebugConsole();
+
+    pwm_setup();
+
+    scanf("%2x%2x%2x", &duty_cycle_red, &duty_cycle_green, &duty_cycle_blue);
+
+    printf("red = %x\n", duty_cycle_red);
+    printf("green = %x\n", duty_cycle_green);
+    printf("blue = %x\n", duty_cycle_blue);
+
+    float red = (duty_cycle_red / 255.0) * 100;
+    float green = (duty_cycle_green / 255.0) * 100;
+    float blue = (duty_cycle_blue / 255.0) * 100;
+
+    FTM_UpdatePwmDutycycle(FTM3, kFTM_Chnl_1, kFTM_EdgeAlignedPwm, (uint8_t)red);
+    FTM_SetSoftwareTrigger(FTM3, true);
+
+    FTM_UpdatePwmDutycycle(FTM3, kFTM_Chnl_5, kFTM_EdgeAlignedPwm, (uint8_t)green);
+    FTM_SetSoftwareTrigger(FTM3, true);
+
+    FTM_UpdatePwmDutycycle(FTM3, kFTM_Chnl_4, kFTM_EdgeAlignedPwm, (uint8_t)blue);
+    FTM_SetSoftwareTrigger(FTM3, true);
+
+    while (1) {
+    }
+}
+\end{lstlisting}

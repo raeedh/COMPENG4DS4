@@ -1,11 +1,29 @@
 \begin{lstlisting}[language=c,caption=Problem 3, label=list:p3]
 /* Definitions */
-#define BOARD_LED_GPIO_BLUE    	 	GPIOC
-#define BOARD_LED_GPIO_PIN_BLUE	 	8
-#define BOARD_LED_GPIO_GREEN     	GPIOC
-#define BOARD_LED_GPIO_PIN_GREEN 	9
-#define BOARD_LED_GPIO_RED     		GPIOD
-#define BOARD_LED_GPIO_PIN_RED		1
+#define BOARD_LED_GPIO_BLUE         GPIOC
+#define BOARD_LED_GPIO_PIN_BLUE     8
+#define BOARD_LED_GPIO_GREEN        GPIOC
+#define BOARD_LED_GPIO_PIN_GREEN    9
+#define BOARD_LED_GPIO_RED          GPIOD
+#define BOARD_LED_GPIO_PIN_RED      1
+
+/* BOARD_InitPins function */
+void BOARD_InitPins(void) {
+    /* Port C Clock Gate Control: Clock enabled */
+    CLOCK_EnableClock(kCLOCK_PortC);
+    /* Port D Clock Gate Control: Clock enabled */
+    CLOCK_EnableClock(kCLOCK_PortD);
+
+    /* PORTC8 is configured as PTC8 */
+    PORT_SetPinMux(PORTC, 8U, kPORT_MuxAsGpio);
+
+    /* PORTC9 is configured as PTC9 */
+    PORT_SetPinMux(PORTC, 9U, kPORT_MuxAsGpio);
+
+    /* PORTD1 is configured as PTD1 */
+    PORT_SetPinMux(PORTD, 1U, kPORT_MuxAsGpio);
+}
+
 
 /* Problem 3 main Function */
 int main(void) {
