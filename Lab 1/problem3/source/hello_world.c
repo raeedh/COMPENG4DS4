@@ -39,14 +39,7 @@ void updatePWM_dutyCycle(ftm_chnl_t channel, float dutyCycle);
  */
 int main(void) {
 
-//	/* Init board hardware. */
-	BOARD_InitBootPins();
-	BOARD_InitBootClocks();
-	BOARD_InitDebugConsole();
-//
-	setupUART();
-	setupPWM();
-//
+
 	char txbuff[] = "Hello World\r\n";
 	int motorInput = 0 ;
 	int servoInput = 0 ;
@@ -57,7 +50,9 @@ int main(void) {
 	BOARD_InitBootClocks();
 	BOARD_InitDebugConsole();
 
+
 	setupUART();
+	setupPWM();
 
 	/******* Delay *******/
 	for (volatile int i = 0U; i < 10000000; i++)
