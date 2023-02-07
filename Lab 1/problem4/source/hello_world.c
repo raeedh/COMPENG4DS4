@@ -33,6 +33,8 @@ status_t SPI_write(uint8_t regAddress, uint8_t value);
 int main(void)
 {
     uint8_t byte;
+    uint8_t write_test_byte = 0xCC;
+    uint8_t read_test_byte;
 
     /* Init board hardware. */
     BOARD_InitBootPins();
@@ -50,6 +52,16 @@ int main(void)
     SPI_read(0x0D, &byte, 1);
     printf("The expected value is 0xC7 and the read value 0x%X\n", byte);
     
+    printf("reading  to the PL_COUNT register  before writing \n");
+    SPI_read(0x12, &read_test_byte, 1);
+    printf("The expected value for PL_COUNT register is 0x0 and the read value 0x%X\n", read_test_byte);
+
+    SPI_write(0x12, write_test_byte);
+    printf("writing to the PL_COUNT register \n");
+
+    SPI_read(0x12, &read_test_byte, 1);
+    printf("The expected value for the PL_COUNT register is 0xCC and the read value 0x%X\n", read_test_byte);
+
     while (1)
     {
     }
@@ -141,3 +153,5 @@ status_t SPI_write(uint8_t regAddress, uint8_t value)
 
     return ret;
 }
+
+
