@@ -23,7 +23,7 @@
 
 volatile char ch;
 volatile int new_char = 0;
-volatile char buffer[7];
+volatile char  buffer[] = { 0, 0, 0, 0, 0, 0, 0 };
 /*******************************************************************************
  * Prototypes
  ******************************************************************************/
@@ -38,44 +38,20 @@ void updatePWM_dutyCycle(ftm_chnl_t channel, float dutyCycle);
  * @brief Main function
  */
 int main(void) {
-//	char buffer[] = { 0, 0, 0, 0, 0, 0, 0 };
-//
-//	int motorInput;
-//	int servoInput;
-//	float motorDutyCycle;
-//	float servoDutyCycle;
-//
-//	/* Init board hardware. */
-//	BOARD_InitBootPins();
-//	BOARD_InitBootClocks();
-//	BOARD_InitDebugConsole();
-//
-//	setupUART();
-//	setupPWM();
-//
-//	/******* Delay *******/
-//	for (volatile int i = 0U; i < 10000000; i++)
-//		__asm("NOP");
-//
-//	char txbuff[] = "Hello World aaron\r\n";
-//	UART_WriteBlocking(TARGET_UART, txbuff, sizeof(txbuff) - 1);
-//
-//	while (1) {
-//		UART_ReadBlocking(TARGET_UART, &buffer[0], 7);
-//
-//		sscanf(buffer, "%4d%3d", &motorInput, &servoInput);
-//
-//		motorDutyCycle = motorInput * 0.025f / 100.0f + 0.070745;
-//		servoDutyCycle = servoInput * 0.025f / 45.0f + 0.078;
-//
-//		updatePWM_dutyCycle(FTM_CHANNEL_SERVO_MOTOR, servoDutyCycle);
-//		updatePWM_dutyCycle(FTM_CHANNEL_DC_MOTOR, motorDutyCycle);
-//
-//		FTM_SetSoftwareTrigger(FTM_MOTOR, true);
-//		FTM_SetSoftwareTrigger(FTM_MOTOR, true);
-//	}
-	char txbuff[] = "Hello World\r\n";
 
+//	/* Init board hardware. */
+	BOARD_InitBootPins();
+	BOARD_InitBootClocks();
+	BOARD_InitDebugConsole();
+//
+	setupUART();
+	setupPWM();
+//
+	char txbuff[] = "Hello World\r\n";
+	int motorInput = 0 ;
+	int servoInput = 0 ;
+	float motorDutyCycle;
+	float servoDutyCycle;
 	/* Init board hardware. */
 	BOARD_InitBootPins();
 	BOARD_InitBootClocks();
@@ -92,11 +68,21 @@ int main(void) {
 	UART_WriteBlocking(TARGET_UART, txbuff, sizeof(txbuff) - 1);
 
 	while (1) {
+
+
+
+
+
 		if (new_char == 7) {
+
 			new_char = 0;
 
-			sscanf(buffer, "%4d%3d", &motorInput, &servoInput);
+			PRINTF("outside the interrupt buffer = %s \n ", buffer);
 
+			PRINTF("cleared interrupt\n");
+
+			sscanf(buffer, "%4d%3d", &motorInput, &servoInput);
+				   PRINTF("GOT input as motorInput = %d, servoInput = %d", motorInput, servoInput);
 					motorDutyCycle = motorInput * 0.025f / 100.0f + 0.070745;
 					servoDutyCycle = servoInput * 0.025f / 45.0f + 0.078;
 
@@ -129,11 +115,19 @@ void UART4_RX_TX_IRQHandler() {
 	UART_GetStatusFlags(TARGET_UART);
 	ch = UART_ReadByte(TARGET_UART);
 
+	PRINTF("GOT an interrupt from UART \n");
+
 	if (new_char == 7) {
 		return;
 	}
+
+	PRINTF("new_char = %d \n", new_char);
+	PRINTF("ch = %c \n", ch);
+
 	buffer[new_char] = ch;
+	PRINTF(" inside the interrupt buffer[new_char] = %s \n ", buffer);
 	new_char += 1;
+
 }
 
 void setupPWM() {
