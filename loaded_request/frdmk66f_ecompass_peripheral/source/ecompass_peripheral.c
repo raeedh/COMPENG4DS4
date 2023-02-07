@@ -7,6 +7,7 @@
 
 #include "fsl_debug_console.h"
 #include "fsl_fxos.h"
+#include "fsl_dspi.h"
 #include "pin_mux.h"
 #include "peripherals.h"
 #include "board.h"
@@ -24,7 +25,11 @@
 /*******************************************************************************
  * Prototypes
  ******************************************************************************/
-void BOARD_I2C_ReleaseBus(void);
+void setupSPI();
+void voltageRegulatorEnable();
+void accelerometerEnable();
+status_t SPI_read(uint8_t regAddress, uint8_t *rxBuff, uint8_t rxBuffSize);
+status_t SPI_write(uint8_t regAddress, uint8_t value);
 
 /*!
  * @brief Read all data from sensor function
@@ -106,52 +111,7 @@ bool g_FirstRun = true;
  * Code
  ******************************************************************************/
 
-static void i2c_release_bus_delay(void)
-{
-    uint32_t i = 0;
-    for (i = 0; i < I2C_RELEASE_BUS_COUNT; i++)
-    {
-        __NOP();
-    }
-}
 
-void BOARD_I2C_ReleaseBus(void)
-{
-    uint8_t i = 0;
-
-    BOARD_GPIO_ConfigurePins();
-
-    /* Drive SDA low first to simulate a start */
-    GPIO_PinWrite(BOARD_GPIO_ACCEL_SDA_GPIO, BOARD_GPIO_ACCEL_SDA_PIN, 0U);
-    i2c_release_bus_delay();
-
-    /* Send 9 pulses on SCL and keep SDA high */
-    for (i = 0; i < 9; i++)
-    {
-        GPIO_PinWrite(BOARD_GPIO_ACCEL_SCL_GPIO, BOARD_GPIO_ACCEL_SCL_PIN, 0U);
-        i2c_release_bus_delay();
-
-        GPIO_PinWrite(BOARD_GPIO_ACCEL_SDA_GPIO, BOARD_GPIO_ACCEL_SDA_PIN, 1U);
-        i2c_release_bus_delay();
-
-        GPIO_PinWrite(BOARD_GPIO_ACCEL_SCL_GPIO, BOARD_GPIO_ACCEL_SCL_PIN, 1U);
-        i2c_release_bus_delay();
-        i2c_release_bus_delay();
-    }
-
-    /* Send stop */
-    GPIO_PinWrite(BOARD_GPIO_ACCEL_SCL_GPIO, BOARD_GPIO_ACCEL_SCL_PIN, 0U);
-    i2c_release_bus_delay();
-
-    GPIO_PinWrite(BOARD_GPIO_ACCEL_SDA_GPIO, BOARD_GPIO_ACCEL_SDA_PIN, 0U);
-    i2c_release_bus_delay();
-
-    GPIO_PinWrite(BOARD_GPIO_ACCEL_SCL_GPIO, BOARD_GPIO_ACCEL_SCL_PIN, 1U);
-    i2c_release_bus_delay();
-
-    GPIO_PinWrite(BOARD_GPIO_ACCEL_SDA_GPIO, BOARD_GPIO_ACCEL_SDA_PIN, 1U);
-    i2c_release_bus_delay();
-}
 static void HW_Timer_init(void)
 {
     /* Configure the SysTick timer */
@@ -243,7 +203,9 @@ static void Magnetometer_Calibrate(void)
 int main(void)
 {
     fxos_config_t config = {0};
+
     status_t result;
+    
     uint16_t i              = 0;
     uint16_t loopCounter    = 0;
     double sinAngle         = 0;
@@ -252,32 +214,25 @@ int main(void)
     double By               = 0;
     uint8_t array_addr_size = 0;
 
+    /* Baord piun, clocks, debug console init */
     BOARD_InitBootPins();
     BOARD_InitBootClocks();
-    BOARD_I2C_ReleaseBus();
-    BOARD_I2C_ConfigurePins();
-    BOARD_InitDebugConsole();
-    BOARD_InitPeripherals();
+    voltageRegulatorEnable();
+    accelerometerEnable();
+
+    setupSPI();
 
     HW_Timer_init();
 
-    /* Configure the I2C function */
-    config.I2C_SendFunc    = BOARD_Accel_I2C_Send;
-    config.I2C_ReceiveFunc = BOARD_Accel_I2C_Receive;
+    /***** Delay *****/
+    for (volatile uint32_t i = 0; i < 4000000; i++)
+        __asm("NOP");
+    
+    /* Configure the SPI function */
+    config.SPI_writeFunc = SPI_write;
+    config.SPI_readFunc = SPI_read;
 
-    /* Initialize sensor devices */
-    array_addr_size = sizeof(g_sensor_address) / sizeof(g_sensor_address[0]);
-    for (i = 0; i < array_addr_size; i++)
-    {
-        config.slaveAddress = g_sensor_address[i];
-        /* Initialize accelerometer sensor */
-        result = FXOS_Init(&g_fxosHandle, &config);
-        if (result == kStatus_Success)
-        {
-            break;
-        }
-    }
-
+    result = FXOS_Init(&g_fxosHandle, &config);
     if (kStatus_Success != result)
     {
         PRINTF("\r\nSensor device initialize failed!\r\n");
@@ -403,6 +358,98 @@ int main(void)
                 PRINTF("\r\nCompass Angle: %3.1lf", g_Yaw_LP);
                 loopCounter = 0;
             }
+
+            /***** Delay *****/
+            for (volatile uint32_t i = 0; i < 500000; i++)
+                __asm("NOP");
         }
     } /* End infinite loops */
+}
+
+void setupSPI()
+{
+    dspi_master_config_t masterConfig;
+
+    /* Master config */
+    masterConfig.whichCtar = kDSPI_Ctar0;
+    masterConfig.ctarConfig.baudRate = 500000;
+    masterConfig.ctarConfig.bitsPerFrame = 8U;
+    masterConfig.ctarConfig.cpol = kDSPI_ClockPolarityActiveHigh;
+    masterConfig.ctarConfig.cpha = kDSPI_ClockPhaseFirstEdge;
+    masterConfig.ctarConfig.direction = kDSPI_MsbFirst;
+    masterConfig.ctarConfig.pcsToSckDelayInNanoSec = 1000000000U / 500000;
+    masterConfig.ctarConfig.lastSckToPcsDelayInNanoSec = 1000000000U / 500000;
+    masterConfig.ctarConfig.betweenTransferDelayInNanoSec = 1000000000U / 500000;
+    
+    masterConfig.whichPcs = kDSPI_Pcs0;
+    masterConfig.pcsActiveHighOrLow = kDSPI_PcsActiveLow;
+    
+    masterConfig.enableContinuousSCK = false;
+    masterConfig.enableRxFifoOverWrite = false;
+    masterConfig.enableModifiedTimingFormat = false;
+    masterConfig.samplePoint = kDSPI_SckToSin0Clock;
+    
+    DSPI_MasterInit(SPI1, &masterConfig, BUS_CLK);
+}
+
+void voltageRegulatorEnable()
+{
+    gpio_pin_config_t pin_config = {
+        .pinDirection = kGPIO_DigitalOutput,
+        .outputLogic = 0U};
+    GPIO_PinInit(GPIOB, 8, &pin_config);
+    GPIO_PinWrite(GPIOB, 8, 1U);
+}
+
+void accelerometerEnable()
+{
+    gpio_pin_config_t pin_config = {
+        .pinDirection = kGPIO_DigitalOutput,
+        .outputLogic = 0U};
+    GPIO_PinInit(GPIOA, 25, &pin_config);
+    GPIO_PinWrite(GPIOA, 25, 0U);
+}
+
+status_t SPI_read(uint8_t regAddress, uint8_t *rxBuff, uint8_t rxBuffSize)
+{
+    dspi_transfer_t masterXfer;
+    uint8_t *masterTxData = (uint8_t *)malloc(rxBuffSize + 2);
+    uint8_t *masterRxData = (uint8_t *)malloc(rxBuffSize + 2);
+    
+    masterTxData[0] = regAddress & 0x7F; // Clear the most significant bit
+    masterTxData[1] = regAddress & 0x80; // Clear the least significant 7 bits
+    
+    masterXfer.txData = masterTxData;
+    masterXfer.rxData = masterRxData;
+    masterXfer.dataSize = rxBuffSize + 2;
+    masterXfer.configFlags = kDSPI_MasterCtar0 | kDSPI_MasterPcs0 | kDSPI_MasterPcsContinuous;
+    status_t ret = DSPI_MasterTransferBlocking(SPI1, &masterXfer);
+    memcpy(rxBuff, &masterRxData[2], rxBuffSize);
+    
+    free(masterTxData);
+    free(masterRxData);
+    
+    return ret;
+}
+
+status_t SPI_write(uint8_t regAddress, uint8_t value)
+{
+    dspi_transfer_t masterXfer;
+    uint8_t *masterTxData = (uint8_t *)malloc(3);
+    uint8_t *masterRxData = (uint8_t *)malloc(3);
+
+    masterTxData[0] = regAddress | 0x80; // Sets the most significant bit (enable write)
+    masterTxData[1] = regAddress & 0x80; // Clear the least significant 7 bits
+    masterTxData[2] = value;
+
+    masterXfer.txData = masterTxData;
+    masterXfer.rxData = masterRxData;
+    masterXfer.dataSize = 3;
+    masterXfer.configFlags = kDSPI_MasterCtar0 | kDSPI_MasterPcs0 | kDSPI_MasterPcsContinuous;
+    status_t ret = DSPI_MasterTransferBlocking(SPI1, &masterXfer);
+
+    free(masterTxData);
+    free(masterRxData);
+
+    return ret;
 }

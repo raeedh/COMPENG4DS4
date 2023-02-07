@@ -203,25 +203,25 @@ status_t FXOS_ReadSensorData(fxos_handle_t *fxos_handle, fxos_data_t *sensorData
 
 status_t FXOS_ReadReg(fxos_handle_t *handle, uint8_t reg, uint8_t *val, uint8_t bytesNumber)
 {
-	assert(handle);
-	assert(val);
+    assert(handle);
+    assert(val);
 
-	if ((handle->SPI_readFunc) == NULL)
-	{
-		return kStatus_Fail;
-	}
-	
-	return handle->SPI_readFunc(reg, val, bytesNumber);
+    if ((handle->SPI_readFunc) == NULL)
+    {
+        return kStatus_Fail;
+    }
+    
+    return handle->SPI_readFunc(reg, val, bytesNumber);
 }
 
 status_t FXOS_WriteReg(fxos_handle_t *handle, uint8_t reg, uint8_t val)
 {
-	assert(handle);
-	
-	if ((handle->SPI_writeFunc) == NULL)
-	{
-		return kStatus_Fail;
-	}
-	
-	return handle->SPI_writeFunc(reg, val);
+    assert(handle);
+    
+    if ((handle->SPI_writeFunc) == NULL)
+    {
+        return kStatus_Fail;
+    }
+    
+    return handle->SPI_writeFunc(reg, val);
 }

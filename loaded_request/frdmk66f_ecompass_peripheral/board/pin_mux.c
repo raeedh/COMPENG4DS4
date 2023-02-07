@@ -66,18 +66,17 @@ void BOARD_InitPins(void)
     /* Port B Clock Gate Control: Clock enabled */
     CLOCK_EnableClock(kCLOCK_PortB);
 
-    /* PORTB16 (pin E10) is configured as UART0_RX */
-    PORT_SetPinMux(BOARD_DEBUG_UART_RX_PORT, BOARD_DEBUG_UART_RX_PIN, kPORT_MuxAlt3);
+    /* Enable pins on SPI alternative functions */
+    PORT_SetPinMux(PORTB, 10U, kPORT_MuxAlt2); // nSPI1_CS0_ACCEL_MAG 
+    PORT_SetPinMux(PORTB, 11U, kPORT_MuxAlt2); // SPI1_SCK_INTERNAL
+    PORT_SetPinMux(PORTB, 16U, kPORT_MuxAlt2); // SPI1_MOSI_INTERNAL
+    PORT_SetPinMux(PORTB, 17U, kPORT_MuxAlt2); // SPI1_MISO_INTERNAL
 
-    /* PORTB17 (pin E9) is configured as UART0_TX */
-    PORT_SetPinMux(BOARD_DEBUG_UART_TX_PORT, BOARD_DEBUG_UART_TX_PIN, kPORT_MuxAlt3);
+    PORT_SetPinMux(PORTB, 8U, kPORT_MuxAsGpio); // VDD_3V3_SENSORS_EN
 
-    SIM->SOPT5 = ((SIM->SOPT5 &
-                   /* Mask bits to zero which are setting */
-                   (~(SIM_SOPT5_UART0TXSRC_MASK)))
-
-                  /* UART 0 transmit data source select: UART0_TX pin. */
-                  | SIM_SOPT5_UART0TXSRC(SOPT5_UART0TXSRC_UART_TX));
+    /* Port A Clock Gate Control: Clock enabled */
+    CLOCK_EnableClock(kCLOCK_PortA);
+    PORT_SetPinMux(PORTA, 25U, kPORT_MuxAsGpio); // SPI1_RST_ACCEL_MAG
 }
 
 /* clang-format off */

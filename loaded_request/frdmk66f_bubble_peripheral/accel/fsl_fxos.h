@@ -688,9 +688,9 @@ typedef struct _fxos_handle
     uint8_t slaveAddress;
 
     /* Pointer to the user-defined SPI write Data function. */
-	SPI_WriteFunc_t SPI_writeFunc;
-	/* Pointer to the user-defined SPI read Data function. */
-	SPI_ReadFunc_t SPI_readFunc;
+    SPI_WriteFunc_t SPI_writeFunc;
+    /* Pointer to the user-defined SPI read Data function. */
+    SPI_ReadFunc_t SPI_readFunc;
 } fxos_handle_t;
 
 typedef struct _fxos8700cq_data
@@ -720,9 +720,9 @@ typedef struct _fxos_config
     uint8_t slaveAddress;
 
     /* Pointer to the user-defined SPI write Data function. */
-	SPI_WriteFunc_t SPI_writeFunc;
-	/* Pointer to the user-defined SPI read Data function. */
-	SPI_ReadFunc_t SPI_readFunc;
+    SPI_WriteFunc_t SPI_writeFunc;
+    /* Pointer to the user-defined SPI read Data function. */
+    SPI_ReadFunc_t SPI_readFunc;
 } fxos_config_t;
 
 /*!
