@@ -34,7 +34,7 @@ void updatePWM_dutyCycle(ftm_chnl_t channel, float dutyCycle);
  * @brief Main function
  */
 int main(void) {
-	char buffer[] = {0, 0, 0, 0, 0, 0, 0};
+	char buffer[] = {0, 0, 0, 0, 0, 0, 0, 0, 0};
 
 	int motorInput;
 	int servoInput;
@@ -50,16 +50,18 @@ int main(void) {
 	setupPWM();
 
 	/******* Delay *******/
-	for (volatile int i = 0U; i < 10000000; i++)
+	for (volatile int i = 0U; i < 1000000; i++)
 		__asm("NOP");
 
 	char txbuff[] = "Hello World aaron\r\n";
 	UART_WriteBlocking(TARGET_UART, txbuff, sizeof(txbuff) - 1);
 
 	while (1) {
-		UART_ReadBlocking(TARGET_UART, &buffer[0], 7);
+		UART_ReadBlocking(TARGET_UART, &buffer[0], 9);
 
-		sscanf(buffer, "%4d%3d", &motorInput, &servoInput);
+		sscanf(buffer, "%4d;%3d;", &motorInput, &servoInput);
+
+		printf("%.9s\n%d %d\n", buffer, motorInput, servoInput);
 
 		motorDutyCycle = motorInput * 0.025f / 100.0f + 0.070745;
 		servoDutyCycle = servoInput * 0.025f / 45.0f + 0.078;
@@ -67,7 +69,6 @@ int main(void) {
 		updatePWM_dutyCycle(FTM_CHANNEL_SERVO_MOTOR, servoDutyCycle);
 		updatePWM_dutyCycle(FTM_CHANNEL_DC_MOTOR, motorDutyCycle);
 
-		FTM_SetSoftwareTrigger(FTM_MOTOR, true);
 		FTM_SetSoftwareTrigger(FTM_MOTOR, true);
 	}
 }

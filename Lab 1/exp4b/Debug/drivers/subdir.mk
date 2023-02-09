@@ -7,6 +7,7 @@ C_SRCS += \
 ../drivers/fsl_clock.c \
 ../drivers/fsl_common.c \
 ../drivers/fsl_common_arm.c \
+../drivers/fsl_dspi.c \
 ../drivers/fsl_ftfx_cache.c \
 ../drivers/fsl_ftfx_controller.c \
 ../drivers/fsl_ftfx_flash.c \
@@ -15,6 +16,7 @@ C_SRCS += \
 ../drivers/fsl_gpio.c \
 ../drivers/fsl_i2c.c \
 ../drivers/fsl_lpuart.c \
+../drivers/fsl_rtc.c \
 ../drivers/fsl_smc.c \
 ../drivers/fsl_uart.c 
 
@@ -22,6 +24,7 @@ C_DEPS += \
 ./drivers/fsl_clock.d \
 ./drivers/fsl_common.d \
 ./drivers/fsl_common_arm.d \
+./drivers/fsl_dspi.d \
 ./drivers/fsl_ftfx_cache.d \
 ./drivers/fsl_ftfx_controller.d \
 ./drivers/fsl_ftfx_flash.d \
@@ -30,6 +33,7 @@ C_DEPS += \
 ./drivers/fsl_gpio.d \
 ./drivers/fsl_i2c.d \
 ./drivers/fsl_lpuart.d \
+./drivers/fsl_rtc.d \
 ./drivers/fsl_smc.d \
 ./drivers/fsl_uart.d 
 
@@ -37,6 +41,7 @@ OBJS += \
 ./drivers/fsl_clock.o \
 ./drivers/fsl_common.o \
 ./drivers/fsl_common_arm.o \
+./drivers/fsl_dspi.o \
 ./drivers/fsl_ftfx_cache.o \
 ./drivers/fsl_ftfx_controller.o \
 ./drivers/fsl_ftfx_flash.o \
@@ -45,6 +50,7 @@ OBJS += \
 ./drivers/fsl_gpio.o \
 ./drivers/fsl_i2c.o \
 ./drivers/fsl_lpuart.o \
+./drivers/fsl_rtc.o \
 ./drivers/fsl_smc.o \
 ./drivers/fsl_uart.o 
 
@@ -53,7 +59,7 @@ OBJS += \
 drivers/%.o: ../drivers/%.c drivers/subdir.mk
 	@echo 'Building file: $<'
 	@echo 'Invoking: MCU C Compiler'
-	arm-none-eabi-gcc -std=gnu99 -D__REDLIB__ -DCPU_MK66FN2M0VMD18 -DCPU_MK66FN2M0VMD18_cm4 -DPRINTF_ADVANCED_ENABLE=1 -DSDK_I2C_BASED_COMPONENT_USED=1 -DFRDM_K66F -DFREEDOM -DMCUXPRESSO_SDK -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -DPRINTF_FLOAT_ENABLE=0 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I"C:\Users\guoj69\Documents\COMPENG4DS4\LAB 1\frdmk66f_bubble_peripheral\source" -I"C:\Users\guoj69\Documents\COMPENG4DS4\LAB 1\frdmk66f_bubble_peripheral\drivers" -I"C:\Users\guoj69\Documents\COMPENG4DS4\LAB 1\frdmk66f_bubble_peripheral\accel" -I"C:\Users\guoj69\Documents\COMPENG4DS4\LAB 1\frdmk66f_bubble_peripheral\utilities" -I"C:\Users\guoj69\Documents\COMPENG4DS4\LAB 1\frdmk66f_bubble_peripheral\device" -I"C:\Users\guoj69\Documents\COMPENG4DS4\LAB 1\frdmk66f_bubble_peripheral\component\uart" -I"C:\Users\guoj69\Documents\COMPENG4DS4\LAB 1\frdmk66f_bubble_peripheral\component\lists" -I"C:\Users\guoj69\Documents\COMPENG4DS4\LAB 1\frdmk66f_bubble_peripheral\CMSIS" -I"C:\Users\guoj69\Documents\COMPENG4DS4\LAB 1\frdmk66f_bubble_peripheral\board" -I"C:\Users\guoj69\Documents\COMPENG4DS4\LAB 1\frdmk66f_bubble_peripheral\frdmk66f\demo_apps\bubble_peripheral" -O0 -fno-common -g3 -c -ffunction-sections -fdata-sections -ffreestanding -fno-builtin -fmerge-constants -fmacro-prefix-map="$(<D)/"= -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)" -MT"$(@:%.o=%.d)" -o "$@" "$<"
+	arm-none-eabi-gcc -std=gnu99 -D__REDLIB__ -DCPU_MK66FN2M0VMD18 -DCPU_MK66FN2M0VMD18_cm4 -DPRINTF_ADVANCED_ENABLE=1 -DSDK_I2C_BASED_COMPONENT_USED=1 -DFRDM_K66F -DFREEDOM -DMCUXPRESSO_SDK -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -DPRINTF_FLOAT_ENABLE=0 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -DSDK_OS_BAREMETAL -I"C:\Users\pintoa9\Documents\COMPENG4DS4\lab 1\exp4b\drivers" -I"C:\Users\pintoa9\Documents\COMPENG4DS4\lab 1\exp4b\accel" -I"C:\Users\pintoa9\Documents\COMPENG4DS4\lab 1\exp4b\utilities" -I"C:\Users\pintoa9\Documents\COMPENG4DS4\lab 1\exp4b\device" -I"C:\Users\pintoa9\Documents\COMPENG4DS4\lab 1\exp4b\component\uart" -I"C:\Users\pintoa9\Documents\COMPENG4DS4\lab 1\exp4b\component\lists" -I"C:\Users\pintoa9\Documents\COMPENG4DS4\lab 1\exp4b\CMSIS" -I"C:\Users\pintoa9\Documents\COMPENG4DS4\lab 1\exp4b\board" -I"C:\Users\pintoa9\Documents\COMPENG4DS4\lab 1\exp4b\source" -I"C:\Users\pintoa9\Documents\COMPENG4DS4\lab 1\exp4b\drivers" -I"C:\Users\pintoa9\Documents\COMPENG4DS4\lab 1\exp4b\accel" -I"C:\Users\pintoa9\Documents\COMPENG4DS4\lab 1\exp4b\utilities" -I"C:\Users\pintoa9\Documents\COMPENG4DS4\lab 1\exp4b\device" -I"C:\Users\pintoa9\Documents\COMPENG4DS4\lab 1\exp4b\component\uart" -I"C:\Users\pintoa9\Documents\COMPENG4DS4\lab 1\exp4b\component\lists" -I"C:\Users\pintoa9\Documents\COMPENG4DS4\lab 1\exp4b\CMSIS" -I"C:\Users\pintoa9\Documents\COMPENG4DS4\lab 1\exp4b\board" -I"C:\Users\pintoa9\Documents\COMPENG4DS4\lab 1\exp4b\frdmk66f\demo_apps\bubble_peripheral" -O0 -fno-common -g3 -c -ffunction-sections -fdata-sections -ffreestanding -fno-builtin -fmerge-constants -fmacro-prefix-map="$(<D)/"= -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)" -MT"$(@:%.o=%.d)" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
@@ -61,7 +67,7 @@ drivers/%.o: ../drivers/%.c drivers/subdir.mk
 clean: clean-drivers
 
 clean-drivers:
-	-$(RM) ./drivers/fsl_clock.d ./drivers/fsl_clock.o ./drivers/fsl_common.d ./drivers/fsl_common.o ./drivers/fsl_common_arm.d ./drivers/fsl_common_arm.o ./drivers/fsl_ftfx_cache.d ./drivers/fsl_ftfx_cache.o ./drivers/fsl_ftfx_controller.d ./drivers/fsl_ftfx_controller.o ./drivers/fsl_ftfx_flash.d ./drivers/fsl_ftfx_flash.o ./drivers/fsl_ftfx_flexnvm.d ./drivers/fsl_ftfx_flexnvm.o ./drivers/fsl_ftm.d ./drivers/fsl_ftm.o ./drivers/fsl_gpio.d ./drivers/fsl_gpio.o ./drivers/fsl_i2c.d ./drivers/fsl_i2c.o ./drivers/fsl_lpuart.d ./drivers/fsl_lpuart.o ./drivers/fsl_smc.d ./drivers/fsl_smc.o ./drivers/fsl_uart.d ./drivers/fsl_uart.o
+	-$(RM) ./drivers/fsl_clock.d ./drivers/fsl_clock.o ./drivers/fsl_common.d ./drivers/fsl_common.o ./drivers/fsl_common_arm.d ./drivers/fsl_common_arm.o ./drivers/fsl_dspi.d ./drivers/fsl_dspi.o ./drivers/fsl_ftfx_cache.d ./drivers/fsl_ftfx_cache.o ./drivers/fsl_ftfx_controller.d ./drivers/fsl_ftfx_controller.o ./drivers/fsl_ftfx_flash.d ./drivers/fsl_ftfx_flash.o ./drivers/fsl_ftfx_flexnvm.d ./drivers/fsl_ftfx_flexnvm.o ./drivers/fsl_ftm.d ./drivers/fsl_ftm.o ./drivers/fsl_gpio.d ./drivers/fsl_gpio.o ./drivers/fsl_i2c.d ./drivers/fsl_i2c.o ./drivers/fsl_lpuart.d ./drivers/fsl_lpuart.o ./drivers/fsl_rtc.d ./drivers/fsl_rtc.o ./drivers/fsl_smc.d ./drivers/fsl_smc.o ./drivers/fsl_uart.d ./drivers/fsl_uart.o
 
 .PHONY: clean-drivers
 

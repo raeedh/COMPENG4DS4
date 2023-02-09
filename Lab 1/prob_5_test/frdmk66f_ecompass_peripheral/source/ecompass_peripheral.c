@@ -208,7 +208,7 @@ static void Magnetometer_Calibrate(void)
 
     uint32_t times = 0;
     PRINTF("\r\nCalibrating magnetometer...");
-    while (times < 5000)
+    while (times < 10000)
     {
         Sensor_ReadData(&g_Ax_Raw, &g_Ay_Raw, &g_Az_Raw, &g_Mx_Raw, &g_My_Raw, &g_Mz_Raw);
         if (times == 0)
@@ -225,7 +225,7 @@ static void Magnetometer_Calibrate(void)
         Mz_min = MIN(Mz_min, g_Mz_Raw);
 
         //printf("mX_max = %d \n, mY_max = %d\n, mZ_max = %d\n, mX_min = %d\n, mY_min = %d\n, mZ_min = %d, ", Mx_max,My_max,Mz_max,Mx_min,My_min,Mz_min);
-        if (times == 4999)
+        if (times == 9999)
         {
             if ((Mx_max > (Mx_min + 500)) && (My_max > (My_min + 500)) && (Mz_max > (Mz_min + 500)))
             {
