@@ -1,0 +1,23 @@
+\begin{lstlisting}[language=c,caption=Problem 4 SPI\_write, label=list:p4_spi_write]
+status_t SPI_write(uint8_t regAddress, uint8_t value)
+{
+    dspi_transfer_t masterXfer;
+    uint8_t *masterTxData = (uint8_t *)malloc(3);
+    uint8_t *masterRxData = (uint8_t *)malloc(3);
+
+    masterTxData[0] = regAddress | 0x80; // Sets the most significant bit (enable write)
+    masterTxData[1] = regAddress & 0x80; // Clear the least significant 7 bits
+    masterTxData[2] = value;
+
+    masterXfer.txData = masterTxData;
+    masterXfer.rxData = masterRxData;
+    masterXfer.dataSize = 3;
+    masterXfer.configFlags = kDSPI_MasterCtar0 | kDSPI_MasterPcs0 | kDSPI_MasterPcsContinuous;
+    status_t ret = DSPI_MasterTransferBlocking(SPI1, &masterXfer);
+
+    free(masterTxData);
+    free(masterRxData);
+
+    return ret;
+}
+\end{lstlisting}

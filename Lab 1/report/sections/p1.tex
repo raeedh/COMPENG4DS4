@@ -1,0 +1,3 @@
+\section*{Problem 1}
+We control the servo motor through the same method as the DC motor is controlled. The pins and clock for the servo motor are additionally initialized in \texttt{BOARD\_InitBootPins}, \texttt{BOARD\_InitBootClocks}, and \texttt{setupPWM}. The main function for Problem 1 is shown in Listing~\ref{list:p1}. The duty cycle equations for the DC motor and servo motor are on lines 19 and 20, centered around a value near 0.075 which we honed in on through trial and error.
+\input{sections/p1_main.tex}

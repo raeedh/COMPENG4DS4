@@ -39,11 +39,11 @@ int main(void)
     /* Init board hardware. */
     BOARD_InitBootPins();
     BOARD_InitBootClocks();
-    BOARD_InitDebugConsole();
 
-    setupSPI();
     voltageRegulatorEnable();
     accelerometerEnable();
+    
+    setupSPI();
     
     /******* Delay *******/
     for (volatile int i = 0U; i < 1000000; i++)

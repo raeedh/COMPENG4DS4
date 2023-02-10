@@ -1,0 +1,20 @@
+\begin{lstlisting}[language=c,caption=Problem 3 UART4\_RX\_TX\_IRQHandler, label=list:p3_irqhandler]
+void UART4_RX_TX_IRQHandler() {
+    UART_GetStatusFlags(TARGET_UART);
+    ch = UART_ReadByte(TARGET_UART);
+
+    PRINTF("GOT an interrupt from UART \n");
+
+    if (new_char == 7) {
+        return;
+    }
+
+    PRINTF("new_char = %d \n", new_char);
+    PRINTF("ch = %c \n", ch);
+
+    buffer[new_char] = ch;
+    PRINTF(" inside the interrupt buffer[new_char] = %s \n ", buffer);
+    new_char += 1;
+
+}
+\end{lstlisting}

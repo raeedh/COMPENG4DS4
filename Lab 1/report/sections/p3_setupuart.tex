@@ -1,0 +1,17 @@
+\begin{lstlisting}[language=c,caption=Problem 3 setupUART, label=list:p3_setupuart]
+void setupUART() {
+    uart_config_t config;
+
+    UART_GetDefaultConfig(&config);
+    config.baudRate_Bps = 57600;
+    config.enableTx = true;
+    config.enableRx = true;
+    config.enableRxRTS = true;
+    config.enableTxCTS = true;
+    UART_Init(TARGET_UART, &config, CLOCK_GetFreq(kCLOCK_BusClk));
+
+    /******** Enable Interrupts *********/
+    UART_EnableInterrupts(TARGET_UART, kUART_RxDataRegFullInterruptEnable);
+    EnableIRQ(UART4_RX_TX_IRQn);
+}
+\end{lstlisting}

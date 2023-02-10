@@ -1,0 +1,31 @@
+\begin{lstlisting}[language=c,caption=Problem 1 main, label=list:p1]
+int main(void) {
+    uint8_t ch;
+    int motorInput;
+    int servoInput;
+    float motorDutyCycle;
+    float servoDutyCycle;
+
+    BOARD_InitBootPins();
+    BOARD_InitBootClocks();
+
+    setupPWM();
+
+    /******* Delay *******/
+    for (volatile int i = 0U; i < 1000000; i++)
+        __asm("NOP");
+
+    scanf("%d, %d", &motorInput, &servoInput);
+
+    motorDutyCycle = motorInput * 0.025f / 100.0f + 0.070745;
+    servoDutyCycle = servoInput * 0.025f / 45.0f + 0.078;
+
+    updatePWM_dutyCycle(FTM_CHANNEL_SERVO_MOTOR, servoDutyCycle);
+    updatePWM_dutyCycle(FTM_CHANNEL_DC_MOTOR, motorDutyCycle);
+
+    FTM_SetSoftwareTrigger(FTM_MOTOR, true);
+
+    while (1) {
+    }
+}
+\end{lstlisting}
