@@ -28,7 +28,7 @@
 /*******************************************************************************
  * Prototypes
  ******************************************************************************/
-void producer1_sem(void *pvParameters)
+void producer1_sem(void *pvParameters);
 void producer_sem(void *pvParameters);
 void consumer_sem(void* pvParameters);
 void consumer1_sem(void *pvParameters);
