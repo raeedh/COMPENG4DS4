@@ -28,13 +28,49 @@
 /*******************************************************************************
  * Prototypes
  ******************************************************************************/
+void producer1_sem(void *pvParameters)
 void producer_sem(void *pvParameters);
+void consumer_sem(void* pvParameters);
 void consumer1_sem(void *pvParameters);
 void consumer2_sem(void *pvParameters);
 
 /*******************************************************************************
  * Code
  ******************************************************************************/
+/* 2 semaphore (1 producer and 1 consumer) example */
+/*
+int main(void)
+{
+    BaseType_t status;
+    // Init board hardware.
+    BOARD_InitBootPins();
+    BOARD_InitBootClocks();
+    BOARD_InitDebugConsole();
+
+    SemaphoreHandle_t *semaphores = (SemaphoreHandle_t *)malloc(2 * sizeof(
+                                                                        SemaphoreHandle_t));
+    semaphores[0] = xSemaphoreCreateBinary(); // Producer semaphore
+    semaphores[1] = xSemaphoreCreateBinary(); // Consumer semaphore
+
+    status = xTaskCreate(producer1_sem, "producer", 200, (void *)semaphores, 2, NULL);
+    if (status != pdPASS)
+    {
+        PRINTF("Task creation failed!.\r\n");
+        while (1);
+    }
+
+    status = xTaskCreate(consumer_sem, "consumer", 200, (void *)semaphores, 2, NULL);
+    if (status != pdPASS)
+    {
+        PRINTF("Task creation failed!.\r\n");
+        while (1);
+    }
+
+    vTaskStartScheduler();
+    while (1)
+    {}
+}
+*/
 
 int main(void)
 {
@@ -77,6 +113,29 @@ int main(void)
 
 int counter = 0;
 
+void producer1_sem(void *pvParameters)
+{
+    SemaphoreHandle_t *semaphores = (SemaphoreHandle_t *)pvParameters;
+    SemaphoreHandle_t producer_semaphore = semaphores[0];
+    SemaphoreHandle_t consumer_semaphore = semaphores[1];
+    BaseType_t status;
+
+    while (1)
+    {
+        status = xSemaphoreTake(consumer_semaphore, portMAX_DELAY);
+        if (status != pdPASS)
+        {
+            PRINTF("Failed to acquire consumer_semaphore\r\n");
+            while (1);
+        }
+
+        counter++;
+        xSemaphoreGive(producer_semaphore);
+
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
+    }
+}
+
 void producer_sem(void *pvParameters)
 {
     SemaphoreHandle_t *semaphores = (SemaphoreHandle_t *)pvParameters;
@@ -100,6 +159,28 @@ void producer_sem(void *pvParameters)
         xSemaphoreGive(producer2_semaphore);
 
         vTaskDelay(1000 / portTICK_PERIOD_MS);
+    }
+}
+
+void consumer_sem(void *pvParameters)
+{
+    SemaphoreHandle_t *semaphores = (SemaphoreHandle_t *)pvParameters;
+    SemaphoreHandle_t producer_semaphore = semaphores[0];
+    SemaphoreHandle_t consumer_semaphore = semaphores[1];
+    BaseType_t status;
+
+    while (1)
+    {
+        xSemaphoreGive(consumer_semaphore);
+        status = xSemaphoreTake(producer_semaphore, portMAX_DELAY);
+        if (status != pdPASS)
+        {
+            PRINTF("Failed to acquire producer_semaphore\r\n");
+            while (1)
+                ;
+        }
+
+        PRINTF("Received Value = %d\r\n", counter);
     }
 }
 
