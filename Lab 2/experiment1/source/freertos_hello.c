@@ -23,7 +23,6 @@
  * Definitions
  ******************************************************************************/
 
-
 /*******************************************************************************
  * Prototypes
  ******************************************************************************/
@@ -34,44 +33,48 @@ void hello_task2(void *pvParameters);
  * Code
  ******************************************************************************/
 
-char* str = "4DS";
+char *str = "4DS";
 int main(void)
 {
-BaseType_t status;
-/* Init board hardware. */
-BOARD_InitBootPins();
-BOARD_InitBootClocks();
-BOARD_InitDebugConsole();
-status = xTaskCreate(hello_task, "Hello_task", 200, NULL, 2, NULL);
-if (status != pdPASS)
-{
-PRINTF("Task creation failed!.\r\n");
-while (1);
-}
-status = xTaskCreate(hello_task2, "Hello_task2", 200, (void*)str, 2, NULL);
-if (status != pdPASS)
-{
-PRINTF("Task creation failed!.\r\n");
-while (1);
-}
-vTaskStartScheduler();
-for (;;);
+    BaseType_t status;
+    /* Init board hardware. */
+    BOARD_InitBootPins();
+    BOARD_InitBootClocks();
+    BOARD_InitDebugConsole();
+
+    status = xTaskCreate(hello_task, "Hello_task", 200, NULL, 2, NULL);
+    if (status != pdPASS)
+    {
+        PRINTF("Task creation failed!.\r\n");
+        while (1);
+    }
+
+    status = xTaskCreate(hello_task2, "Hello_task2", 200, (void *)str, 2, NULL);
+    if (status != pdPASS)
+    {
+        PRINTF("Task creation failed!.\r\n");
+        while (1);
+    }
+
+    vTaskStartScheduler();
+    for (;;)
+        ;
 }
 
 void hello_task(void *pvParameters)
 {
-while(1)
-{
-PRINTF("Hello World\r\n");
-vTaskDelay(1000 / portTICK_PERIOD_MS);
-}
+    while (1)
+    {
+        PRINTF("Hello World\r\n");
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
+    }
 }
 
 void hello_task2(void *pvParameters)
 {
-while(1)
-{
-PRINTF("Hello %s.\r\n", (char*) pvParameters);
-vTaskDelay(1000 / portTICK_PERIOD_MS);
-}
+    while (1)
+    {
+        PRINTF("Hello %s.\r\n", (char *)pvParameters);
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
+    }
 }
