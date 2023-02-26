@@ -33,7 +33,8 @@ void hello_task2(void *pvParameters);
  * Code
  ******************************************************************************/
 
-char *str = "4DS";
+//char *str = "4DS";
+char string[20];
 int main(void)
 {
     BaseType_t status;
@@ -42,14 +43,18 @@ int main(void)
     BOARD_InitBootClocks();
     BOARD_InitDebugConsole();
 
-    status = xTaskCreate(hello_task, "Hello_task", 200, NULL, 2, NULL);
+    TaskHandle_t xHandle;
+
+    status = xTaskCreate(hello_task, "Hello_task", 200, NULL, 2, &xHandle);
     if (status != pdPASS)
     {
         PRINTF("Task creation failed!.\r\n");
         while (1);
     }
 
-    status = xTaskCreate(hello_task2, "Hello_task2", 200, (void *)str, 2, NULL);
+    //status = vTaskDelete( xHandle );
+
+    status = xTaskCreate(hello_task2, "Hello_task2", 200, string, 3, NULL);
     if (status != pdPASS)
     {
         PRINTF("Task creation failed!.\r\n");
@@ -65,8 +70,10 @@ void hello_task(void *pvParameters)
 {
     while (1)
     {
-        PRINTF("Hello World\r\n");
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
+        PRINTF("Scanning\r\n");
+        gets(string);
+        //vTaskDelay(1000 / portTICK_PERIOD_MS);
+        vTaskDelete(NULL);
     }
 }
 
@@ -74,7 +81,7 @@ void hello_task2(void *pvParameters)
 {
     while (1)
     {
-        PRINTF("Hello %s.\r\n", (char *)pvParameters);
+        PRINTF("Hello %s\n", (char *)pvParameters);
         vTaskDelay(1000 / portTICK_PERIOD_MS);
     }
 }

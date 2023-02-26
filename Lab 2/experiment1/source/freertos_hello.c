@@ -33,7 +33,7 @@ void hello_task2(void *pvParameters);
  * Code
  ******************************************************************************/
 
-char *str = "4DS";
+char *str = "4DS4";
 int main(void)
 {
     BaseType_t status;
