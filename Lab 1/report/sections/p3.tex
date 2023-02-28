@@ -1,0 +1,5 @@
+\section*{Problem 3}
+With the introduction of the interrupt, we make sure the UART reads only 7 bytes after the IRQ by a counter. When the inputs are sufficient, the IRQ will be cleared.  Note the char array was changed to volatile variable compared to Problem 2. The updated \texttt{setupUART} function is shown in Listing~\ref{list:p3_setupuart}, and the \texttt{UART4\_RX\_TX\_IRQHandler} function is shown in Listing~\ref{list:p3_irqhandler}. The main function for Problem 3 with interrupt handling is shown in Listing~\ref{list:p3_main}.
+\input{sections/p3_setupuart.tex}
+\input{sections/p3_irqhandler.tex}
+\input{sections/p3_main.tex}

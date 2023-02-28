@@ -1,0 +1,23 @@
+\section*{Problem 5}
+The functions from Problem 4 and Experiment 4: Part B were used to convert the e-compass SDK example to use SPI instead of the default I2C. The following steps were taken to convert the project to SPI:
+\begin{enumerate}
+    \item Add dspi driver to the project.
+    \item Use the same code of the functions BOARD InitBootPins and BOARD InitBootClocks from the project in Experiment 4: Part A.
+    \item Remove the following functions from ecompass\_peripheral.c
+    \begin{itemize}
+        \item \texttt{i2c\_release\_bus\_delay}
+        \item \texttt{BOARD\_I2C\_ReleaseBus}
+    \end{itemize}
+    \item Add the following functions
+    \begin{itemize}
+        \item \texttt{setupSPI}
+        \item \texttt{voltageRegulatorEnable}
+        \item \texttt{accelerometerEnable}
+        \item \texttt{SPI\_read}
+        \item \texttt{SPI\_write}
+    \end{itemize}
+    \item Update \texttt{fsl\_fxos.h} with the "typedef"s for \texttt{SPI\_WriteFunc\_t} and \texttt{SPI\_ReadFunc\_t}, and update the \texttt{fxos\_handle\_t} and \texttt{fxos\_config\_t} structures to point to the new SPI functions.
+    \item Update \texttt{fsl\_fxos.c} to replace any references to \texttt{I2C\_SendFunc} and \texttt{I2C\_ReceiveFunc} with \texttt{SPI\_writeFunc} and \texttt{SPI\_readFunc}. Make sure to update the function arguments for when they appear in \texttt{FXOS\_ReadReg} and \texttt{FXOS\_WriteReg}.
+    \item Update the main function similarly to the updates made in Experiment 4: Part B to configure SPI functions instead of I2C. The code listing for the main function is shown below in Listing~\ref{list:p5_main}.
+    \input{sections/p5_main.tex}
+\end{enumerate}

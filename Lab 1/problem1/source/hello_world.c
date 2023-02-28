@@ -56,7 +56,6 @@ int main(void) {
 	updatePWM_dutyCycle(FTM_CHANNEL_DC_MOTOR, motorDutyCycle);
 
 	FTM_SetSoftwareTrigger(FTM_MOTOR, true);
-	FTM_SetSoftwareTrigger(FTM_MOTOR, true);
 
 	while (1) {
 	}

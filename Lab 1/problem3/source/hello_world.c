@@ -23,7 +23,7 @@
 
 volatile char ch;
 volatile int new_char = 0;
-volatile char  buffer[] = { 0, 0, 0, 0, 0, 0, 0 };
+volatile char buffer[] = { 0, 0, 0, 0, 0, 0, 0 };
 /*******************************************************************************
  * Prototypes
  ******************************************************************************/
@@ -38,11 +38,10 @@ void updatePWM_dutyCycle(ftm_chnl_t channel, float dutyCycle);
  * @brief Main function
  */
 int main(void) {
-
-
 	char txbuff[] = "Hello World\r\n";
-	int motorInput = 0 ;
-	int servoInput = 0 ;
+
+	int motorInput = 0;
+	int servoInput = 0;
 	float motorDutyCycle;
 	float servoDutyCycle;
 	/* Init board hardware. */
@@ -50,12 +49,11 @@ int main(void) {
 	BOARD_InitBootClocks();
 	BOARD_InitDebugConsole();
 
-
 	setupUART();
 	setupPWM();
 
 	/******* Delay *******/
-	for (volatile int i = 0U; i < 10000000; i++)
+	for (volatile int i = 0U; i < 1000000; i++)
 		__asm("NOP");
 
 	PRINTF("%s", txbuff);
@@ -63,13 +61,7 @@ int main(void) {
 	UART_WriteBlocking(TARGET_UART, txbuff, sizeof(txbuff) - 1);
 
 	while (1) {
-
-
-
-
-
 		if (new_char == 7) {
-
 			new_char = 0;
 
 			PRINTF("outside the interrupt buffer = %s \n ", buffer);
@@ -77,15 +69,15 @@ int main(void) {
 			PRINTF("cleared interrupt\n");
 
 			sscanf(buffer, "%4d%3d", &motorInput, &servoInput);
-				   PRINTF("GOT input as motorInput = %d, servoInput = %d", motorInput, servoInput);
-					motorDutyCycle = motorInput * 0.025f / 100.0f + 0.070745;
-					servoDutyCycle = servoInput * 0.025f / 45.0f + 0.078;
+			PRINTF("GOT input as motorInput = %d, servoInput = %d", motorInput, servoInput);
+			motorDutyCycle = motorInput * 0.025f / 100.0f + 0.070745;
+			servoDutyCycle = servoInput * 0.025f / 45.0f + 0.078;
 
-					updatePWM_dutyCycle(FTM_CHANNEL_SERVO_MOTOR, servoDutyCycle);
-					updatePWM_dutyCycle(FTM_CHANNEL_DC_MOTOR, motorDutyCycle);
+			updatePWM_dutyCycle(FTM_CHANNEL_SERVO_MOTOR, servoDutyCycle);
+			updatePWM_dutyCycle(FTM_CHANNEL_DC_MOTOR, motorDutyCycle);
 
-					FTM_SetSoftwareTrigger(FTM_MOTOR, true);
-					FTM_SetSoftwareTrigger(FTM_MOTOR, true);
+			FTM_SetSoftwareTrigger(FTM_MOTOR, true);
+			FTM_SetSoftwareTrigger(FTM_MOTOR, true);
 		}
 	}
 }

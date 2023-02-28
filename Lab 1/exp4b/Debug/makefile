@@ -33,7 +33,7 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := frdmk66f_bubble_peripheral
+BUILD_ARTIFACT_NAME := exp4b
 BUILD_ARTIFACT_EXTENSION := axf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
@@ -45,24 +45,24 @@ all:
 	+@$(MAKE) --no-print-directory main-build && $(MAKE) --no-print-directory post-build
 
 # Main-build Target
-main-build: frdmk66f_bubble_peripheral.axf
+main-build: exp4b.axf
 
 # Tool invocations
-frdmk66f_bubble_peripheral.axf: $(OBJS) $(USER_OBJS) makefile objects.mk $(OPTIONAL_TOOL_DEPS)
+exp4b.axf: $(OBJS) $(USER_OBJS) makefile objects.mk $(OPTIONAL_TOOL_DEPS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: MCU Linker'
-	arm-none-eabi-gcc -nostdlib -Xlinker -Map="frdmk66f_bubble_peripheral.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -T frdmk66f_bubble_peripheral_Debug.ld -o "frdmk66f_bubble_peripheral.axf" $(OBJS) $(USER_OBJS) $(LIBS)
+	arm-none-eabi-gcc -nostdlib -Xlinker -Map="exp4b.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -T frdmk66f_bubble_peripheral_Debug.ld -o "exp4b.axf" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) frdmk66f_bubble_peripheral.axf
+	-$(RM) exp4b.axf
 	-@echo ' '
 
 post-build:
 	-@echo 'Performing post-build steps'
-	-arm-none-eabi-size "frdmk66f_bubble_peripheral.axf"; # arm-none-eabi-objcopy -v -O binary "frdmk66f_bubble_peripheral.axf" "frdmk66f_bubble_peripheral.bin" ; # checksum -p MK66FN2M0xxx18 -d "frdmk66f_bubble_peripheral.bin";
+	-arm-none-eabi-size "exp4b.axf"; # arm-none-eabi-objcopy -v -O binary "exp4b.axf" "exp4b.bin" ; # checksum -p MK66FN2M0xxx18 -d "exp4b.bin";
 	-@echo ' '
 
 .PHONY: all clean dependents main-build post-build

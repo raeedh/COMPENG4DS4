@@ -6,7 +6,7 @@
  * Generated linker script file for MK66FN2M0xxx18
  * Created from linkscript.ldt by FMCreateLinkLibraries
  * Using Freemarker v2.3.30
- * MCUXpresso IDE v11.6.1 [Build 8255] [2022-10-03] on Feb. 4, 2023, 3:25:10 p.m.
+ * MCUXpresso IDE v11.6.1 [Build 8255] [2022-10-03] on Feb. 9, 2023, 2:09:38 p.m.
  */
 
 INCLUDE "frdmk66f_bubble_peripheral_Debug_library.ld"

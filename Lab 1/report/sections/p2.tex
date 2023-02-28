@@ -1,0 +1,5 @@
+\section*{Problem 2}
+We re-use the functions of Problem 1 and combine them with the UART functions established in Experiment 2. The main function for Problem 2 is shown in Listing~\ref{list:p2}. We customized the "Hello World" message to distinguish our program from others, making it easier to know if we've established a connection between our telemetry modules.
+
+The input string that we read is in the form "\%4d;\%3d;", with the motor duty cycle input as 4 characters (ranging from -100 to 100, with positive numbers padded with a 0 in front), and the servo duty cycle input as 3 characters (ranging from -45 to 45, with positive numbers padded with a 0 in front), with semi-colons as separators.
+\input{sections/p2_main.tex}
