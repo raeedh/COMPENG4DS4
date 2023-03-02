@@ -22,32 +22,33 @@
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
-void producer_event(void* pvParameters);
-void consumer_event(void* pvParameters);
+void producer_event(void *pvParameters);
+void consumer_event(void *pvParameters);
 
-int main(void)
-{
-BaseType_t status;
-/* Init board hardware. */
-BOARD_InitBootPins();
-BOARD_InitBootClocks();
-BOARD_InitDebugConsole();
-EventGroupHandle_t event_group = xEventGroupCreate();
-status = xTaskCreate(producer_event, "producer", 200, (void*)event_group, 2, NULL);
-if (status != pdPASS)
-{
-PRINTF("Task creation failed!.\r\n");
-while (1);
-}
-status = xTaskCreate(consumer_event, "consumer", 200, (void*)event_group, 3, NULL);
-if (status != pdPASS)
-{
-PRINTF("Task creation failed!.\r\n");
-while (1);
-}
-vTaskStartScheduler();
-while (1)
-{}
+int main(void) {
+	BaseType_t status;
+	/* Init board hardware. */
+	BOARD_InitBootPins();
+	BOARD_InitBootClocks();
+	BOARD_InitDebugConsole();
+	EventGroupHandle_t event_group = xEventGroupCreate();
+	status = xTaskCreate(producer_event, "producer", 200, (void*) event_group,
+			2, NULL);
+	if (status != pdPASS) {
+		PRINTF("Task creation failed!.\r\n");
+		while (1)
+			;
+	}
+	status = xTaskCreate(consumer_event, "consumer", 200, (void*) event_group,
+			3, NULL);
+	if (status != pdPASS) {
+		PRINTF("Task creation failed!.\r\n");
+		while (1)
+			;
+	}
+	vTaskStartScheduler();
+	while (1) {
+	}
 }
 
 #define receive_BIT (1 << 0)
@@ -55,43 +56,36 @@ while (1)
 
 int counter = 0;
 
-void producer_event(void* pvParameters)
-{
-EventGroupHandle_t event_group = (EventGroupHandle_t)pvParameters;
-BaseType_t status;
+void producer_event(void *pvParameters) {
+	EventGroupHandle_t event_group = (EventGroupHandle_t) pvParameters;
+	BaseType_t status;
 
-while(1)
-{
-counter++;
-xEventGroupSetBits(event_group, receive_BIT);
-vTaskDelay(1000 / portTICK_PERIOD_MS);
-xEventGroupSetBits(event_group, echo_BIT);
-vTaskDelay(1000 / portTICK_PERIOD_MS);
-}
+	while (1) {
+		counter++;
+		xEventGroupSetBits(event_group, receive_BIT);
+		vTaskDelay(1000 / portTICK_PERIOD_MS);
+		xEventGroupSetBits(event_group, echo_BIT);
+		vTaskDelay(1000 / portTICK_PERIOD_MS);
+	}
 }
 
+void consumer_event(void *pvParameters) {
+	EventGroupHandle_t event_group = (EventGroupHandle_t) pvParameters;
+	EventBits_t bits;
+	while (1) {
+		bits = xEventGroupWaitBits(event_group,
+		receive_BIT | echo_BIT,
+		pdTRUE,
+		pdFALSE,
+		portMAX_DELAY);
 
-void consumer_event(void* pvParameters)
-{
-EventGroupHandle_t event_group = (EventGroupHandle_t)pvParameters;
-EventBits_t bits;
-while(1)
-{
-bits = xEventGroupWaitBits(event_group,
-receive_BIT | echo_BIT,
-pdTRUE,
-pdFALSE,
-portMAX_DELAY);
+		if ((bits & receive_BIT) == receive_BIT) {
+			PRINTF("Received Value = %d\r\n", counter);
+		}
+		if ((bits & echo_BIT) == echo_BIT) {
+			PRINTF("Received Value = %d\r\n", counter);
+		}
 
-if((bits & receive_BIT) == receive_BIT)
-{
-	PRINTF("Received Value = %d\r\n", counter);
-}
-if((bits & echo_BIT) == echo_BIT)
-{
-  PRINTF("Received Value = %d\r\n", counter);
-}
-
-}
+	}
 }
 
