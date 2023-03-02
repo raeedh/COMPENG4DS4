@@ -11,6 +11,7 @@
 #include "task.h"
 #include "queue.h"
 #include "timers.h"
+#include "semphr.h"
 
 /* Freescale includes. */
 #include "fsl_device_registers.h"
@@ -30,7 +31,10 @@
  ******************************************************************************/
 void hello_task(void *pvParameters);
 void timerCallbackFunction(TimerHandle_t timer_handle);
-void timerCallbackFunction2(TimerHandle_t timer_handle);
+void timerCallbackFunction2(TimerHandle_t timer_handle, void *pvParameters);
+void consumer_sem(void *pvParameters);
+// void producer_sem(void *pvParameters);
+
 
 /*******************************************************************************
  * Code
@@ -43,6 +47,10 @@ int main(void)
     BOARD_InitBootClocks();
     BOARD_InitDebugConsole();
 
+    SemaphoreHandle_t *semaphores = (SemaphoreHandle_t *)malloc(1 * sizeof(SemaphoreHandle_t));
+    // semaphores[0] = xSemaphoreCreateBinary(); // Producer semaphore
+    semaphores[0] = xSemaphoreCreateBinary(); // Consumer semaphore
+
     status = xTaskCreate(hello_task, "Hello_task", 200, NULL, 2, NULL);
     if (status != pdPASS)
     {
@@ -50,16 +58,17 @@ int main(void)
         while (1);
     }
 
-    TimerHandle_t timer_handle = xTimerCreate("Single Shot timer",
-                                              5000 / portTICK_PERIOD_MS,
-                                              pdFALSE,
-                                              NULL,
-                                              timerCallbackFunction);
+    // status = xTaskCreate(producer_sem, "producer", 200, (void *)semaphores, 2, NULL);
+    // if (status != pdPASS)
+    // {
+    //     PRINTF("Task creation failed!.\r\n");
+    //     while (1);
+    // }
 
-    status = xTimerStart(timer_handle, 0);
+    status = xTaskCreate(consumer_sem, "consumer", 200, (void *)semaphores, 2, NULL);
     if (status != pdPASS)
     {
-        PRINTF("Couldn't start the timer!.\r\n");
+        PRINTF("Task creation failed!.\r\n");
         while (1);
     }
 
@@ -91,16 +100,37 @@ void hello_task(void *pvParameters)
 }
 
 void timerCallbackFunction(TimerHandle_t timer_handle)
-{
+{   
     PRINTF("Hello from the single shot timer callback.\r\n");
 }
 
-void timerCallbackFunction2(TimerHandle_t timer_handle)
+void timerCallbackFunction2(TimerHandle_t timer_handle, void *pvParameters)
 {
-    static int counter = 0;
+    PRINTF("Hello from the periodic timer callback.\r\n");
 
-    PRINTF("Hello from the periodic timer callback. Counter = %d\r\n", counter);
-    counter++;
-    if (counter >= 10)
-        xTimerStop(timer_handle, 0);
+    SemaphoreHandle_t *semaphores = (SemaphoreHandle_t *)pvParameters;
+    SemaphoreHandle_t consumer_semaphore = semaphores[0];
+    BaseType_t status;
+
+    xSemaphoreGive(consumer_semaphore);
+}
+
+void consumer_sem(void *pvParameters)
+{
+    SemaphoreHandle_t *semaphores = (SemaphoreHandle_t *)pvParameters;
+    // SemaphoreHandle_t producer_semaphore = semaphores[0];
+    SemaphoreHandle_t consumer_semaphore = semaphores[0];
+    BaseType_t status;
+
+    while (1)
+    {
+        status = xSemaphoreTake(consumer_semaphore, portMAX_DELAY);
+        if (status != pdPASS)
+        {
+            PRINTF("Failed to acquire consumer_semaphore\r\n");
+            while (1);
+        }
+
+        PRINTF("Hello World!\n");
+    }
 }
