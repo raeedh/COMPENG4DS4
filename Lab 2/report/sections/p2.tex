@@ -1,0 +1,101 @@
+\begin{filecontents}[overwrite]{./sections/p2_main.tex}
+\begin{lstlisting}[language=c,caption=Problem 2 main, label=list:p2_main]
+int main(void) {
+    BaseType_t status;
+    /* Init board hardware. */
+    BOARD_InitBootPins();
+    BOARD_InitBootClocks();
+    BOARD_InitDebugConsole();
+
+    queue1 = xQueueCreate(10, sizeof(char*));
+
+    if (queue1 == NULL) {
+        PRINTF("Queue creation failed!.\r\n");
+        while (1)
+            ;
+    }
+
+    status = xTaskCreate(producer_queue, "producer", 200, (void*) queue1, 2, NULL);
+    if (status != pdPASS) {
+        PRINTF("Task creation failed!.\r\n");
+        while (1)
+            ;
+    }
+
+    status = xTaskCreate(consumer_queue, "consumer", 200, (void*) queue1, 3, NULL);
+    if (status != pdPASS) {
+        PRINTF("Task creation failed!.\r\n");
+        while (1)
+            ;
+    }
+
+    vTaskStartScheduler();
+
+    while (1) {
+    }
+
+}
+\end{lstlisting}
+\end{filecontents}
+
+\begin{filecontents}[overwrite]{./sections/p2_producer.tex}
+\begin{lstlisting}[language=c,caption=Problem 2 Producer Queue, label=list:p2_prod]
+void producer_queue(void *pvParameters) {
+    QueueHandle_t queue1 = (QueueHandle_t) pvParameters;
+    BaseType_t status;
+
+    char *usr_str;
+    usr_str = malloc(sizeof(char) * 10);
+
+    printf("please enter a string\n");
+    scanf("%s", usr_str);
+
+    while (1) {
+        status = xQueueSend(queue1, (void* ) &usr_str, portMAX_DELAY);
+        if (status != pdPASS) {
+            PRINTF("Queue Send failed!.\r\n");
+            while (1)
+                ;
+        }
+
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
+    }
+
+    vTaskDelete(NULL);
+}
+\end{lstlisting}
+\end{filecontents}
+
+
+\begin{filecontents}[overwrite]{./sections/p2_consumer.tex}
+\begin{lstlisting}[language=c,caption=Problem 2 Consumer Queue, label=list:p2_cons]
+void consumer_queue(void *pvParameters) {
+    QueueHandle_t queue1 = (QueueHandle_t) pvParameters;
+    BaseType_t status;
+
+    char *receive_str;
+
+    while (1) {
+        status = xQueueReceive(queue1, (void*) &receive_str, portMAX_DELAY);
+
+        if (status != pdPASS) {
+            PRINTF("Queue Receive failed!.\r\n");
+
+            while (1)
+                ;
+        }
+
+        PRINTF("Received Value = %s\r\n", receive_str);
+    }
+}    
+\end{lstlisting}
+\end{filecontents}
+
+\section*{Problem 2}
+When repeating Problem 1 with queues, we have a producer task handling the user input and a consumer task printing the string. The priority of the producer is 2 and the consumer is 3. The queue declared is \texttt{queue1}. In the producer task, the user input \texttt{usr\_str} will be put in the queue by \texttt{xQueueSend}. The consumer task is blocked by \texttt{xQueueReceive} until producer one sends the input string, which will also be received by \texttt{xQueueReceive}. After the string is received on the consumer side, it will be printed to the console.
+
+The main function is shown below in Listing~\ref{list:p2_main}. The two tasks are shown in Listings~\ref{list:p2_prod} and \ref{list:p2_cons}.
+
+\input{sections/p2_main.tex}
+\input{sections/p2_producer.tex}
+\input{sections/p2_consumer.tex}

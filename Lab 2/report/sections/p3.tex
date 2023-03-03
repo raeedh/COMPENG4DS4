@@ -1,0 +1,149 @@
+\begin{filecontents}[overwrite]{./sections/p3_main.tex}
+\begin{lstlisting}[language=c,caption=Problem 3 main, label=list:p3_main]
+int main(void) {
+    BaseType_t status;
+    /* Init board hardware. */
+    BOARD_InitBootPins();
+    BOARD_InitBootClocks();
+    BOARD_InitDebugConsole();
+
+    usr_str = malloc(sizeof(char) * 100);
+
+    SemaphoreHandle_t *semaphores = (SemaphoreHandle_t*) malloc(3 * sizeof(SemaphoreHandle_t));
+
+    semaphores[0] = xSemaphoreCreateBinary(); // Producer1_sem
+    semaphores[1] = xSemaphoreCreateBinary(); // Producer2_sem
+    semaphores[2] = xSemaphoreCreateCounting(2, 2); // consumer_sem
+
+    status = xTaskCreate(producer_sem, "producer", 200, (void*) semaphores, 2, NULL);
+    if (status != pdPASS) {
+        PRINTF("Task creation failed!.\r\n");
+        while (1)
+            ;
+    }
+
+    status = xTaskCreate(consumer1_sem, "consumer", 200, (void*) semaphores, 2, NULL);
+    if (status != pdPASS) {
+        PRINTF("Task creation failed!.\r\n");
+        while (1)
+            ;
+    }
+
+    status = xTaskCreate(consumer2_sem, "consumer", 200, (void*) semaphores, 3, NULL);
+    if (status != pdPASS) {
+        PRINTF("Task creation failed!.\r\n");
+        while (1)
+            ;
+    }
+
+    vTaskStartScheduler();
+
+    while (1) {
+    }
+}
+\end{lstlisting}
+\end{filecontents}
+
+\begin{filecontents}[overwrite]{./sections/p3_producer.tex}
+\begin{lstlisting}[language=c,caption=Problem 3 Producer Task, label=list:p3_prod]
+void producer_sem(void *pvParameters) {
+    SemaphoreHandle_t *semaphores = (SemaphoreHandle_t*) pvParameters;
+    SemaphoreHandle_t producer1_semaphore = semaphores[0];
+    SemaphoreHandle_t producer2_semaphore = semaphores[1];
+    SemaphoreHandle_t consumer_semaphore = semaphores[2];
+    BaseType_t status1, status2;
+
+    printf("please enter a string\n");
+    scanf("%s", usr_str);
+
+    while (1) {
+        status1 = xSemaphoreTake(consumer_semaphore, portMAX_DELAY);
+        status2 = xSemaphoreTake(consumer_semaphore, portMAX_DELAY);
+
+        if (status1 != pdPASS || status2 != pdPASS) {
+            PRINTF("Failed to acquire consumer_semaphore\r\n");
+            while (1)
+                ;
+        }
+
+        xSemaphoreGive(producer1_semaphore);
+        xSemaphoreGive(producer2_semaphore);
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
+    }
+
+}    
+\end{lstlisting}
+\end{filecontents}
+
+
+\begin{filecontents}[overwrite]{./sections/p3_consumer1.tex}
+\begin{lstlisting}[language=c,caption=Problem 3 Consumer 1 Task, label=list:p3_cons1]
+void consumer1_sem(void *pvParameters) {
+    SemaphoreHandle_t *semaphores = (SemaphoreHandle_t*) pvParameters;
+    SemaphoreHandle_t producer1_semaphore = semaphores[0];
+    SemaphoreHandle_t consumer_semaphore = semaphores[2];
+    BaseType_t status;
+
+    while (1) {
+        xSemaphoreGive(consumer_semaphore);
+        status = xSemaphoreTake(producer1_semaphore, portMAX_DELAY);
+        if (status != pdPASS) {
+            PRINTF("Failed to acquire producer1_semaphore\r\n");
+            while (1)
+                ;
+        }
+        PRINTF("Received Value = %s\r\n", usr_str);
+    }
+}
+\end{lstlisting}
+\end{filecontents}
+
+\begin{filecontents}[overwrite]{./sections/p3_consumer2.tex}
+\begin{lstlisting}[language=c,caption=Problem 3 Consumer 2 Task, label=list:p3_cons2]
+void consumer2_sem(void *pvParameters) {
+    SemaphoreHandle_t *semaphores = (SemaphoreHandle_t*) pvParameters;
+    SemaphoreHandle_t producer2_semaphore = semaphores[1];
+    SemaphoreHandle_t consumer_semaphore = semaphores[2];
+    BaseType_t status;
+
+    char *receive_str_cap;
+
+    receive_str_cap = malloc(sizeof(char) * 100);
+
+    while (1) {
+        xSemaphoreGive(consumer_semaphore);
+        status = xSemaphoreTake(producer2_semaphore, portMAX_DELAY);
+
+        if (status != pdPASS) {
+            PRINTF("Failed to acquire producer2_semaphore\r\n");
+
+            while (1)
+                ;
+        }
+
+        for (int i = 0; i < 100; i++) {
+            receive_str_cap[i] = toupper(usr_str[i]);
+        }
+
+        PRINTF("Received Value in captal = %s\r\n", receive_str_cap);
+    }
+}
+\end{lstlisting}
+\end{filecontents}
+
+\section*{Problem 3}
+\begin{enumerate}
+\item
+It is possible to use a single producer semaphore to control the two consumers with a 2,2 counting semaphores, but you should initialize the semaphore to 1 to make sure only one consumer accesses it at a time. When the semaphore is set to 1. Then the other consumer has to wait until the one who holes it by releasing with xSemaphoreGive.
+
+\item
+For this problem, we used a similar structure as the experiment. Two producer semaphore and one consumer counting semaphore which counts to 2 and is initialized to 2. The producer will take consumer semaphore and then give semaphore back to them. The user string is taken from the console as previous questions. When the producer task receives a string, it will expect a signal from both consumer tasks, then will signal both producer semaphores. The first consumer will print the string as it is, and the second consumer will change all the letters to the capital letters with the \texttt{toupper} function before printing the string.
+
+The main function is shown below in Listing~\ref{list:p3_main}. The tasks are shown in Listings~\ref{list:p3_prod} to \ref{list:p3_cons2}.
+
+\input{sections/p3_main.tex}
+\input{sections/p3_producer.tex}
+\input{sections/p3_consumer1.tex}
+\input{sections/p3_consumer2.tex}
+
+\end{enumerate}

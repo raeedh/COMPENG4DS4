@@ -1,0 +1,250 @@
+\begin{filecontents}[overwrite]{./sections/p4_2_main.tex}
+\begin{lstlisting}[language=c,caption=Problem 4.2 main, label=list:p4_2_main]
+typedef struct {
+SemaphoreHandle_t sem;
+
+int counter;
+} wasd_handler;
+
+int main(void) {
+    BaseType_t status;
+    /* Init board hardware. */
+    BOARD_InitBootPins();
+    BOARD_InitBootClocks();
+    BOARD_InitDebugConsole();
+
+    SemaphoreHandle_t	my_sem = xSemaphoreCreateBinary();
+
+    int my_counter = 0;
+    wasd_handler my_wasd = { my_sem, my_count };
+    wasd_handler *my_wasd_ptr = &my_wasd;
+
+    xSemaphoreGive(my_sem);
+
+    status = xTaskCreate(producer_event, "producer", 200, (void*) semaphores, 2, NULL);
+    if (status != pdPASS) {
+        PRINTF("Task creation failed!.\r\n");
+        while (1)
+            ;
+    }
+    status = xTaskCreate(consumer_event, "consumer", 200, (void*) semaphores, 2, NULL);
+    if (status != pdPASS) {
+        PRINTF("Task creation failed!.\r\n");
+        while (1)
+            ;
+    }
+    vTaskStartScheduler();
+    while (1) {
+    }
+}        
+\end{lstlisting}
+\end{filecontents}
+
+\begin{filecontents}[overwrite]{./sections/p4_2_producer.tex}
+\begin{lstlisting}[language=c,caption=Problem 4.2 Producer Task, label=list:p4_2_prod]
+void producer_event(void *pvParameters) {
+    wasd_handler *my_sem = (wasd_handler *)pvParameters;
+
+    BaseType_t status1,
+    char c;
+
+    while (1) {
+        status1 = xSemaphoreTake(my_sem->sem, portMAX_DELAY);
+
+
+        if (status1 != pdPASS) {
+            PRINTF("Failed to acquire consumer_semaphore\r\n");
+
+            while (1)
+                ;
+        }
+
+        while (1) {
+            scanf("%c", &c);
+
+            switch (c) {
+            case 'a':
+                xSemaphoreGive(my_sem->sem);
+                vTaskDelay(1000 / portTICK_PERIOD_MS);
+                my_sem -> counter = 0;
+                break;
+            case 'd':
+                xSemaphoreGive(my_sem->sem);
+                vTaskDelay(1000 / portTICK_PERIOD_MS);
+                my_sem -> counter = 1;
+                break;
+            case 'w':
+                xSemaphoreGive(my_sem->sem);
+                vTaskDelay(1000 / portTICK_PERIOD_MS);
+                my_sem -> counter = 2;
+                break;
+            case 's':
+                xSemaphoreGive(pmy_sem->sem);
+                vTaskDelay(1000 / portTICK_PERIOD_MS);
+                my_sem -> counter = 3;
+                break;
+            }
+        }
+    }
+}
+\end{lstlisting}
+\end{filecontents}
+
+\begin{filecontents}[overwrite]{./sections/p4_2_consumer.tex}
+\begin{lstlisting}[language=c,caption=Problem 4.2 Consumer Task, label=list:p4_2_cons]
+void consumer_event(void *pvParameters) {
+    wasd_handler *my_sem = (wasd_handler *)pvParameters;
+    BaseType_t status;
+
+    while (1) {
+        xSemaphoreGive(consumer_semaphore);
+        status = xSemaphoreTake(producer1_semaphore, portMAX_DELAY);
+        if (status != pdPASS) {
+            PRINTF("Failed to acquire producer1_semaphore\r\n");
+            while (1)
+                ;
+        }
+        switch (my_sem->counter) {
+        case '0':
+            PRINTF("left\r\n");
+            vTaskDelay(1000 / portTICK_PERIOD_MS);
+            break;
+        case '1':
+            PRINTF("right\r\n");
+            vTaskDelay(1000 / portTICK_PERIOD_MS);
+            break;
+        case '2':
+            PRINTF("up\r\n");
+            vTaskDelay(1000 / portTICK_PERIOD_MS);
+            break;
+        case '3':
+            PRINTF("down\r\n");
+            vTaskDelay(1000 / portTICK_PERIOD_MS);
+            break;
+        }
+    }
+}    
+\end{lstlisting}
+\end{filecontents}
+
+\begin{filecontents}[overwrite]{./sections/p4_3_main.tex}
+\begin{lstlisting}[language=c,caption=Problem 4.3 main, label=list:p4_3_main]
+int main(void) {
+    BaseType_t status;
+    /* Init board hardware. */
+    BOARD_InitBootPins();
+    BOARD_InitBootClocks();
+    BOARD_InitDebugConsole();
+    EventGroupHandle_t event_group = xEventGroupCreate();
+    status = xTaskCreate(producer_event, "producer", 200, (void*) event_group,
+            2, NULL);
+    if (status != pdPASS) {
+        PRINTF("Task creation failed!.\r\n");
+        while (1)
+            ;
+    }
+    status = xTaskCreate(consumer_event, "consumer", 200, (void*) event_group,
+            3, NULL);
+    if (status != pdPASS) {
+        PRINTF("Task creation failed!.\r\n");
+        while (1)
+            ;
+    }
+    status = xTaskCreate(consumer2_event, "consumer", 200, (void*) event_group,
+            3, NULL);
+    if (status != pdPASS) {
+        PRINTF("Task creation failed!.\r\n");
+        while (1)
+            ;
+    }
+    vTaskStartScheduler();
+    while (1) {
+    }
+}
+\end{lstlisting}
+\end{filecontents}
+
+\begin{filecontents}[overwrite]{./sections/p4_3_producer.tex}
+\begin{lstlisting}[language=c,caption=Problem 4.3 Producer Task, label=list:p4_3_prod]
+void producer_event(void *pvParameters) {
+    EventGroupHandle_t event_group = (EventGroupHandle_t) pvParameters;
+    BaseType_t status;
+
+    while (1) {
+        counter++;
+        xEventGroupSetBits(event_group, receive_BIT);
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
+
+    }
+}
+\end{lstlisting}
+\end{filecontents}
+
+\begin{filecontents}[overwrite]{./sections/p4_3_consumer1.tex}
+\begin{lstlisting}[language=c,caption=Problem 4.3 Consumer 1 Task, label=list:p4_3_cons1]
+void consumer_event(void *pvParameters) {
+    EventGroupHandle_t event_group = (EventGroupHandle_t) pvParameters;
+    EventBits_t bits;
+    while (1) {
+        bits = xEventGroupWaitBits(event_group,
+        receive_BIT,
+        pdTRUE,
+        pdFALSE,
+        portMAX_DELAY);
+
+        if ((bits & receive_BIT) == receive_BIT) {
+            xEventGroupSetBits(event_group, echo_BIT);
+            vTaskDelay(1000 / portTICK_PERIOD_MS);
+        }
+
+    }
+}
+\end{lstlisting}
+\end{filecontents}
+
+\begin{filecontents}[overwrite]{./sections/p4_3_consumer2.tex}
+\begin{lstlisting}[language=c,caption=Problem 4.3 Consumer 2 Task, label=list:p4_3_cons2]
+void consumer2_event(void *pvParameters) {
+    EventGroupHandle_t event_group = (EventGroupHandle_t) pvParameters;
+    EventBits_t bits;
+    while (1) {
+        bits = xEventGroupWaitBits(event_group,
+            echo_BIT,
+        pdTRUE,
+        pdFALSE,
+        portMAX_DELAY);
+
+        if ((bits & echo_BIT) == echo_BIT) {
+            PRINTF("Received Value = %d\r\n", counter);
+        }
+
+    }
+}
+\end{lstlisting}
+\end{filecontents}
+
+\section*{Problem 4}
+\begin{enumerate}
+\item
+The producer task can be similar or higher priority compared to the consumer task. The consumer does not have any urgent or dependent information from the producer. 
+
+\item
+We create a struct containing the semaphore and a counter. We pass the pointer to the struct object to the task parameter in order to pass down the counter. Then the consumer will have a switch case for different counter values to print the respective direction message.
+
+The main function is shown below in Listing~\ref{list:p4_2_main}. The tasks are shown in Listings~\ref{list:p4_2_prod} and \ref{list:p4_2_cons}.
+
+\input{sections/p4_2_main.tex}
+\input{sections/p4_2_producer.tex}
+\input{sections/p4_2_consumer.tex}
+
+\item
+We have one producer and two consumers. The producer increments the counter and sets the receive bit. Then the first consumer takes the receive bit to pass to the echo consumer by setting the echo bit to the event group, and the second consumer takes the echo bit to echo the string to the console.
+
+The main function is shown below in Listing~\ref{list:p4_3_main}. The tasks are shown in Listings~\ref{list:p4_3_prod} to \ref{list:p4_3_cons2}.
+
+\input{sections/p4_3_main.tex}
+\input{sections/p4_3_producer.tex}
+\input{sections/p4_3_consumer1.tex}
+\input{sections/p4_3_consumer2.tex}
+
+\end{enumerate}
