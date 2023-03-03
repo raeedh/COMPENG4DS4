@@ -24,7 +24,7 @@
  ******************************************************************************/
 void producer_event(void *pvParameters);
 void consumer_event(void *pvParameters);
-
+void consumer2_event(void *pvParameters);
 int main(void) {
 	BaseType_t status;
 	/* Init board hardware. */
@@ -40,6 +40,13 @@ int main(void) {
 			;
 	}
 	status = xTaskCreate(consumer_event, "consumer", 200, (void*) event_group,
+			3, NULL);
+	if (status != pdPASS) {
+		PRINTF("Task creation failed!.\r\n");
+		while (1)
+			;
+	}
+	status = xTaskCreate(consumer2_event, "consumer", 200, (void*) event_group,
 			3, NULL);
 	if (status != pdPASS) {
 		PRINTF("Task creation failed!.\r\n");
@@ -74,7 +81,7 @@ void consumer_event(void *pvParameters) {
 	EventBits_t bits;
 	while (1) {
 		bits = xEventGroupWaitBits(event_group,
-		receive_BIT | echo_BIT,
+		receive_BIT,
 		pdTRUE,
 		pdFALSE,
 		portMAX_DELAY);
@@ -82,10 +89,24 @@ void consumer_event(void *pvParameters) {
 		if ((bits & receive_BIT) == receive_BIT) {
 			PRINTF("Received Value = %d\r\n", counter);
 		}
+
+	}
+}
+
+
+void consumer2_event(void *pvParameters) {
+	EventGroupHandle_t event_group = (EventGroupHandle_t) pvParameters;
+	EventBits_t bits;
+	while (1) {
+		bits = xEventGroupWaitBits(event_group,
+ 		echo_BIT,
+		pdTRUE,
+		pdFALSE,
+		portMAX_DELAY);
+
 		if ((bits & echo_BIT) == echo_BIT) {
 			PRINTF("Received Value = %d\r\n", counter);
 		}
 
 	}
 }
-
