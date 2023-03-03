@@ -71,8 +71,7 @@ void producer_event(void *pvParameters) {
 		counter++;
 		xEventGroupSetBits(event_group, receive_BIT);
 		vTaskDelay(1000 / portTICK_PERIOD_MS);
-		xEventGroupSetBits(event_group, echo_BIT);
-		vTaskDelay(1000 / portTICK_PERIOD_MS);
+
 	}
 }
 
@@ -87,7 +86,8 @@ void consumer_event(void *pvParameters) {
 		portMAX_DELAY);
 
 		if ((bits & receive_BIT) == receive_BIT) {
-			PRINTF("Received Value = %d\r\n", counter);
+			xEventGroupSetBits(event_group, echo_BIT);
+			vTaskDelay(1000 / portTICK_PERIOD_MS);
 		}
 
 	}
