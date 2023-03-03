@@ -1,0 +1,6 @@
+\section*{Problem 5}
+FreeRTOS provides interrupt service routine (ISR) safe functions as some functions may not operate properly when called by an interrupt. 
+
+The \texttt{xHigherPriorityTaskWoken} parameter is used when to determine if the interrupt needs to perform a \textit{context switch} (switch the state of a task) due to a higher priority task being unblocked by a FreeRTOS API function. Context switches do not automatically occur inside ISR versions of API functions for several reasons, therefore this parameter is used to indicate if a higher priority task has been unblocked or not.
+
+The \texttt{portYIELD\ FROM\ ISR} macro is used to request a context switch when inside an ISR. The argument of the macro is the parameter described above, and is used as \texttt{portYIELD\ FROM\ ISR(xHigherPriorityTaskWoken)}. If \texttt{xHigherPriorityTaskWoken} is set to \texttt{pdFALSE}, the macro will have no effect and not request any context switch. If \texttt{xHigherPriorityTaskWoken} is not set to \texttt{pdFALSE} (i.e. the value of the parameter was modified by an ISR safe API function), a context switch is requested and the task that is running may change (e.g. the running task may switch to a higher priority task).
