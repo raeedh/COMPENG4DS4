@@ -1,0 +1,4 @@
+\section*{Problem 7}
+The variable \texttt{rc\_values} contains a structure \texttt{RC\_Values}, which stores 9 2-byte integers, one integer for the header and eight integers for each of the eight data channel. This structure is used to store the data received via UART.
+
+The variable \texttt{ptr} contains a pointer to the address of \texttt{rc\_values}, specifically the address to the first byte of \texttt{rc\_values}. When the main function is run and a stream of data is received via UART, the first byte is checked and stored in \texttt{ptr}, or the first byte of \texttt{rc\_values}. The value of this byte is checked to see if matches \texttt{0x20}, which is the first expected byte of data stream received. If this matches, the remaining 17 bytes are read via UART and stored at \texttt{\&ptr[1]}, which points to the address of the second byte of \texttt{header} in the structure.

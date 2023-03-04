@@ -134,10 +134,15 @@ void consumer2_sem(void *pvParameters) {
 \section*{Problem 3}
 \begin{enumerate}
 \item
-It is possible to use a single producer semaphore to control the two consumers with a 2,2 counting semaphores, but you should initialize the semaphore to 1 to make sure only one consumer accesses it at a time. When the semaphore is set to 1. Then the other consumer has to wait until the one who holes it by releasing with xSemaphoreGive.
+It is possible to use a single producer semaphore to control the two consumers with a counting semaphore. This will make sure producers are shared on both consumer sides. But on the consumer side we will need two separate identities of  counting semaphores of initial count 0 and max count of 1. This makes sure that by taking the semaphore from the producer. only one of the consumers can access the shared resource  at a time.
+\begin{lstlisting}[language=c,caption=Problem 3.1, label=list:p3_1]
+producer_semaphore = xSemaphoreCreateCounting(2,2);
+consumer1_semaphore = xSemaphoreCreateCounting(1,0);
+consumer2_semaphore = xSemaphoreCreateCounting(1,0);
+\end{lstlisting}
 
 \item
-For this problem, we used a similar structure as the experiment. Two producer semaphore and one consumer counting semaphore which counts to 2 and is initialized to 2. The producer will take consumer semaphore and then give semaphore back to them. The user string is taken from the console as previous questions. When the producer task receives a string, it will expect a signal from both consumer tasks, then will signal both producer semaphores. The first consumer will print the string as it is, and the second consumer will change all the letters to the capital letters with the \texttt{toupper} function before printing the string.
+For this problem, we used a similar structure as the experiment. Two producer semaphores and one consumer counting semaphore which counts to 2 and is initialized to 2. The producer will take consumer semaphore and then give semaphore back to them. The user string is taken from the console as previous questions. When the producer task receives a string, it will expect a signal from both consumer tasks, then will signal both producer semaphores. The first consumer will print the string as it is, and the second consumer will change all the letters to the capital letters with the \texttt{toupper} function before printing the string.
 
 The main function is shown below in Listing~\ref{list:p3_main}. The tasks are shown in Listings~\ref{list:p3_prod} to \ref{list:p3_cons2}.
 
