@@ -1,0 +1,77 @@
+\begin{filecontents}[overwrite]{./sections/p6_main.tex}
+\begin{lstlisting}[language=c,caption=Problem 6 Producer Task, label=list:p6_main]
+int main(void) {
+    BaseType_t status;
+    /* Init board hardware. */
+    BOARD_InitBootPins();
+    BOARD_InitBootClocks();
+    BOARD_InitDebugConsole();
+
+    semaphores = (SemaphoreHandle_t*) malloc(1 * sizeof(SemaphoreHandle_t));
+    semaphores[0] = xSemaphoreCreateBinary(); // Consumer semaphore
+
+    status = xTaskCreate(consumer_sem, "consumer", 200, (void*) semaphores, 2, NULL);
+    if (status != pdPASS) {
+        PRINTF("Task creation failed!.\r\n");
+        while (1)
+            ;
+    }
+
+    TimerHandle_t timer_handle2 = xTimerCreate("Periodic timer",
+            1000 / portTICK_PERIOD_MS,
+            pdTRUE,
+            NULL, timerCallbackFunction2);
+
+    status = xTimerStart(timer_handle2, 0);
+    if (status != pdPASS) {
+        PRINTF("Couldn't start the timer!.\r\n");
+        while (1)
+            ;
+    }
+
+    vTaskStartScheduler();
+    while (1) {
+    }
+}
+\end{lstlisting}
+\end{filecontents}
+
+\begin{filecontents}[overwrite]{./sections/p6_timer.tex}
+\begin{lstlisting}[language=c,caption=Problem 6 Periodic Timer Callback Function, label=list:p6_timer]
+void timerCallbackFunction2(TimerHandle_t timer_handle) {
+    SemaphoreHandle_t consumer_semaphore = semaphores[0];
+    BaseType_t status;
+
+    xSemaphoreGive(consumer_semaphore);
+}
+\end{lstlisting}
+\end{filecontents}
+
+\begin{filecontents}[overwrite]{./sections/p6_print.tex}
+\begin{lstlisting}[language=c,caption=Problem 6 Print Task, label=list:p6_print]
+void consumer_sem(void *pvParameters) {
+    SemaphoreHandle_t consumer_semaphore = semaphores[0];
+    BaseType_t status;
+
+    while (1) {
+        status = xSemaphoreTake(consumer_semaphore, portMAX_DELAY);
+        if (status != pdPASS) {
+            PRINTF("Failed to acquire consumer_semaphore\r\n");
+            while (1)
+                ;
+        }
+
+        PRINTF("Hello World!\n");
+    }
+}
+\end{lstlisting}
+\end{filecontents}
+
+\section*{Problem 6}
+We create a periodic timer with the callback function defined in \texttt{timerCallbackFunction2}. The timer callback function signals a semaphore every second. The task will block on \texttt{xSemaphoreTake} until it receives a signal from the semaphore, then print a message on the console.
+
+The main function is shown below in Listing~\ref{list:p6_main}. The timer callback function is shown in Listing~\ref{list:p6_timer}. The print task is shown in Listing~\ref{list:p6_print}.
+
+\input{sections/p6_main.tex}
+\input{sections/p6_timer.tex}
+\input{sections/p6_print.tex}
