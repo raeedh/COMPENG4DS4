@@ -11,7 +11,7 @@ void setupLEDComponent()
 
     /*************** LED Task ***************/
     //Create LED Queue
-    led_queue = xQueueCreate(10, 3*sizeof(uint8_t)); // generic int queue for now, figure out exact size and type later
+    led_queue = xQueueCreate(10, sizeof(uint8_t*)); // generic int queue for now, figure out exact size and type later
 
     //Create LED Task
     status = xTaskCreate(ledTask, "LED task", 200, (void*) led_queue, 2, NULL); // check priority for this
@@ -90,10 +90,8 @@ void ledTask(void* pvParameters)
     float green;
     float blue;
 
-    uint8_t led_values[3];
     uint8_t *led_input;
-
-    led_input = led_values;
+    led_input = malloc(sizeof(uint8_t) * 3);
 
     while (1) {
         status = xQueueReceive(motor_queue, (void*) &led_input, portMAX_DELAY);
@@ -105,9 +103,9 @@ void ledTask(void* pvParameters)
                 ;
         }
 
-        red = (led_values[0] / 255.0) * 100;
-        green = (led_values[1] / 255.0) * 100;
-        blue = (led_values[2] / 255.0) * 100;
+        red = (led_input[0] / 255.0) * 100;
+        green = (led_input[1] / 255.0) * 100;
+        blue = (led_input[2] / 255.0) * 100;
 
         FTM_UpdatePwmDutycycle(FTM_LED, FTM_RED_CHANNEL, kFTM_EdgeAlignedPwm, (uint8_t)red);
         FTM_SetSoftwareTrigger(FTM_LED, true);

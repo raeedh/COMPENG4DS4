@@ -14,7 +14,19 @@
 #include "Motor_Control_Component.h"
 #include "LED_Component.h"
 
-#define RC_UART		//Define UART for RC receiver
+#define RC_UART UART1   //Define UART for RC receiver
+
+typedef struct {
+    uint16_t header;
+    uint16_t ch1; // horizontal position of the right joystick
+    uint16_t ch2; // vertical position of the right joystick
+    uint16_t ch3; // horizontal position of the left joystick
+    uint16_t ch4; // vertical position of the left joystick
+    uint16_t ch5; // map to forward/reverse
+    uint16_t ch6; // map to speed mode
+    uint16_t ch7; //
+    uint16_t ch8; //
+} RC_Values;
 
 extern SemaphoreHandle_t rc_hold_semaphore;
 extern TaskHandle_t rc_task_handle;
