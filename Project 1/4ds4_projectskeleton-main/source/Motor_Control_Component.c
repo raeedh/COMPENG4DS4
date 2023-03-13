@@ -136,6 +136,7 @@ void motorTask(void* pvParameters)
 		motorDutyCycle = *motorInput * 0.025f / 100.0f + 0.070745;
 
 	updatePWM_dutyCycle(FTM_CHANNEL_DC_MOTOR, motorDutyCycle);
+    FTM_SetSoftwareTrigger(FTM_MOTOR, true);
 	}
 }
 
@@ -159,5 +160,6 @@ void positionTask(void* pvParameters)
 		servoDutyCycle = *servoInput * 0.025f / 45.0f + 0.078;
 
 	updatePWM_dutyCycle(FTM_CHANNEL_SERVO_MOTOR, servoDutyCycle);
+    FTM_SetSoftwareTrigger(FTM_MOTOR, true);
 	}
 }

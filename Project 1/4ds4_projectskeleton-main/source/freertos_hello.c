@@ -15,12 +15,12 @@ int main(void)
 {
     /* Init board hardware. */
     BOARD_InitBootClocks();
-//
-//    setupMotorComponent();
-//    setupRCReceiverComponent();
-//    setupTerminalComponent();
-//    setupLEDComponent();
-//    setupAccelerometerComponent();
+
+    setupMotorComponent();
+    setupRCReceiverComponent();
+    // setupTerminalComponent();
+    setupLEDComponent();
+    // setupAccelerometerComponent();
 
     vTaskStartScheduler();
 
