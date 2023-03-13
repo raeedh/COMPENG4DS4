@@ -28,7 +28,7 @@ void setupMotorComponent()
     angle_queue = xQueueCreate(10, sizeof(int)); // generic int queue for now, figure out exact size and type later
 
     //Create Position Task
-    status = xTaskCreate(angle_queue, "position task", 200, (void*) angle_queue, 2, NULL); // check priority for this
+    status = xTaskCreate(positionTask, "position task", 200, (void*) angle_queue, 2, NULL); // check priority for this
 	if (status != pdPASS) {
 		PRINTF("Task creation failed!.\r\n");
 		while (1)
