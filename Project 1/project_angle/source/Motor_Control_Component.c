@@ -122,7 +122,7 @@ void motorTask(void* pvParameters)
 
 		printf("received motor input %d\n", motorInput);
 
-		motorDutyCycle = 20 * 0.025f / 100.0f + 0.070745;
+		motorDutyCycle = motorInput * 0.025f / 100.0f + 0.070745;
 
 		updatePWM_dutyCycle(FTM_CHANNEL_DC_MOTOR, motorDutyCycle);
 
