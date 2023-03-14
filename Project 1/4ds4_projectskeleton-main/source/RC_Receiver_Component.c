@@ -55,7 +55,6 @@ void rcTask(void* pvParameters)
     int angle_value;
     uint8_t led_value[3];
 
-
     while (1)
     {
         UART_ReadBlocking(RC_UART, ptr, 1);
