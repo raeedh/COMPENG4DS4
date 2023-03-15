@@ -19,14 +19,14 @@
 void setupAccelerometerComponent();
 
 void setupAccelerometerPins();
-void voltageRegulator_enable();
-void accelerometer_enable();
-void spi_init();
+void voltageRegulatorEnable();
+void accelerometerEnable();
+void setupSPI();
 
 void accelerometerTask(void* pvParameters);
 
-status_t SPI_Send(uint8_t regAddress, uint8_t value);
-status_t SPI_receive(uint8_t regAddress, uint8_t *rxBuff, uint8_t rxBuffSize);
+status_t SPI_write(uint8_t regAddress, uint8_t value);
+status_t SPI_read(uint8_t regAddress, uint8_t *rxBuff, uint8_t rxBuffSize);
 
 
 #endif /* ACCELEROMETER_COMPONENT_H */
