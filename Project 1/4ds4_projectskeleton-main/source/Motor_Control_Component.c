@@ -133,6 +133,8 @@ void motorTask(void* pvParameters)
 				;
 		}
 
+        printf("Received motor value from queue: %d\r\n", *motorInput);
+
 		motorDutyCycle = *motorInput * 0.025f / 100.0f + 0.070745;
 
 	updatePWM_dutyCycle(FTM_CHANNEL_DC_MOTOR, motorDutyCycle);
@@ -148,7 +150,7 @@ void positionTask(void* pvParameters)
     float servoDutyCycle;
 
     while (1) {
-		status = xQueueReceive(motor_queue, (void*) &servoInput, portMAX_DELAY);
+		status = xQueueReceive(angle_queue, (void*) &servoInput, portMAX_DELAY);
 
 		if (status != pdPASS) {
 			PRINTF("Queue Receive failed!.\r\n");
@@ -156,6 +158,8 @@ void positionTask(void* pvParameters)
 			while (1)
 				;
 		}
+
+        printf("Received angle value from queue: %d\r\n", *servoInput);
 
 		servoDutyCycle = *servoInput * 0.025f / 45.0f + 0.078;
 

@@ -120,6 +120,8 @@ void rcTask(void* pvParameters)
                 while (1)
                     ;
             }
+
+            printf("Sent motor value to queue!\r\n");
             
             status = xQueueSend(angle_queue, (void* ) &angle_value, portMAX_DELAY);
             if (status != pdPASS) {
@@ -128,12 +130,16 @@ void rcTask(void* pvParameters)
                     ;
             }
 
+            printf("Sent angle value to queue!\r\n");
+
             status = xQueueSend(led_queue, (void* ) &led_value, portMAX_DELAY);
             if (status != pdPASS) {
                 PRINTF("Queue Send failed!.\r\n");
                 while (1)
                     ;
             }
+
+            printf("Sent LED values to queue!\r\n");
         }
     }
 }

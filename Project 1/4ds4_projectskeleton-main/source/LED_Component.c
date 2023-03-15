@@ -94,7 +94,7 @@ void ledTask(void* pvParameters)
     led_input = malloc(sizeof(uint8_t) * 3);
 
     while (1) {
-        status = xQueueReceive(motor_queue, (void*) &led_input, portMAX_DELAY);
+        status = xQueueReceive(led_queue, (void*) &led_input, portMAX_DELAY);
 
         if (status != pdPASS) {
             PRINTF("Queue Receive failed!.\r\n");
@@ -102,6 +102,8 @@ void ledTask(void* pvParameters)
             while (1)
                 ;
         }
+
+        printf("Received LED values from queue: %d %d %d\r\n", led_input[0], led_input[1], led_input[2]);
 
         red = (led_input[0] / 255.0) * 100;
         green = (led_input[1] / 255.0) * 100;
