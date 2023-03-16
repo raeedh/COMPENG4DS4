@@ -2,8 +2,7 @@
 
 QueueHandle_t led_queue;
 
-void setupLEDComponent()
-{
+void setupLEDComponent() {
     BaseType_t status;
     setupLEDPins();
 
@@ -11,14 +10,13 @@ void setupLEDComponent()
 
     /*************** LED Task ***************/
     //Create LED Queue
-    led_queue = xQueueCreate(10, sizeof(uint8_t*)); // generic int queue for now, figure out exact size and type later
+    led_queue = xQueueCreate(1, sizeof(uint8_t*)); // generic int queue for now, figure out exact size and type later
 
     //Create LED Task
-    status = xTaskCreate(ledTask, "LED task", 200, (void*) led_queue, 2, NULL); // check priority for this
+    status = xTaskCreate(ledTask, "LED task", 200, (void*) led_queue, 3, NULL);
 }
 
-void setupLEDPins()
-{
+void setupLEDPins() {
     //Configure LED pins
 
     /* Port C Clock Gate Control: Clock enabled */
@@ -36,8 +34,7 @@ void setupLEDPins()
     PORT_SetPinMux(PORTC, 9U, kPORT_MuxAlt3);
 }
 
-void setupLEDs()
-{
+void setupLEDs() {
     //Initialize PWM for the LEDs
     ftm_config_t ftmInfo;
     ftm_chnl_pwm_signal_param_t ftmParam;
@@ -82,16 +79,16 @@ void setupLEDs()
     FTM_StartTimer(FTM_LED, kFTM_SystemClock);
 }
 
-void ledTask(void* pvParameters)
-{
+void ledTask(void *pvParameters) {
     //LED task implementation
     BaseType_t status;
     float red;
     float green;
     float blue;
 
-    uint8_t *led_input;
-    led_input = malloc(sizeof(uint8_t) * 3);
+    uint8_t led_input[3];
+
+//    printf("LED task created\r\n");
 
     while (1) {
         status = xQueueReceive(led_queue, (void*) &led_input, portMAX_DELAY);
@@ -103,19 +100,21 @@ void ledTask(void* pvParameters)
                 ;
         }
 
-        printf("Received LED values from queue: %d %d %d\r\n", led_input[0], led_input[1], led_input[2]);
+//        printf("Received LED values from queue: %d %d %d\r\n", led_input[0], led_input[1], led_input[2]);
 
         red = (led_input[0] / 255.0) * 100;
         green = (led_input[1] / 255.0) * 100;
         blue = (led_input[2] / 255.0) * 100;
 
-        FTM_UpdatePwmDutycycle(FTM_LED, FTM_RED_CHANNEL, kFTM_EdgeAlignedPwm, (uint8_t)red);
+        FTM_UpdatePwmDutycycle(FTM_LED, FTM_RED_CHANNEL, kFTM_EdgeAlignedPwm, (uint8_t) red);
         FTM_SetSoftwareTrigger(FTM_LED, true);
 
-        FTM_UpdatePwmDutycycle(FTM_LED, FTM_GREEN_CHANNEL, kFTM_EdgeAlignedPwm, (uint8_t)green);
+        FTM_UpdatePwmDutycycle(FTM_LED, FTM_GREEN_CHANNEL, kFTM_EdgeAlignedPwm, (uint8_t) green);
         FTM_SetSoftwareTrigger(FTM_LED, true);
 
-        FTM_UpdatePwmDutycycle(FTM_LED, FTM_BLUE_CHANNEL, kFTM_EdgeAlignedPwm, (uint8_t)blue);
+        FTM_UpdatePwmDutycycle(FTM_LED, FTM_BLUE_CHANNEL, kFTM_EdgeAlignedPwm, (uint8_t) blue);
         FTM_SetSoftwareTrigger(FTM_LED, true);
+
+        vTaskDelay(1 / portTICK_PERIOD_MS);
     }
 }

@@ -11,24 +11,23 @@
 #include "LED_Component.h"
 #include "Accelerometer_Component.h"
 
-int main(void)
-{
+int main(void) {
     /* Init board hardware. */
     BOARD_InitBootClocks();
 
-    printf("done initbootclocks\r\n");
+//    printf("done initbootclocks\r\n");
 
     setupMotorComponent();
-    printf("loaded motor tasks\r\n");
-    setupRCReceiverComponent();
-    printf("loaded rc tasks\r\n");
-    // setupTerminalComponent();
+//    printf("loaded motor tasks\r\n");
     setupLEDComponent();
-    printf("loaded led tasks\r\n");
-    // setupAccelerometerComponent();
+//	printf("loaded led tasks\r\n");
+    setupRCReceiverComponent();
+//    printf("loaded rc tasks\r\n");
+//    setupTerminalComponent();
+//    setupAccelerometerComponent();
 
     vTaskStartScheduler();
 
-    while(1)
-    {}
+    while (1) {
+    }
 }
