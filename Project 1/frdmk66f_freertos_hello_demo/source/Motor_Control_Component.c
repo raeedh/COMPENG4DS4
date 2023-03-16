@@ -130,7 +130,7 @@ void motorTask(void *pvParameters) {
 
         if (prevMotorInput != motorInput) {
             prevMotorInput = motorInput;
-            motorDutyCycle = motorInput * 0.025f / 100.0f + 0.0717;
+            motorDutyCycle = motorInput * 0.025f / 100.0f + 0.0760;
             updatePWM_dutyCycle(FTM_CHANNEL_DC_MOTOR, motorDutyCycle);
             FTM_SetSoftwareTrigger(FTM_MOTOR, true);
         }
