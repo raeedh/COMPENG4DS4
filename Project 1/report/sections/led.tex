@@ -40,4 +40,6 @@ void ledTask(void *pvParameters) {
 
 \section*{LED Task}
 
+The LED task controls the three LEDs on the board by calculating the PWM duty cycle and controlling the FTM module. The task will wait for and receive messages from the LED queue, and will convert the values received on the queue to the appropriate PWM duty cycle for the FTM module. The LED queue can contain one integer pointer, which points to a three element integer array, and the pointer sent into the queue from the RC task will be to an integer array that contains three values from $0$ to $100$ which correspond to the RGB values of the onboard red, green and blue LEDs. When the LED task receives a pointer from the LED queue, it will convert the values in the array to their corresponding PWM duty cycles, and update the FTM module with this duty cycle, then trigger the FTM module.
+
 \input{sections/led_task.tex}
