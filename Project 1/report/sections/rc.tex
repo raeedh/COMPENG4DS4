@@ -1,0 +1,78 @@
+\begin{filecontents}[overwrite]{./sections/rc_task.tex}
+\begin{lstlisting}[language=c,caption=RC Task, label=list:rc]
+void rcTask(void *pvParameters) {
+    // RC task implementation
+    BaseType_t status;
+
+    RC_Values rc_values;
+    uint8_t *ptr = (uint8_t*) &rc_values;
+
+    int motor_value;
+    int angle_value;
+    uint8_t led_value[3];
+
+    while (1) {
+        UART_ReadBlocking(RC_UART, ptr, 1);
+        if (*ptr != 0x20)
+            continue;
+        UART_ReadBlocking(RC_UART, &ptr[1], sizeof(rc_values) - 1);
+        if (rc_values.header == 0x4020) {
+
+            if (rc_values.ch8 == 1500) {
+                motor_value = 0;
+            } else {
+                switch (rc_values.ch6) {
+                    case 1000:
+                        motor_value = rc_values.ch8 == 1000 ? (rc_values.ch2 - 1000) / 50 : (rc_values.ch2 - 1000) / -50;
+                        led_value[0] = 255;
+                        led_value[1] = 0;
+                        led_value[2] = 0;
+                        break;
+                    case 1500:
+                        motor_value = rc_values.ch8 == 1000 ? (rc_values.ch2 - 1000) / 20 : (rc_values.ch2 - 1000) / -20;
+                        led_value[0] = 255;
+                        led_value[1] = 255;
+                        led_value[2] = 0;
+                        break;
+                    case 2000:
+                        motor_value = rc_values.ch8 == 1000 ? (rc_values.ch2 - 1000) / 10 : (rc_values.ch2 - 1000) / -10;
+                        led_value[0] = 0;
+                        led_value[1] = 255;
+                        led_value[2] = 0;
+                        break;
+                }
+            }
+
+            angle_value = (rc_values.ch4 - 1500) * 45 / 500;
+
+            status = xQueueSend(motor_queue, (void* ) &motor_value, portMAX_DELAY);
+            if (status != pdPASS) {
+                PRINTF("Queue Send failed!.\r\n");
+                while (1)
+                    ;
+            }
+
+            status = xQueueSend(angle_queue, (void* ) &angle_value, portMAX_DELAY);
+            if (status != pdPASS) {
+                PRINTF("Queue Send failed!.\r\n");
+                while (1)
+                    ;
+            }
+
+            status = xQueueSend(led_queue, (void* ) &led_value, portMAX_DELAY);
+            if (status != pdPASS) {
+                PRINTF("Queue Send failed!.\r\n");
+                while (1)
+                    ;
+            }
+
+            vTaskDelay(1 / portTICK_PERIOD_MS);
+        }
+    }
+}
+\end{lstlisting}
+\end{filecontents}
+
+\section*{RC Task}
+
+\input{sections/rc_task.tex}

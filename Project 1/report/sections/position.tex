@@ -1,0 +1,36 @@
+\begin{filecontents}[overwrite]{./sections/position_task.tex}
+\begin{lstlisting}[language=c,caption=Position Task, label=list:position]
+void positionTask(void *pvParameters) {
+    // Position task implementation
+    BaseType_t status;
+    int servoInput;
+    float servoDutyCycle;
+
+    while (1) {
+        status = xQueueReceive(angle_queue, (void*) &servoInput, portMAX_DELAY);
+
+        if (status != pdPASS) {
+            PRINTF("Queue Receive failed!.\r\n");
+
+            while (1)
+                ;
+        }
+
+        if (prevServoInput != servoInput) {
+            prevServoInput = servoInput;
+            servoDutyCycle = servoInput * 0.025f / 45.0f + 0.078;
+            updatePWM_dutyCycle(FTM_CHANNEL_SERVO_MOTOR, servoDutyCycle);
+            FTM_SetSoftwareTrigger(FTM_MOTOR, true);
+        }
+
+        vTaskDelay(1 / portTICK_PERIOD_MS);
+    }
+}
+\end{lstlisting}
+\end{filecontents}
+
+\section*{Position Task}
+
+The position task controls the servo motor's angle by calculating the PWM duty cycle and controlling the FTM module. The task will wait for and receive messages from the angle queue, and will convert the values received on the queue to the appropriate PWM duty cycle for the FTM module. The angle queue can contain one single byte integer, and the value sent into the queue from the RC task will be between $-45$ and $45$. When the position task receives an integer from the angle queue, it will compare the servo angle value with the previous servo input value, and if the value has changed it will convert the value to its corresponding PWM duty cycle, and update the FTM module with this duty cycle. We only trigger the FTM module when the servo angle value has changed as we experienced jittering with the servo motor when the task triggers the FTM module every time even when the servo angle value has not changed.
+
+\input{sections/position_task.tex}

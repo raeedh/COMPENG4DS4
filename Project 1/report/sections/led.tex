@@ -1,0 +1,43 @@
+\begin{filecontents}[overwrite]{./sections/led_task.tex}
+\begin{lstlisting}[language=c,caption=LED Task, label=list:led]
+void ledTask(void *pvParameters) {
+    // LED task implementation
+    BaseType_t status;
+    float red;
+    float green;
+    float blue;
+
+    uint8_t led_input[3];
+
+    while (1) {
+        status = xQueueReceive(led_queue, (void*) &led_input, portMAX_DELAY);
+
+        if (status != pdPASS) {
+            PRINTF("Queue Receive failed!.\r\n");
+
+            while (1)
+                ;
+        }
+
+        red = (led_input[0] / 255.0) * 100;
+        green = (led_input[1] / 255.0) * 100;
+        blue = (led_input[2] / 255.0) * 100;
+
+        FTM_UpdatePwmDutycycle(FTM_LED, FTM_RED_CHANNEL, kFTM_EdgeAlignedPwm, (uint8_t) red);
+        FTM_SetSoftwareTrigger(FTM_LED, true);
+
+        FTM_UpdatePwmDutycycle(FTM_LED, FTM_GREEN_CHANNEL, kFTM_EdgeAlignedPwm, (uint8_t) green);
+        FTM_SetSoftwareTrigger(FTM_LED, true);
+
+        FTM_UpdatePwmDutycycle(FTM_LED, FTM_BLUE_CHANNEL, kFTM_EdgeAlignedPwm, (uint8_t) blue);
+        FTM_SetSoftwareTrigger(FTM_LED, true);
+
+        vTaskDelay(1 / portTICK_PERIOD_MS);
+    }
+}
+\end{lstlisting}
+\end{filecontents}
+
+\section*{LED Task}
+
+\input{sections/led_task.tex}
