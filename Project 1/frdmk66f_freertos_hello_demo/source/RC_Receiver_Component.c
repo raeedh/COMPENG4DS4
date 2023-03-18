@@ -67,12 +67,11 @@ void rcTask(void *pvParameters) {
             // printf("Channel 4 = %d\t", rc_values.ch4); // used control joy stick angle input
             // printf("Channel 5 = %d\t", rc_values.ch5);
             // printf("Channel 6 = %d\t", rc_values.ch6); // three mode motor switch
-            // printf("Channel 7 = %d\t", rc_values.ch7); // used to control joy stick motor or switch motor
+            // printf("Channel 7 = %d\t", rc_values.ch7);
             // printf("Channel 8 = %d\r\n", rc_values.ch8); // used to control forward and back ward
 
             // hard code rc values for debug
             // rc_values.ch6 = 1000;
-            // rc_values.ch7 = 1000;
             // rc_values.ch8 = 1500;
 
             if (rc_values.ch8 == 1500) {

@@ -75,4 +75,12 @@ void rcTask(void *pvParameters) {
 
 \section*{RC Task}
 
+The RC task receives and decodes data coming from the radio receiver, which is connected via UART on the board. The task reads the bytes that are received from the controller through UART, then attempts to match the second byte of the header message (the second byte is used as the 2 byte numbers sent by the RC controller are in big endian). When the second byte of the header message matches, we read the remaining 17 bytes of the RC receiver data packet and try to match the entire header message. When the entire message matches, we will read the values on channels 8 (mapped to forward, stationary, and reverse motor directions), channels 6 (used to control the motor speed between slow, medium, and fast), as well as the joystick data values on channels 1 and 4 (used to adjust the motor speed and servo angle direction).
+
+These channel data values will range from $1000-2000$. Channel 8 will set the motor speed to 0 when the channel is set to 1500, will allow the motor to operate in the forward direction when set to 1000, and will allow the motor to operate in the reverse direction when set to 2000. Channel 6 will allow the motor speed to operate between 0 and a maximum value dependent on the speed setting, as well as enabling the LEDs to operate at a certain colour corresponding to that speed setting. The motor will operate in the slow speed mode when channel 6 is set to 1000, allowing the speed to range from 0 to 20 (controlled by the joystick mapped to channel 1) and set the LED to appear red. The motor will operate in the medium speed mode when channel 6 is set to 1500, allowing the speed to range from 0 to 50 (controlled by the joystick mapped to channel 1) and set the LED to appear yellow. The motor will operate in the fast speed mode when channel 6 is set to 2000, allowing the speed to range from 0 to 1000 (controlled by the joystick mapped to channel 1) and set the LED to appear green. The angle value will range from -45 to 45 depending on the value of channel 4.
+
+The motor speed values will always be mapped a value from -100 to 100, the servo angle values between -45 to 45, and the LED values between 0 to 255. These values are mapped to the expected input ranges for the motor, position, and LED tasks. The values are then sent to the motor, position, and LED queues respectively, where they will be processed by the appropriate tasks.
+
+The RC task is shown in Listing~\ref{list:rc}.
+
 \input{sections/rc_task.tex}

@@ -33,4 +33,6 @@ void motorTask(void *pvParameters) {
 
 The motor task controls the DC motor's speed by calculating the PWM duty cycle and controlling the FTM module. The task will wait for and receive messages from the motor queue, and will convert the values received on the queue to the appropriate PWM duty cycle for the FTM module. The motor queue can contain one single byte integer, and the value sent into the queue from the RC task will be between $-100$ and $100$. When the motor task receives an integer from the motor queue, it will compare the motor value with the previous motor value, and if the value has changed it will convert the value to its corresponding PWM duty cycle, and update the FTM module with this duty cycle. We only trigger the FTM module when the motor value has changed as we experienced jittering with the motor when the task triggers the FTM module every time when the motor value has not changed.
 
+The motor task is shown in Listing~\ref{list:motor}.
+
 \input{sections/motor_task.tex}
