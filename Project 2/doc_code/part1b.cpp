@@ -32,8 +32,8 @@ int hello_world_main(int argc, char *argv[])
     {
         orb_copy(ORB_ID(input_rc), rc_combined_handle, &rc_data);
         // get motor and angle values from rc_data
-        // motor_value = rc_data.
-        // angle_value = rc_data.
+        motor_value = (rc_data.values[2] - 1000.0) / 100;
+        angle_value = (rc_data.values[3] - 1000.0) / 100;
 
         if(motor_value > 1.0 || motor_value < 0)
             break;
