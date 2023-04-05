@@ -14,6 +14,12 @@ extern "C" __EXPORT int hello_world_main(int argc, char *argv[]);
 
 int hello_world_main(int argc, char *argv[])
 {
+    int rc_combined_handle;
+	input_rc_s rc_data;
+
+	rc_combined_handle = orb_subscribe(ORB_ID(input_rc));
+	orb_set_interval(rc_combined_handle, 200);
+
     test_motor_s test_motor;
     double motor_value = 0; // a number between 0 to 1
 
@@ -24,8 +30,11 @@ int hello_world_main(int argc, char *argv[])
 
     while (1)
     {
-        PX4_INFO("Enter speed value (0 to 1) and servo value (0 to 1). If you enter a value outside the range, the motor and servo will be stopped and the application will be terminated.");
-        scanf("%lf %lf", &motor_value, &angle_value);
+        orb_copy(ORB_ID(input_rc), rc_combined_handle, &rc_data);
+        // get motor and angle values from rc_data
+        // motor_value = rc_data.
+        // angle_value = rc_data.
+
         if(motor_value > 1.0 || motor_value < 0)
             break;
         if(angle_value > 1.0 || angle_value < 0)
@@ -50,6 +59,8 @@ int hello_world_main(int argc, char *argv[])
         servo_motor.timeout_ms = 0;
 
         test_motor_pub.publish(servo_motor);
+
+        px4_usleep(200000);
     }
 
     PX4_INFO("The motor will be stopped");
