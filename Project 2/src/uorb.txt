@@ -1,0 +1,35 @@
+TOPIC: sensor_gyro
+ sensor_gyro
+    timestamp: 56179390 (0.000564 seconds ago)
+    timestamp_sample: 56179349 (41 us before timestamp)
+    device_id: 5505042 (Type: 0x54, SPI:2 (0x00))
+    x: 0.0141
+    y: 0.0043
+    z: 0.0032
+    temperature: 36.0000
+    error_count: 0
+    samples: 1
+
+nsh> listener vehicle_imu
+
+TOPIC: vehicle_imu
+ vehicle_imu
+    timestamp: 65859731 (0.001847 seconds ago)
+    timestamp_sample: 65858298 (1433 us before timestamp)
+    accel_device_id: 5373970 (Type: 0x52, SPI:2 (0x00))
+    gyro_device_id: 5505042 (Type: 0x54, SPI:2 (0x00))
+    delta_angle: [-0.0000, 0.0000, 0.0000]
+    delta_velocity: [0.0147, 0.0021, -0.0526]
+    delta_angle_dt: 4995
+    delta_velocity_dt: 5002
+    delta_velocity_clipping: 0
+    accel_calibration_count: 2
+    gyro_calibration_count: 1
+
+nsh> listener cpuload
+
+TOPIC: cpuload
+ cpuload
+    timestamp: 77823225 (0.188618 seconds ago)
+    load: 0.6415
+    ram_usage: 0.8147
