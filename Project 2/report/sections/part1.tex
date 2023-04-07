@@ -96,7 +96,7 @@ int hello_world_main(int argc, char *argv[])
 
 To control the servo motor, we define the servo motor on pin 2 as motor number 1 for \texttt{test\_motor}. The servo motor can then be controlled by duplicating the DC motor code. We can additionally integrate the RC channel code from step 0 to read the RC channel values and calculate the values to publish to the DC and servo motors.
 
-We read channels 1 and 3 (mapped to the two joysticks on the RC controller) to control the motors. The data from the channels (ranging from -1 to 1), are mapped to 0 to 1 range required by \texttt{test\_motor}.The rc channel controller 3 are added with a offset of 0.96 first and divded by 1.96, to normailze the range from 0 to 1, then divded by 2 to make the range from 0 to 0,5. In this way the input can be calibrated for both forward and backward motor values. For the servo motor angle, we divide by 2 to reduce the range from -0.5 to 0.5, and then add 0.5 to move the range from 0 to 1.
+We read channels 1 and 3 (mapped to the two joysticks on the RC controller) to control the motors. The data from the channels (ranging from -1 to 1), are mapped to 0 to 1 range required by \texttt{test\_motor}.The RC controller channel 3 value is offset by 0.96 first and divided by 1.96, to normalize the range from 0 to 1 (based on the values we received from the controller in step 0), then divided by 2 to make the range from 0 to 0.5. In this way the input can be calibrated for both forward and backward motor values. For the servo motor angle, we divide by 2 to reduce the range from -0.5 to 0.5, and then add 0.5 to move the range from 0 to 1.
 
 The code for Part 1 is shown below in Listing~\ref{list:part1}.
 
